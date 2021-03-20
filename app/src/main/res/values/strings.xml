@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Hot Soup</string>
+    <string name="username">Käyttäjätunnus</string>
+    <string name="signin">Kirjaudu</string>
+    <string name="password">Salasana</string>
+    <string name="new_user">Uusi tili</string>
 </resources>

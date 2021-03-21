@@ -9,7 +9,8 @@ public class UserProfile implements java.io.Serializable{
     ArrayList<Integer> weight = null;
     int yearOfBirth;
     String homeCity;
-    ArrayList<DayConsumption> comsumption = null;
+    ArrayList<userFoodDiary> comsumption = null;
+    String filepath;
 
 
     public void createProfile(String userName,
@@ -18,7 +19,7 @@ public class UserProfile implements java.io.Serializable{
             ArrayList<Integer> weight,
             int yearOfBirth,
             String homeCity,
-            ArrayList<DayConsumption> comsumption){
+            ArrayList<userFoodDiary> comsumption){
         this.userName = userName;
         this.password = password;
         this.height = height;
@@ -29,7 +30,7 @@ public class UserProfile implements java.io.Serializable{
 
     }
 
-    public ArrayList<DayConsumption> getComsumption() {
+    public ArrayList<userFoodDiary> getComsumption() {
         return comsumption;
     }
 
@@ -55,5 +56,9 @@ public class UserProfile implements java.io.Serializable{
 
     public String getHomeCity() {
         return homeCity;
+    }
+
+    public void upodateUserData(){
+        //TODO päivittää käyttäjän tiedoston eli tyhjentää sen ja kirjoittaa itsensä sinne
     }
 }

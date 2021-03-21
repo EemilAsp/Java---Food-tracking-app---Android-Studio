@@ -1,9 +1,9 @@
-package com.example.datahaku;
+package com.hotsoup;
 
 import android.os.Bundle;
 import android.view.View;
 
-import com.google.gson.Gson;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;

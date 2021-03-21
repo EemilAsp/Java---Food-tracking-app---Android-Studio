@@ -1,4 +1,4 @@
-package com.example.datahaku;
+package com.hotsoup;
 
 import java.util.Date;
 

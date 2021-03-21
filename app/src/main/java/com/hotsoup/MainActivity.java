@@ -16,5 +16,6 @@ public class MainActivity extends AppCompatActivity {
         foodDataHarvester fd = foodDataHarvester.getInstance();
         String s = "o";
         fd.readGSON(s);
+        System.out.println("moro");
     }
 }

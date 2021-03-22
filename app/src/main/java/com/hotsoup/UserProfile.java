@@ -1,5 +1,8 @@
 package com.hotsoup;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class UserProfile implements java.io.Serializable{
@@ -10,12 +13,12 @@ public class UserProfile implements java.io.Serializable{
     int yearOfBirth;
     String homeCity;
     ArrayList<userFoodDiary> comsumption = null;
-    String filepath;
+
     byte[] salt;
 
-    public UserProfile(String userName, byte[] password, String filepath, byte[] salt){
+    public UserProfile(String userName, byte[] password, byte[] salt){
         this.userName = userName;
-        this.filepath = filepath;
+
         this.password = password;
         this.salt = salt;
     }
@@ -24,9 +27,7 @@ public class UserProfile implements java.io.Serializable{
         this.password = password;
     }
 
-    public String getFilepath() {
-        return filepath;
-    }
+
 
     public byte[] getSalt() {
         return salt;
@@ -61,10 +62,6 @@ public class UserProfile implements java.io.Serializable{
         this.comsumption = comsumption;
     }
 
-    public void setFilepath(String filepath) {
-        this.filepath = filepath;
-    }
-
     public ArrayList<userFoodDiary> getComsumption() {
         return comsumption;
     }
@@ -93,7 +90,6 @@ public class UserProfile implements java.io.Serializable{
         return homeCity;
     }
 
-    public void upodateUserData(){
-        //TODO päivittää käyttäjän tiedoston eli tyhjentää sen ja kirjoittaa itsensä sinne
-    }
+
+
 }

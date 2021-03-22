@@ -1,7 +1,15 @@
 package com.hotsoup;
 
 import android.content.Context;
+import android.os.Environment;
+import android.util.Log;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -10,23 +18,38 @@ import java.util.ArrayList;
 
 
 public class LoadProfile {
+    private static LoadProfile instance = new LoadProfile();;
     private String filePath = "";
     private ArrayList<UserProfile> userList = null;
     private Context context;
-    private final LoadProfile instance = new LoadProfile();
-    private LoadProfile() {
+    public LoadProfile() {
 
         //TODO Lue oliot tiedostostoista
         //https://www.tutorialspoint.com/java/java_serialization.htm
+        String path = Environment.getExternalStorageDirectory().toString()+"/Users";
+        File[] userFiles = (new File(path)).listFiles();
+
+        for (File userFile : userFiles) {
+            try {
+                FileInputStream fis = context.openFileInput(userFile.getAbsolutePath());
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                userList.add((UserProfile) ois.readObject());
+                ois.close();
+                fis.close();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
-    public LoadProfile getInstance(){
+    public static LoadProfile getInstance(){
         return instance;
     }
 
     public UserProfile identifyUser(String username, String password){
         //Find user with right username and after that hash password and check if its same
         UserProfile user = null;
-        for(int i = 0; i < userList.size();i++){
+        for(int i = 0; i < userList.size() ; i++){
             if(userList.get(i).getUserName().equals(username)){
                 if(makeHash(password, userList.get(i).getSalt()) == userList.get(i).getPassword())
                 user = userList.get(i);
@@ -39,9 +62,9 @@ public class LoadProfile {
     public void createNewProfile(String username, String password){
         byte[] salt = getSalt();//creates salt
         byte[] hashedPassword = makeHash(password, salt);//Hash+ salt to password
-        filePath = "./android."+ username;//TODO ALKU OSOITE
-        UserProfile user = new UserProfile(username, hashedPassword, filePath, salt);
-        user.upodateUserData();//writes itself to file
+
+        UserProfile user = new UserProfile(username, hashedPassword, salt);
+        updateUserData(user);//writes itself to file
     }
     private byte[] makeHash(String password, byte[] salt) {
         try {
@@ -70,6 +93,19 @@ public class LoadProfile {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public void updateUserData(UserProfile user){
+        //Gets object(UserProfile) and writes it to file inside Users
+        try {
+            FileOutputStream fos = context.openFileOutput("/Users/"+user.getUserName(), Context.MODE_PRIVATE);
+            ObjectOutputStream os = new ObjectOutputStream(fos);
+            os.writeObject(user);
+            os.close();
+            fos.close();
+        } catch (IOException i) {
+            i.printStackTrace();
         }
     }
 

@@ -1,8 +1,6 @@
 package com.hotsoup;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
+
 import java.util.ArrayList;
 
 public class UserProfile implements java.io.Serializable{
@@ -13,12 +11,12 @@ public class UserProfile implements java.io.Serializable{
     int yearOfBirth;
     String homeCity;
     ArrayList<userFoodDiary> comsumption = null;
+    boolean rememberMe =false;
 
     byte[] salt;
 
     public UserProfile(String userName, byte[] password, byte[] salt){
         this.userName = userName;
-
         this.password = password;
         this.salt = salt;
     }
@@ -27,7 +25,13 @@ public class UserProfile implements java.io.Serializable{
         this.password = password;
     }
 
+    public boolean isRememberMe() {
+        return rememberMe;
+    }
 
+    public void setRememberMe(boolean rememberMe) {
+        this.rememberMe = rememberMe;
+    }
 
     public byte[] getSalt() {
         return salt;

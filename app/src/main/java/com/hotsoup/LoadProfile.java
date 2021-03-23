@@ -18,17 +18,15 @@ import java.util.ArrayList;
 
 
 public class LoadProfile {
-    private static LoadProfile instance = new LoadProfile();;
+    public static LoadProfile instance = new LoadProfile();;
     private String filePath = "";
-    private ArrayList<UserProfile> userList = null;
+    private static ArrayList<UserProfile> userList = new ArrayList<UserProfile>();
     private Context context;
     public LoadProfile() {
-
-        //TODO Lue oliot tiedostostoista
-        //https://www.tutorialspoint.com/java/java_serialization.htm
+        //Load all profiles
         String path = Environment.getExternalStorageDirectory().toString()+"/Users";
         File[] userFiles = (new File(path)).listFiles();
-
+        try{
         for (File userFile : userFiles) {
             try {
                 FileInputStream fis = context.openFileInput(userFile.getAbsolutePath());
@@ -39,6 +37,9 @@ public class LoadProfile {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
+        }}
+        catch (NullPointerException e){
+            System.out.println("#########Empty list#######");
         }
 
     }
@@ -107,6 +108,29 @@ public class LoadProfile {
         } catch (IOException i) {
             i.printStackTrace();
         }
+    }
+
+    public boolean isNameFree(String name){
+        //if name is not in use returns true
+        boolean nametaken = true;
+        if(!userList.isEmpty()){
+        for (UserProfile user : userList){
+            if (name.equals(user.getUserName())) {
+                nametaken = false;
+                break;
+            }
+        }}
+        return nametaken;
+    }
+
+    public UserProfile findloggedIn(){
+        if(!userList.isEmpty()){
+            for (UserProfile user : userList){
+                if (user.isRememberMe()) {
+                    return user;
+                }
+            }}
+        return null;
     }
 
 }

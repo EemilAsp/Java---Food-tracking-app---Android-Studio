@@ -9,20 +9,31 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class SignUpProfileActivity extends AppCompatActivity implements TextWatcher {
-
+    EditText password;
+    EditText passwordAgain;
+    EditText username;
+    ProgressBar progressBar;
+    Button buttonMakeProfile;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_sign_up_profile);
 
-            EditText password = (EditText)findViewById(R.id.login_password);
+            password = (EditText)findViewById(R.id.login_password);
             password.addTextChangedListener(this);
+            passwordAgain = findViewById(R.id.text_password_again);
+            passwordAgain.addTextChangedListener(this);
+            progressBar = findViewById(R.id.progressBar);
+            buttonMakeProfile = findViewById(R.id.button_signup);
+            username = findViewById(R.id.edit_username);
+
 
         }
 
@@ -36,7 +47,11 @@ public class SignUpProfileActivity extends AppCompatActivity implements TextWatc
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            updatePasswordStrengthView(s.toString());
+            if(getCurrentFocus() == password){updatePasswordStrengthView(s.toString());}
+            if(password.getText().toString().equals(passwordAgain.getText().toString()) && progressBar.getProgress()>=3){
+                buttonMakeProfile.setEnabled(true);
+            }
+            else {buttonMakeProfile.setEnabled(false);}
         }
 
 
@@ -68,10 +83,26 @@ public class SignUpProfileActivity extends AppCompatActivity implements TextWatc
                 progressBar.setProgress(100);
             }
         }
+        public void toSingIn(View v){
+            Intent myIntent = new Intent(this, SigninProfileActivity.class);
+            startActivity(myIntent);
+        }
+        public void makeProfile(View v){
+            LoadProfile lp = LoadProfile.getInstance();
+            if(lp.isNameFree(username.getText().toString())){
+                lp.createNewProfile(username.getText().toString(), password.getText().toString());
+                toSingIn(v);
+            }
+            else{
+                buttonMakeProfile.setEnabled(false);
+                ErrorPopUp error = new ErrorPopUp("Ongelma tilin luonnissa", "Käyttäjänimi on jo varattu");
+                error.show(getSupportFragmentManager(), "error");
+                password.setText("");
+                passwordAgain.setText("");
+                username.setText("");
+            }
 
-    public void toSingIn(View v){
-        Intent myIntent = new Intent(this, SigninProfileActivity.class);
-        startActivity(myIntent);
-    }
+
+        }
     }
 

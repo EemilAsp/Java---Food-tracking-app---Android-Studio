@@ -1,6 +1,8 @@
-package com.example.datahaku;
+package com.hotsoup;
 
-public class userMeal {
+import java.io.Serializable;
+
+public class userMeal implements Serializable {
     String foodname;
     double portionsize;
     double fats;
@@ -12,14 +14,47 @@ public class userMeal {
     double sugar;
     //name, energy, portionsize, protein, carbs, fats, alcohol, fiber, sugar
     public userMeal(String n, double e, double ps, double p, double c, double fa, double a, double fib, double s){
-        foodname = n;
-        kcal = e;
-        portionsize = ps;
-        protein = p;
-        carb = c;
-        fats = fa;
-        alcohol = a;
-        fiber = fib;
-        sugar = s;
+        this.foodname = n;
+        this.kcal = e;
+        this.portionsize = ps;
+        this.protein = p;
+        this.carb = c;
+        this.fats = fa;
+        this.alcohol = a;
+        this.fiber = fib;
+        this.sugar = s;
     }
+
+
+
+    public String getFoodname(){
+        return foodname;
+    }
+    public double getEnergy(){
+        return kcal;
+    }
+    public double getPortionsize(){
+        return portionsize;
+    }
+    public double getProtein(){
+        return protein;
+    }
+    public double getCarb(){
+        return carb;
+    }
+    public double getFats(){
+        return fats;
+    }
+    public double getAlcohol(){
+        if(Double.toString(alcohol).isEmpty()){
+            return 0;
+        }else{return alcohol;}
+    }
+    public double getFiber(){
+        return fiber;
+    }
+    public double getSugar(){
+        return sugar;
+    }
+
 }

@@ -3,6 +3,7 @@
     package="com.hotsoup">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HotSoup">
-        <activity android:name=".MainScreenActivity"></activity>
+        <activity android:name=".MainScreenActivity"/>
         <activity android:name=".SignUpProfileActivity" />
         <activity android:name=".SigninProfileActivity" />
         <activity android:name=".MainActivity">

@@ -176,8 +176,8 @@
         android:gravity="center"
         android:onClick="toSingIn"
 
-        android:textSize="18dp"
-        android:text="@string/new_user"
+        android:textSize="18sp"
+        android:text="@string/sign_in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

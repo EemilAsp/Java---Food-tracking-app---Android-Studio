@@ -3,7 +3,7 @@
     <string name="username">Käyttäjätunnus</string>
     <string name="signin">Kirjaudu</string>
     <string name="password">Salasana</string>
-    <string name="new_user">Uusi tili</string>
+    <string name="new_user">Luo uusi tili</string>
     <string name="password_again">Salasana uudestaan</string>
     <string name="create_new_account">Luo uusi tili</string>
     <string name="password_strength_weak">Heikko</string>
@@ -11,7 +11,7 @@
     <string name="password_strength_strong">Vahva</string>
     <string name="password_strength_very_strong">Todella vahva</string>
     <string name="weak">Heikko</string>
-    <string name="password_info">Salasanan täytyy olla vähintään 8 merkkiä pitkä ja sisältää vähintään yhden numeron ja erikoismerkin</string>
+    <string name="password_info">Salasanan täytyy olla vähintään 12 merkkiä pitkä ja sisältää vähintään yhden numeron ja erikoismerkin</string>
     <string name="enter_password">Enter Password</string>
     <string name="password_meter">Password Meter</string>
     <string name="remember_me">Muista minut</string>
@@ -25,4 +25,7 @@
     <string name="food_search">Food search:</string>
     <string name="portion_size">Portion size:</string>
     <string name="show_added_meals">Show added meals</string>
+    <string name="sign_in">Kirjaudu sisään</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

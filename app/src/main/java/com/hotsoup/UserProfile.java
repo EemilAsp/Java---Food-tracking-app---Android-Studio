@@ -1,6 +1,8 @@
 package com.hotsoup;
 
 
+import android.content.Intent;
+
 import java.util.ArrayList;
 
 public class UserProfile implements java.io.Serializable{
@@ -12,8 +14,17 @@ public class UserProfile implements java.io.Serializable{
     String homeCity;
     ArrayList<userFoodDiary> comsumption = null;
     boolean rememberMe =false;
+    Intent lastintent;
 
     byte[] salt;
+
+    public Intent getLastintent() {
+        return lastintent;
+    }
+
+    public void setLastintent(Intent lastintent) {
+        this.lastintent = lastintent;
+    }
 
     public UserProfile(String userName, byte[] password, byte[] salt){
         this.userName = userName;

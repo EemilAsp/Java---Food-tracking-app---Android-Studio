@@ -26,6 +26,31 @@
     <string name="portion_size">Portion size:</string>
     <string name="show_added_meals">Show added meals</string>
     <string name="sign_in">Kirjaudu sisään</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="food_menu">Food menu</string>
+    <string name="Diet_menu">Ruokavalio</string>
+    <string name="carbon_foot_print">Hiilijalanjälki</string>
+    <string name="Random_facts">Riskitekijät</string>
+    <string name="weight_control">Painonhallinta</string>
+    <string name="profile">Profiili</string>
+    <string name="log_out">Kirjaudu ulos</string>
+    <string name="see_profile">Tarkastele</string>
+    <string name="edit_profile">Muokkaa</string>
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="height">Pituus</string>
+    <string name="home_city">Asuinpaikkakunta</string>
+    <string name="birth_year">Syntymäaika</string>
 </resources>

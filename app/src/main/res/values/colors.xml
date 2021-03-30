@@ -13,4 +13,8 @@
     <color name="orange">#F2C299</color>
     <color name="dark_orange">#F2935C</color>
     <color name="pink">#F2C1B6</color>
+    <color name="light_font">#FBFBFB</color>
+    <color name="grey_font">#ff9e9e9e</color>
+    <color name="text_shadow">#7F000000</color>
+    <color name="text_shadow_white">#FFFFFF</color>
 </resources>

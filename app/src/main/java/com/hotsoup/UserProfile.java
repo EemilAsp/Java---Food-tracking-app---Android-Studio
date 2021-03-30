@@ -1,36 +1,52 @@
 package com.hotsoup;
 
 
-import android.content.Intent;
-
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class UserProfile implements java.io.Serializable{
     String userName;
     byte[] password;
     int height;
     ArrayList<Integer> weight = null;
-    int yearOfBirth;
+    Calendar yearOfBirth;
     String homeCity;
     ArrayList<userFoodDiary> comsumption = null;
     boolean rememberMe =false;
-    Intent lastintent;
 
-    byte[] salt;
-
-    public Intent getLastintent() {
-        return lastintent;
-    }
-
-    public void setLastintent(Intent lastintent) {
-        this.lastintent = lastintent;
-    }
 
     public UserProfile(String userName, byte[] password, byte[] salt){
         this.userName = userName;
         this.password = password;
         this.salt = salt;
+        lastActivity = MainScreenActivity.class.getName();
+        Calendar c = Calendar.getInstance();
+        yearOfBirth = c;
     }
+
+
+
+
+    public Calendar getYearOfBirth() {
+        return yearOfBirth;
+    }
+
+    public void setYearOfBirth(Calendar yearOfBirth) {
+        this.yearOfBirth = yearOfBirth;
+    }
+
+    String lastActivity;
+    byte[] salt;
+
+    public String getLastActivity() {
+        return lastActivity;
+    }
+
+    public void setLastActivity(String lastActivity) {
+        this.lastActivity = lastActivity;
+    }
+
+
 
     public void setPassword(byte[] password) {
         this.password = password;
@@ -65,9 +81,7 @@ public class UserProfile implements java.io.Serializable{
         this.weight = weight;
     }
 
-    public void setYearOfBirth(int yearOfBirth) {
-        this.yearOfBirth = yearOfBirth;
-    }
+
 
     public void setHomeCity(String homeCity) {
         this.homeCity = homeCity;
@@ -97,9 +111,7 @@ public class UserProfile implements java.io.Serializable{
         return weight;
     }
 
-    public int getYearOfBirth() {
-        return yearOfBirth;
-    }
+
 
     public String getHomeCity() {
         return homeCity;

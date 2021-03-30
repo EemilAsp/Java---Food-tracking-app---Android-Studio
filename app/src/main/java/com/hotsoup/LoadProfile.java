@@ -2,7 +2,6 @@ package com.hotsoup;
 
 import android.app.Application;
 import android.content.Context;
-import android.os.Environment;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,13 +15,12 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 
 public class LoadProfile extends Application {
     static LoadProfile instance;
     private final String directory = "UserProfileDir";
-    private ArrayList<UserProfile> userList = new ArrayList<UserProfile>();
+    private ArrayList<UserProfile> userList = new ArrayList<>();
     public LoadProfile() {
         instance = this;
     }
@@ -31,24 +29,30 @@ public class LoadProfile extends Application {
     }
 
     public void reload(){
-        //Load all profiles from the directory
-        try{
-        Context context = getApplicationContext();
-        String folder = context.getFilesDir().getAbsolutePath() + File.separator +  directory;
-        File directory = new File(folder);
-        File[] userFiles = directory.listFiles();
-        if(userFiles != null){
-        for (File userFile : userFiles) {
-                System.out.println(userFile.getAbsolutePath());
-                FileInputStream fis = new FileInputStream(userFile);
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                userList.add((UserProfile) ois.readObject());
-                ois.close();
-                fis.close();
+        //Load all profiles from the directory, if some is checked remember me returns that profile
 
-        }}}
-        catch (IOException | ClassNotFoundException | NullPointerException e){
-            e.printStackTrace();
+                    try{
+                    Context context = getApplicationContext();
+                    String folder = context.getFilesDir().getAbsolutePath() + File.separator +  directory;
+                    File directory = new File(folder);
+                    File[] userFiles = directory.listFiles();
+                    if(userFiles != null){
+                    for (File userFile : userFiles) {
+                            System.out.println(userFile.getAbsolutePath());
+                            FileInputStream fis = new FileInputStream(userFile);
+                            ObjectInputStream ois = new ObjectInputStream(fis);
+                                try {
+                                    userList.add((UserProfile) ois.readObject());
+                                }
+                                catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            ois.close();
+                            fis.close();
+
+                    }}}
+                    catch (IOException | NullPointerException e){
+                        e.printStackTrace();
 
         }
 
@@ -114,8 +118,9 @@ public class LoadProfile extends Application {
             if (!folder.exists()) {
                 folder.mkdirs();
             }
-            FileOutputStream fos = new FileOutputStream(new File(folder, filename));
 
+
+            FileOutputStream fos = new FileOutputStream(new File(folder, filename), false);
             ObjectOutputStream os = new ObjectOutputStream(fos);
             os.writeObject(user);
             os.close();
@@ -139,12 +144,21 @@ public class LoadProfile extends Application {
     }
 
     public UserProfile findloggedIn(){
+        System.out.println("Finding logged in people @LoadProfile");
+        System.out.println(userList);
         if(!userList.isEmpty()){
+            System.out.println(userList);
+            System.out.println("was the whole list @LoadProfile");
             for (UserProfile user : userList){
+
+                System.out.print(user.userName);
+                System.out.println("in @LoadProfile");
                 if (user.isRememberMe()) {
+                    System.out.println("User logged in found");
                     return user;
                 }
             }}
+        System.out.println("Not people found @LoadProfile");
         return null;
     }
 

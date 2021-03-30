@@ -32,9 +32,14 @@ public class SigninProfileActivity extends AppCompatActivity {
 
         lp.reload();
         if((user = lp.findloggedIn()) != null){
-            Intent myIntent = new Intent(this, user.getLastintent().getClass());
-            myIntent.putExtra("user", user);
-            startActivity(myIntent);
+            try {
+                Intent intent = new Intent(this, Class.forName(user.getLastActivity()));
+                intent.putExtra("user", user);
+                startActivity(intent);
+                finish();}
+            catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         }
 
     }
@@ -53,8 +58,19 @@ public class SigninProfileActivity extends AppCompatActivity {
         else {
             if(checkBox.isChecked()){
                 user.setRememberMe(true);
+                System.out.println("User is Checked in");
             }
-            Intent myIntent = new Intent(this, MainScreenActivity.class);
+            else {
+                user.setRememberMe(false);
+            }
+            Intent myIntent;
+            try {
+                myIntent = new Intent(this, Class.forName(user.getLastActivity()));
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                myIntent = new Intent(this, MainScreenActivity.class);
+            }
+
             myIntent.putExtra("user", user);
             startActivity(myIntent);
             finish();
@@ -68,6 +84,8 @@ public class SigninProfileActivity extends AppCompatActivity {
         startActivity(myIntent);
         finish();
     }
+
+
 
 
 }

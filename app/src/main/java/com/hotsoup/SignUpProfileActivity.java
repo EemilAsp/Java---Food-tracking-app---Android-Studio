@@ -1,9 +1,5 @@
 package com.hotsoup;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.ybs.passwordstrengthmeter.PasswordStrength;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,6 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.ybs.passwordstrengthmeter.PasswordStrength;
 
 public class SignUpProfileActivity extends AppCompatActivity implements TextWatcher {
     EditText password;
@@ -86,6 +86,7 @@ public class SignUpProfileActivity extends AppCompatActivity implements TextWatc
         public void toSingIn(View v){
             Intent myIntent = new Intent(this, SigninProfileActivity.class);
             startActivity(myIntent);
+            finish();
         }
         public void makeProfile(View v){
             LoadProfile lp = LoadProfile.getInstance();

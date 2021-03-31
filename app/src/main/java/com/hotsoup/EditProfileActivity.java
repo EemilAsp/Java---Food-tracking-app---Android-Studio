@@ -43,9 +43,9 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
        buttonGroup.check(R.id.see_profile_button);
 
 
+
+
     }
-
-
     public void changeBirthDate(View v){
         DialogFragment datepicker = new DatePickerFragment(user.getYearOfBirth());
         datepicker.show(getSupportFragmentManager(), "change birthday");
@@ -60,4 +60,7 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
         calendar.set(Calendar.YEAR, year);
         user.setYearOfBirth(calendar);
     }
+
+
+
 }

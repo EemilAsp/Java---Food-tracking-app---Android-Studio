@@ -10,7 +10,7 @@ import androidx.fragment.app.DialogFragment;
 import java.util.Calendar;
 public class DatePickerFragment extends DialogFragment {
     Calendar calendar;
-
+    //Sets the calendar to given date
     public DatePickerFragment(Calendar calendar){
             this.calendar = calendar;
     }

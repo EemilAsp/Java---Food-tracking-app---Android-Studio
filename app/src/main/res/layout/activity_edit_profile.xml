@@ -37,74 +37,104 @@
         android:layout_width="200dp" />
     />
 </com.google.android.material.button.MaterialButtonToggleGroup>
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
-
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="350dp"
-            android:layout_height="55dp"
-            android:layout_marginVertical="12dp"
-            android:hint="@string/height"
-            app:startIconDrawable="@drawable/height_24px"
-            app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="350dp"
-            android:layout_height="55dp"
-
-            android:layout_marginVertical="12dp"
-            android:hint="@string/home_city"
-            app:startIconDrawable="@drawable/home_outline__1_"
-            app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            <com.google.android.material.textfield.TextInputEditText
+        android:layout_height="fill_parent">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:gravity="center"
+                android:orientation="vertical">
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="350dp"
-            android:layout_height="55dp"
-            android:layout_marginVertical="12dp"
-            android:onClick="changeBirthDate"
-            app:icon="@drawable/calendar_outline"
-
-            app:iconTint="#90000000"
-            app:strokeColor="#90000000"
-            android:text="@string/birth_year"
-            android:textColor="#90000000"
-            android:textAllCaps="false"
-            android:drawablePadding="8dp"
-            android:textAlignment="textStart"
-
-
-            app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            tools:ignore="RtlHardcoded">
-        </com.google.android.material.button.MaterialButton>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"
+                    android:visibility="visible"
+                    android:src="@drawable/humaaans"
+                    android:contentDescription="@string/human" />
 
 
 
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="350dp"
+                    android:layout_height="55dp"
+                    android:layout_marginVertical="12dp"
+                    android:hint="@string/height"
+                    app:startIconDrawable="@drawable/height_24px"
+                    app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="350dp"
+                    android:layout_height="55dp"
+
+                    android:layout_marginVertical="12dp"
+                    android:hint="@string/home_city"
+                    app:startIconDrawable="@drawable/home_outline__1_"
+                    app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="350dp"
+                    android:layout_height="55dp"
+                    android:layout_marginVertical="12dp"
+                    android:onClick="changeBirthDate"
+                    app:icon="@drawable/calendar_outline"
+
+                    app:iconTint="#90000000"
+                    app:strokeColor="#90000000"
+                    android:text="@string/birth_year"
+                    android:textColor="#90000000"
+                    android:textAllCaps="false"
+                    android:drawablePadding="8dp"
+                    android:textAlignment="textStart"
 
 
-    </LinearLayout>
+                    app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    tools:ignore="RtlHardcoded">
+                </com.google.android.material.button.MaterialButton>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                    android:layout_width="350dp"
+                    android:layout_height="55dp"
+                    app:startIconDrawable="@drawable/wc_24px"
+                    app:iconTint="#90000000"
+                    android:hint="@string/gender">
+
+                    <AutoCompleteTextView
+
+                        android:id="@+id/filled_exposed_dropdown"
+                        android:layout_width="match_parent"
+                        android:background="@color/natural_white"
+                        android:layout_height="wrap_content"
+                        tools:ignore="LabelFor" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
 
 
+                <Button
+                    android:layout_marginVertical="12dp"
+                    android:layout_width="250dp"
+                    android:text="@string/log_out"
+                    android:layout_height="55dp"/>
+
+            </LinearLayout>
+    </ScrollView>
 </LinearLayout>

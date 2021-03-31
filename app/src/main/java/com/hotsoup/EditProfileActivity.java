@@ -1,11 +1,13 @@
 package com.hotsoup;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -21,7 +23,11 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
     Button editProfile;
     Button seeProfile;
     MaterialButtonToggleGroup buttonGroup;
+    Spinner spinner;
 
+
+
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,12 +44,11 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
        editProfile = findViewById(R.id.edit_profile_button);
        seeProfile = findViewById(R.id.see_profile_button);
        buttonGroup = findViewById(R.id.button_toggle_group);
+       spinner = findViewById(R.id.spinner_menu);
+
 
        //Sets default value
        buttonGroup.check(R.id.see_profile_button);
-
-
-
 
     }
     public void changeBirthDate(View v){
@@ -59,6 +64,16 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.YEAR, year);
         user.setYearOfBirth(calendar);
+    }
+
+
+    public void logOutOfProfile(View v){
+        user.setRememberMe(false);
+        user.setLastActivity(MainScreenActivity.class.getName());
+        lp.updateUserData(user);
+
+        startActivity(new Intent(this, MainActivity.class));
+
     }
 
 

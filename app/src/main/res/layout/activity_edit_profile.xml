@@ -109,23 +109,13 @@
                     tools:ignore="RtlHardcoded">
                 </com.google.android.material.button.MaterialButton>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                <Spinner
+                    android:id="@+id/spinner_menu"
                     android:layout_width="350dp"
                     android:layout_height="55dp"
-                    app:startIconDrawable="@drawable/wc_24px"
-                    app:iconTint="#90000000"
-                    android:hint="@string/gender">
-
-                    <AutoCompleteTextView
-
-                        android:id="@+id/filled_exposed_dropdown"
-                        android:layout_width="match_parent"
-                        android:background="@color/natural_white"
-                        android:layout_height="wrap_content"
-                        tools:ignore="LabelFor" />
-
-                </com.google.android.material.textfield.TextInputLayout>
+                    style="@style/Widget.AppCompat.DropDownItem.Spinner"
+                    android:spinnerMode="dialog"
+                    />
 
 
 
@@ -133,6 +123,7 @@
                     android:layout_marginVertical="12dp"
                     android:layout_width="250dp"
                     android:text="@string/log_out"
+                    android:onClick="logOutOfProfile"
                     android:layout_height="55dp"/>
 
             </LinearLayout>

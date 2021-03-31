@@ -24,6 +24,7 @@ public class LoadProfile extends Application {
     public LoadProfile() {
         instance = this;
     }
+    public UserProfile user = null;
     public static LoadProfile getInstance(){
         return instance;
     }
@@ -58,6 +59,7 @@ public class LoadProfile extends Application {
 
     }
 
+    public UserProfile getUser() { return user; }
 
     public UserProfile identifyUser(String username, String password){
         //Find user with right username and after that hash password and check if its same
@@ -65,6 +67,7 @@ public class LoadProfile extends Application {
         for(int i = 0; i < userList.size() ; i++){
             if(userList.get(i).getUserName().equals(username)){
                 if(Arrays.equals(makeHash(password, userList.get(i).getSalt()), userList.get(i).getPassword())) {
+                    user = userList.get(i);
                     return userList.get(i);
                 }
             }

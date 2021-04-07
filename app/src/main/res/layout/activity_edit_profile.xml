@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/natural_white"
+    tools:context=".EditProfileActivity">
+
+    <include layout="@layout/toolbar"/>
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:layout_gravity="center"
+        android:layout_height="50dp"
+        app:singleSelection="true"
+        android:gravity="center"
+        android:id="@+id/button_toggle_group"
+        app:selectionRequired="true"
+        android:layout_width="match_parent"
+        tools:ignore="ExtraText">
+    <Button
+        app:icon="@drawable/book_open_outline"
+        android:layout_height="match_parent"
+        android:id="@+id/see_profile_button"
+        android:text="@string/see_profile"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="200dp" />
+    <Button
+
+        app:icon="@drawable/edit_2_outline"
+        android:layout_height="match_parent"
+        android:id="@+id/edit_profile_button"
+        android:text="@string/edit_profile"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="200dp" />
+    />
+</com.google.android.material.button.MaterialButtonToggleGroup>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"
+                    android:visibility="visible"
+                    android:src="@drawable/humaaans"
+                    android:contentDescription="@string/human" />
+
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="350dp"
+                    android:layout_height="55dp"
+                    android:layout_marginVertical="12dp"
+                    android:hint="@string/height"
+                    app:startIconDrawable="@drawable/height_24px"
+                    app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="350dp"
+                    android:layout_height="55dp"
+
+                    android:layout_marginVertical="12dp"
+                    android:hint="@string/home_city"
+                    app:startIconDrawable="@drawable/home_outline__1_"
+                    app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="350dp"
+                    android:layout_height="55dp"
+                    android:layout_marginVertical="12dp"
+                    android:onClick="changeBirthDate"
+                    app:icon="@drawable/calendar_outline"
+
+                    app:iconTint="#90000000"
+                    app:strokeColor="#90000000"
+                    android:text="@string/birth_year"
+                    android:textColor="#90000000"
+                    android:textAllCaps="false"
+                    android:drawablePadding="8dp"
+                    android:textAlignment="textStart"
+
+
+                    app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    tools:ignore="RtlHardcoded">
+                </com.google.android.material.button.MaterialButton>
+
+                <Spinner
+                    android:id="@+id/spinner_menu"
+                    android:layout_width="350dp"
+                    android:layout_height="55dp"
+                    style="@style/Widget.AppCompat.DropDownItem.Spinner"
+                    android:spinnerMode="dialog"
+                    />
+
+
+
+                <Button
+                    android:layout_marginVertical="12dp"
+                    android:layout_width="250dp"
+                    android:text="@string/log_out"
+                    android:onClick="logOutOfProfile"
+                    android:layout_height="55dp"/>
+
+            </LinearLayout>
+    </ScrollView>
+</LinearLayout>

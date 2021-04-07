@@ -1,8 +1,7 @@
 package com.hotsoup;
 
+import android.app.Application;
 import android.content.Context;
-import android.os.Environment;
-import android.util.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,49 +14,67 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
-public class LoadProfile {
-    public static LoadProfile instance = new LoadProfile();;
-    private String filePath = "";
-    private static ArrayList<UserProfile> userList = new ArrayList<UserProfile>();
-    private Context context;
+public class LoadProfile extends Application {
+    static LoadProfile instance;
+    private final String directory = "UserProfileDir";
+    private ArrayList<UserProfile> userList = new ArrayList<>();
     public LoadProfile() {
-        //Load all profiles
-        String path = Environment.getExternalStorageDirectory().toString()+"/Users";
-        File[] userFiles = (new File(path)).listFiles();
-        try{
-        for (File userFile : userFiles) {
-            try {
-                FileInputStream fis = context.openFileInput(userFile.getAbsolutePath());
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                userList.add((UserProfile) ois.readObject());
-                ois.close();
-                fis.close();
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        }}
-        catch (NullPointerException e){
-            System.out.println("#########Empty list#######");
-        }
-
+        instance = this;
     }
+    public UserProfile user = null;
     public static LoadProfile getInstance(){
         return instance;
     }
 
+    public void reload(){
+        //Load all profiles from the directory, if some is checked remember me returns that profile
+
+                    try{
+                    Context context = getApplicationContext();
+                    String folder = context.getFilesDir().getAbsolutePath() + File.separator +  directory;
+                    File directory = new File(folder);
+                    File[] userFiles = directory.listFiles();
+                    if(userFiles != null){
+                    for (File userFile : userFiles) {
+                            System.out.println(userFile.getAbsolutePath());
+                            FileInputStream fis = new FileInputStream(userFile);
+                            ObjectInputStream ois = new ObjectInputStream(fis);
+                                try {
+                                    userList.add((UserProfile) ois.readObject());
+                                }
+                                catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            ois.close();
+                            fis.close();
+
+                    }}}
+                    catch (IOException | NullPointerException e){
+                        e.printStackTrace();
+
+        }
+
+    }
+
+    public UserProfile getUser() { return user; }
+
     public UserProfile identifyUser(String username, String password){
         //Find user with right username and after that hash password and check if its same
-        UserProfile user = null;
+
         for(int i = 0; i < userList.size() ; i++){
             if(userList.get(i).getUserName().equals(username)){
-                if(makeHash(password, userList.get(i).getSalt()) == userList.get(i).getPassword())
-                user = userList.get(i);
+                if(Arrays.equals(makeHash(password, userList.get(i).getSalt()), userList.get(i).getPassword())) {
+                    user = userList.get(i);
+                    return userList.get(i);
+                }
             }
         }
         //returs object or null
-    return user;}
+        System.out.println("Returns null");
+    return null;}
 
 
     public void createNewProfile(String username, String password){
@@ -70,9 +87,6 @@ public class LoadProfile {
     private byte[] makeHash(String password, byte[] salt) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-512");//uses Sha-512
-            if((salt = getSalt()) == null){
-                throw new NoSuchAlgorithmException();//No salt got
-            }
             md.update(salt);
             byte[] hash = md.digest(password.getBytes(StandardCharsets.UTF_8));
             md.reset();
@@ -98,9 +112,18 @@ public class LoadProfile {
     }
 
     public void updateUserData(UserProfile user){
-        //Gets object(UserProfile) and writes it to file inside Users
+        //Gets object(UserProfile) and writes it to file inside Profile Directory
+        //If there is no directory yet, it will create one
+        String filename = user.getUserName();
         try {
-            FileOutputStream fos = context.openFileOutput("/Users/"+user.getUserName(), Context.MODE_PRIVATE);
+            Context context = getApplicationContext();
+            File folder = new File(context.getFilesDir().getAbsolutePath() + File.separator + directory);
+            if (!folder.exists()) {
+                folder.mkdirs();
+            }
+
+
+            FileOutputStream fos = new FileOutputStream(new File(folder, filename), false);
             ObjectOutputStream os = new ObjectOutputStream(fos);
             os.writeObject(user);
             os.close();
@@ -124,12 +147,21 @@ public class LoadProfile {
     }
 
     public UserProfile findloggedIn(){
+        System.out.println("Finding logged in people @LoadProfile");
+        System.out.println(userList);
         if(!userList.isEmpty()){
+            System.out.println(userList);
+            System.out.println("was the whole list @LoadProfile");
             for (UserProfile user : userList){
+
+                System.out.print(user.userName);
+                System.out.println("in @LoadProfile");
                 if (user.isRememberMe()) {
+                    System.out.println("User logged in found");
                     return user;
                 }
             }}
+        System.out.println("Not people found @LoadProfile");
         return null;
     }
 

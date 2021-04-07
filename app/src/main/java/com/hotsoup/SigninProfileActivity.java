@@ -1,20 +1,23 @@
 package com.hotsoup;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 public class SigninProfileActivity extends AppCompatActivity {
-    EditText username;
-    EditText password;
+    TextInputEditText username;
+    TextInputEditText password;
     CheckBox checkBox;
+    Button login;
     LoadProfile lp = LoadProfile.getInstance();
-    UserProfile user = null;
+    UserProfile user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,12 +26,20 @@ public class SigninProfileActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
         password = findViewById(R.id.password_text);
-        username = findViewById(R.id.edit_username);
+        username = findViewById(R.id.text_username);
         checkBox = findViewById(R.id.remember_check);
+        login = findViewById(R.id.button_signin);
+
+        lp.reload();
         if((user = lp.findloggedIn()) != null){
-            Intent myIntent = new Intent(this, MainScreenActivity.class);
-            myIntent.putExtra("user", user);
-            startActivity(myIntent);
+            try {
+                Intent intent = new Intent(this, Class.forName(user.getLastActivity()));
+                intent.putExtra("user", user);
+                startActivity(intent);
+                finish();}
+            catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         }
 
     }
@@ -36,17 +47,33 @@ public class SigninProfileActivity extends AppCompatActivity {
 
 
     public void signinToProfile(View v){
-        if((user = lp.identifyUser(username.getText().toString(), password.getText().toString())) == null){
+        user = lp.identifyUser(username.getText().toString(), password.getText().toString());
+        System.out.println(user);
+        if(user == null){
             ErrorPopUp error = new ErrorPopUp("Ongelma tunnistautumisessa", "Käyttäjänimi tai salasana on väärin");
             error.show(getSupportFragmentManager(), "error");
+            username.setText("");
+            password.setText("");
         }
         else {
             if(checkBox.isChecked()){
                 user.setRememberMe(true);
+                System.out.println("User is Checked in");
             }
-            Intent myIntent = new Intent(this, MainScreenActivity.class);
+            else {
+                user.setRememberMe(false);
+            }
+            Intent myIntent;
+            try {
+                myIntent = new Intent(this, Class.forName(user.getLastActivity()));
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                myIntent = new Intent(this, MainScreenActivity.class);
+            }
+
             myIntent.putExtra("user", user);
             startActivity(myIntent);
+            finish();
         }
 
     }
@@ -55,5 +82,10 @@ public class SigninProfileActivity extends AppCompatActivity {
     public void toSingUp(View v){
         Intent myIntent = new Intent(this, SignUpProfileActivity.class);
         startActivity(myIntent);
+        finish();
     }
+
+
+
+
 }

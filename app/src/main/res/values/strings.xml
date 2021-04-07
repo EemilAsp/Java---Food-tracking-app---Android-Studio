@@ -18,11 +18,16 @@
     <string name="insert_date">Insert date:</string>
     <string name="insert_date_here">Insert date here:</string>
     <string name="meals_added_on_given_date">Meals added on given date:</string>
-    <string name="choose_wanted_food_by_clicking_it">Choose wanted food by clicking it</string>
+    <string name="choose_wanted_food_by_clicking_it">Add wanted food by clicking it</string>
     <string name="estimation_grams">Estimation (grams):</string>
-    <string name="date_dd_mm_yyyy">date dd/mm/yyyy</string>
+    <string name="date_dd_mm_yyyy">Date dd/mm/yyyy</string>
     <string name="insert_food_name">insert food name:</string>
     <string name="food_search">Food search:</string>
     <string name="portion_size">Portion size:</string>
     <string name="show_added_meals">Show added meals</string>
+    <string name="you_just_added_a_meal">You just added a meal:</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -15,7 +15,9 @@
         <activity android:name=".MainScreenActivity"/>
         <activity android:name=".SignUpProfileActivity" />
         <activity android:name=".SigninProfileActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"/>
+            <activity android:name=".foodDataHarvester"
+                android:windowSoftInputMode="adjustPan"> //this will stop keyboard from popping the layout up
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

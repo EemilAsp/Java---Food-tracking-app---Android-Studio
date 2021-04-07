@@ -1,18 +1,20 @@
 package com.hotsoup;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.ListView;
+import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,25 +25,24 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class foodDataHarvester extends AppCompatActivity implements Serializable {
+public class foodDataHarvester extends AppCompatActivity implements RecyclerViewClickInterface {
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
     EditText foodNameComesHere, dateComesHere, portionSizeComesHere;
+    RVadapter myAdapter;
+    TextView mealPopup;
     String food;
-    Button showAddedMeals;
-    ListView foodview, mealsEaten;
+    Button showAddedMeals, createCustomMeal;
+    RecyclerView foodview;
     userFoodDiary userfooddiary = userFoodDiary.getInstance();
     ArrayList<String> foodinfo = new ArrayList<>();
     ArrayList<String> usersMealInfo = new ArrayList<>();
@@ -54,54 +55,40 @@ public class foodDataHarvester extends AppCompatActivity implements Serializable
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+
         portionSizeComesHere = (EditText) findViewById(R.id.portionSizeHere);
         foodNameComesHere = (EditText) findViewById(R.id.foodTextComesHere);
         dateComesHere = (EditText) findViewById(R.id.dateComesHere);
-        foodview = (ListView) findViewById(R.id.foodsParsedFromApi);
-        mealsEaten = (ListView) findViewById(R.id.mealsAdded);
-        showAddedMeals = (Button)findViewById(R.id.showaddedMeals);
+        foodview = (RecyclerView) findViewById(R.id.foodsParsedFromAPI);
+        createCustomMeal = (Button)findViewById(R.id.createCustomMeal);
 
-        showAddedMeals.setOnClickListener(new View.OnClickListener() {
+
+        createCustomMeal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addDatesMeals();
+                createOwnMealPopup();
             }
         });
 
 
-        foodview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                food = parent.getItemAtPosition(position).toString();
-                readJSON(food, false);
-            }
-        });
 
 
-        foodNameComesHere.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                food = s.toString();
-                readJSON(food, true);
-            }
+                foodNameComesHere.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
 
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        food = s.toString();
+                        readJSON(food, true);
+                    }
 
-
-    }
-
-    public void addDatesMeals(){
-        objectToString();
-        ArrayAdapter<String> userFoodsAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, usersMealInfo);
-        mealsEaten.setAdapter(userFoodsAdapter);
-        mealsEaten.deferNotifyDataSetChanged();
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                    }
+                });
     }
 
     public void readJSON(String food, Boolean choice) { //boolean checks if the method call comes from textchange or user clicking element on screen
@@ -117,9 +104,12 @@ public class foodDataHarvester extends AppCompatActivity implements Serializable
                         info = jsonObject.getJSONObject("name").getString("fi");
                         foodinfo.add(info);
                     }
-                    ArrayAdapter foodadapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, foodinfo);
-                    foodview.setAdapter(foodadapter);
-                    foodview.deferNotifyDataSetChanged();
+                    myAdapter = new RVadapter(this, foodinfo, this::recyclerViewListClicked);
+                    myAdapter.notifyDataSetChanged();
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+                    foodview.setLayoutManager(layoutManager);
+                    foodview.setItemAnimator(new DefaultItemAnimator());
+                    foodview.setAdapter(myAdapter);
                 } else {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -136,6 +126,11 @@ public class foodDataHarvester extends AppCompatActivity implements Serializable
                             double sugar = Double.parseDouble(jsonObject.getString("sugar")) * portionsize/100;
                             userfooddiary.addMeals(date, name, kcal, portionsize, protein, carb, fats, alcohol, fiber, sugar);
                             System.out.println("DONE");
+                            System.out.println(name);
+                            System.out.println();
+                            System.out.println(portionsize);
+
+                            addedAMealPopup(name);
                         }
                     }
                 }
@@ -146,7 +141,7 @@ public class foodDataHarvester extends AppCompatActivity implements Serializable
     }
 
     public String getDateText(){
-        if(dateComesHere.getText().toString() == null || dateComesHere.getText().toString().isEmpty()){
+        if(dateComesHere.getText().toString().isEmpty()){
             SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
             Date dateobject = new Date();
             String datestring = formatter.format(dateobject).toString();
@@ -193,24 +188,110 @@ public class foodDataHarvester extends AppCompatActivity implements Serializable
     }
 
 
-
-
-    public void objectToString(){
+    public String objectToString(String foodname){
         DecimalFormat df = new DecimalFormat("#.#");
         usersMealInfo.clear();
+        String meal = null;
         String date = getDateText();
         ArrayList<userMeal> umeals = userfooddiary.getArray(date);
         for(int i = 0; i<umeals.size(); i++){
             userMeal um = umeals.get(i);
-            String meal = um.getFoodname()+"" +
-                    "\nPortion: "+um.portionsize+"g"+
+            if(um.getFoodname().equals(foodname)){
+            meal = um.getFoodname()+"" +
+                    "\nPortion: "+df.format(um.getPortionsize())+"g"+
                     "\nCalories: "+df.format(um.getEnergy())+"kcal"+
                     "\nfats: "+df.format(um.getFats())+"g" +
                     "\nProtein: "+df.format(um.getProtein())+"g" +
                     "\nCarbohydrates: "+df.format(um.getCarb())+"g" +
                     "\n     Dietary fiber: "+df.format(um.getFiber())+"g" +
-                    "\n     Sugar: "+df.format(um.getSugar())+"g";
-            usersMealInfo.add(meal);
-        }
+                    "\n     Sugar: "+df.format(um.getSugar())+"g"+
+                    "\nAlcohol: "+df.format(um.getAlcohol())+"g";
+            return meal;
+        }}
+        return meal;
+    }
+
+    public void onActivityResult(int requestcode, int resultCode, Intent data){
+        super.onActivityResult(resultCode, resultCode, data);
+        String food = data.getStringExtra("foodname");
+        readJSON(food, false);
+    }
+
+
+    @Override
+    public void recyclerViewListClicked(String food) {
+        System.out.println(food);
+        readJSON(food, false);
+    }
+
+
+    public void addedAMealPopup(String food){
+        Thread thread = new Thread();
+        dialogBuilder = new AlertDialog.Builder(this);
+        final View addedmealPopup = getLayoutInflater().inflate(R.layout.dialog, null);
+        mealPopup = (TextView) addedmealPopup.findViewById(R.id.mealPopUP);
+        String fooddata = objectToString(food);
+        mealPopup.setText(fooddata);
+        dialogBuilder.setView(addedmealPopup);
+        dialog = dialogBuilder.create();
+        dialog.show();
+        addedmealPopup.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dialog.dismiss();
+            }
+        }, 3000);
+
+    }
+
+    public void createOwnMealPopup(){
+        dialogBuilder = new AlertDialog.Builder(this);
+        final View selfmadeMealPopup = getLayoutInflater().inflate(R.layout.dialog_createownmeal, null);
+        EditText proteinValue = (EditText) selfmadeMealPopup.findViewById(R.id.proteinHere);
+        EditText nameValue = (EditText) selfmadeMealPopup.findViewById(R.id.foodNameHere);
+        EditText carbValue = (EditText) selfmadeMealPopup.findViewById(R.id.carbsHere);
+        EditText fiberValue = (EditText) selfmadeMealPopup.findViewById(R.id.fiberHere);
+        EditText alcoholValue = (EditText) selfmadeMealPopup.findViewById(R.id.alcoholHere);
+        EditText fatsValue = (EditText) selfmadeMealPopup.findViewById(R.id.fatsHere);
+        EditText sugarValue = (EditText) selfmadeMealPopup.findViewById(R.id.sugarHere);
+        EditText portionSize = (EditText) selfmadeMealPopup.findViewById(R.id.portionHere);
+        EditText dateValue = (EditText) selfmadeMealPopup.findViewById(R.id.dateHere);
+        Button save = (Button) selfmadeMealPopup.findViewById(R.id.saveButton);
+        Button cancel = (Button) selfmadeMealPopup.findViewById(R.id.cancel);
+
+        dialogBuilder.setView(selfmadeMealPopup);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View selfmadeMealPopup) {
+                try{
+                String date = dateValue.getText().toString();
+                String name = nameValue.getText().toString();
+                double portionsize = Double.parseDouble(portionSize.getText().toString());
+                double protein = Double.parseDouble(proteinValue.getText().toString());
+                double carb = Double.parseDouble(carbValue.getText().toString());
+                double fats = Double.parseDouble(fatsValue.getText().toString());
+                double fiber = Double.parseDouble(fiberValue.getText().toString());
+                double alcohol = Double.parseDouble(alcoholValue.getText().toString());
+                double sugar = Double.parseDouble(sugarValue.getText().toString());
+                double kcal = alcohol * 7 + carb * 4 + protein * 4 + fats * 9;
+                userfooddiary.addMeals(date, name, kcal, portionsize, protein, carb, fats, alcohol, fiber, sugar);}
+                catch(Exception e){
+                    ErrorPopUp error = new ErrorPopUp("ERROR", "Fill all the boxes, insert 0 even if there's no value.");
+                    error.show(getSupportFragmentManager(), "ERROR");
+                }
+                dialog.dismiss();
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
 }
+

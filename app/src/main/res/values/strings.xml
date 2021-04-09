@@ -61,6 +61,10 @@
     <string name="gender">Sukupuoli</string>
     <string name="human_picture">human_picture</string>
     <string name="human">human</string>
+    <string name="reeturn">Return</string>
+    <string name="search_food_diaries_by_inserting_the_date">Search food diaries by inserting the date</string>
+    <string name="dd_mm_yyyy">dd/mm/yyyy</string>
+    <string name="search">search</string>
 
 
 </resources>

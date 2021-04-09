@@ -34,14 +34,16 @@ import java.util.Date;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import static android.view.View.GONE;
+
 public class foodDataHarvester extends AppCompatActivity implements RecyclerViewClickInterface {
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
     EditText foodNameComesHere, dateComesHere, portionSizeComesHere;
     RVadapter myAdapter;
-    TextView mealPopup;
+    TextView mealPopup, listviewheader;
     String food;
-    Button showAddedMeals, createCustomMeal;
+    Button showaddedMeals, createCustomMeal;
     RecyclerView foodview;
     userFoodDiary userfooddiary = userFoodDiary.getInstance();
     ArrayList<String> foodinfo = new ArrayList<>();
@@ -55,13 +57,21 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-
+        listviewheader = (TextView) findViewById(R.id.listViewHeader);
         portionSizeComesHere = (EditText) findViewById(R.id.portionSizeHere);
         foodNameComesHere = (EditText) findViewById(R.id.foodTextComesHere);
         dateComesHere = (EditText) findViewById(R.id.dateComesHere);
         foodview = (RecyclerView) findViewById(R.id.foodsParsedFromAPI);
         createCustomMeal = (Button)findViewById(R.id.createCustomMeal);
+        showaddedMeals = (Button)findViewById(R.id.showaddedMeals);
 
+        showaddedMeals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(foodDataHarvester.this, userMealDiary.class);
+                startActivityForResult(intent, 1);
+            }
+        });
 
         createCustomMeal.setOnClickListener(new View.OnClickListener() {
             @Override

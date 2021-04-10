@@ -18,13 +18,16 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class userMealDiary extends AppCompatActivity implements RecyclerViewClickInterface {
     private AlertDialog.Builder dialogBuilder;
+    final static String DATE_FORMAT = "dd.MM.yyyy";
     private AlertDialog dialog;
     boolean choice = true;
     DecimalFormat df = new DecimalFormat("#.#");
@@ -127,14 +130,30 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
     }
 
     public String getDateText(){
+        SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
+        Date dateobject = new Date();
         if(dateInsert.getText().toString().isEmpty()){
-            SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
-            Date dateobject = new Date();
-            String datestring = formatter.format(dateobject).toString();
-            return datestring;
+            return formatter.format(dateobject).toString();
         }else{
-            String datestring = dateInsert.getText().toString();
-            return datestring;
+            Boolean value = testDateText(dateInsert.getText().toString());
+            if (value == true) {
+                return dateInsert.getText().toString();
+            }else{
+                return formatter.format(dateobject).toString();
+            }
+        }
+    }
+
+    public boolean testDateText(String datestr){
+        try{
+            DateFormat df = new SimpleDateFormat((DATE_FORMAT));
+            df.setLenient(false);
+            df.parse(datestr);
+            return true;
+        } catch (ParseException e) {
+            ErrorPopUp error = new ErrorPopUp("ERROR", "Wrong date format use dd.MM.yyyy");
+            error.show(getSupportFragmentManager(), "ERROR");
+            return false;
         }
     }
 
@@ -142,6 +161,10 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
         double totalenergy = 0, totalprotein = 0, totalcarb = 0, totalfat = 0, totalfiber = 0, totalsugar = 0, totalalcohol = 0;
         datesfoodnames.clear();
         datesMeals.clear();
+        if(umeals == null){
+            ErrorPopUp error = new ErrorPopUp("ERROR", "No meals for selected date, try something else");
+            error.show(getSupportFragmentManager(), "ERROR");
+        }else{
         for(int i = 0; i < umeals.size(); i++){
             userMeal um = umeals.get(i);
             datesfoodnames.add(um.getFoodname());
@@ -170,7 +193,7 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
         datefoodview.setLayoutManager(layoutManager);
         datefoodview.setItemAnimator(new DefaultItemAnimator());
         datefoodview.setAdapter(rVadapter);
-    }
+    }}
 
     public void addedAMealPopup(String extrainfo){
         Thread thread = new Thread();

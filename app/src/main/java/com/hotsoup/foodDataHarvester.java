@@ -27,18 +27,19 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import static android.view.View.GONE;
-
 public class foodDataHarvester extends AppCompatActivity implements RecyclerViewClickInterface {
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
+    final static String DATE_FORMAT = "dd.MM.yyyy";
     EditText foodNameComesHere, dateComesHere, portionSizeComesHere;
     RVadapter myAdapter;
     TextView mealPopup, listviewheader;
@@ -126,7 +127,13 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
                         if ((jsonObject.getJSONObject("name").getString("fi")).equals(food)) {
                             String name = food;
                             String date = getDateText();
+                            if(date.equals("VIRHE")){
+                                ErrorPopUp error = new ErrorPopUp("ERROR", "Wrong date format use dd.MM.yyyy");
+                                error.show(getSupportFragmentManager(), "ERROR");
+                            }else{
                             double portionsize = getPortionSize();
+                            if(portionsize == 666.66666){
+                            }else{
                             double fats = Double.parseDouble(jsonObject.getString("fat")) * portionsize/100;
                             double protein = Double.parseDouble(jsonObject.getString("protein")) * portionsize/100;
                             double carb = Double.parseDouble(jsonObject.getString("carbohydrate")) * portionsize/100;
@@ -139,9 +146,8 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
                             System.out.println(name);
                             System.out.println();
                             System.out.println(portionsize);
-
                             addedAMealPopup(name);
-                        }
+                        }}}
                     }
                 }
             } catch (JSONException e) {
@@ -150,15 +156,33 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
         }
     }
 
-    public String getDateText(){
-        if(dateComesHere.getText().toString().isEmpty()){
-            SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+        public String getDateText(){
+            SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
             Date dateobject = new Date();
-            String datestring = formatter.format(dateobject).toString();
-            return datestring;
-        }else{
-            String datestring = dateComesHere.getText().toString();
-            return datestring;
+            if(dateComesHere.getText().toString().isEmpty()){
+                String datestring = formatter.format(dateobject).toString();
+                return datestring;
+            }else{
+                String datestring = dateComesHere.getText().toString();
+                Boolean value = testDateText(datestring);
+                if (value == true) {
+                    return datestring;
+                }else{
+                    datestring = "VIRHE";
+                    return datestring;
+                }
+            }
+        }
+    public boolean testDateText(String datestr){
+        try{
+            DateFormat df = new SimpleDateFormat((DATE_FORMAT));
+            df.setLenient(false);
+            df.parse(datestr);
+            return true;
+        } catch (ParseException e) {
+            ErrorPopUp error = new ErrorPopUp("ERROR", "Wrong date format use dd.MM.yyyy");
+            error.show(getSupportFragmentManager(), "ERROR");
+            return false;
         }
     }
 
@@ -168,9 +192,13 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
             pts = 100.0;
             return pts;
         }else{
+            if(testPortionSize() == true){
             pts = Double.parseDouble(portionSizeComesHere.getText().toString());
+            return pts;
+        }else{
+            return 666.66666;
         }
-        return pts;
+    }
     }
 
 
@@ -203,6 +231,10 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
         usersMealInfo.clear();
         String meal = null;
         String date = getDateText();
+        if(date.equals("VIRHE")){
+            ErrorPopUp error = new ErrorPopUp("ERROR", "Wrong date format use dd.MM.yyyy");
+            error.show(getSupportFragmentManager(), "ERROR");
+        }else{
         ArrayList<userMeal> umeals = userfooddiary.getArray(date);
         for(int i = 0; i<umeals.size(); i++){
             userMeal um = umeals.get(i);
@@ -217,7 +249,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
                     "\n     Sugar: "+df.format(um.getSugar())+"g"+
                     "\nAlcohol: "+df.format(um.getAlcohol())+"g";
             return meal;
-        }}
+        }}}
         return meal;
     }
 
@@ -304,5 +336,16 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
             }
         });
     }
+
+    public boolean testPortionSize(){
+        try{
+            double d = Double.parseDouble(portionSizeComesHere.getText().toString());
+            return true;
+        } catch (NumberFormatException e) {
+            ErrorPopUp error = new ErrorPopUp("ERROR", "Portion size must be in numeral form");
+            error.show(getSupportFragmentManager(), "ERROR");
+            return false;
+        }}
+
 }
 

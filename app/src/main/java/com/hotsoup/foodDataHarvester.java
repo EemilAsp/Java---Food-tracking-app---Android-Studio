@@ -221,6 +221,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
         return meal;
     }
 
+    @Override
     public void onActivityResult(int requestcode, int resultCode, Intent data){
         super.onActivityResult(resultCode, resultCode, data);
         String food = data.getStringExtra("foodname");

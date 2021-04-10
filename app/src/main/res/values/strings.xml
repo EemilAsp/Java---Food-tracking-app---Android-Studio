@@ -65,6 +65,9 @@
     <string name="search_food_diaries_by_inserting_the_date">Search food diaries by inserting the date</string>
     <string name="dd_mm_yyyy">dd/mm/yyyy</string>
     <string name="search">search</string>
+    <string name="you_just_added_a_meal">you just added a meal</string>
+    <string name="edit_the_selected_meal">Edit the selected meal</string>
+    <string name="delete">delete</string>
 
 
 </resources>

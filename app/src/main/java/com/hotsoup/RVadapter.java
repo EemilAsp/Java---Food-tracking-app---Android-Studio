@@ -19,7 +19,6 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.myViewHolder> {
     myViewHolder holder;
     ArrayList<String> data;
     Context context;
-    String food;
     private static RecyclerViewClickInterface itemlistener;
     public RVadapter(Context ct, ArrayList<String> titles, RecyclerViewClickInterface recyclerViewClickInterface){
         context = ct;

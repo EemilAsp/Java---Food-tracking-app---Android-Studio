@@ -2,7 +2,7 @@ package com.hotsoup;
 
 import java.io.Serializable;
 
-public class userMeal implements Serializable {
+public class userMeal implements Serializable { //Object for users meal contains the nutritional data
     String foodname;
     double portionsize;
     double fats;

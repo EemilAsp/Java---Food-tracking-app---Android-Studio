@@ -25,7 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class userMealDiary extends AppCompatActivity implements RecyclerViewClickInterface {
+public class userMealDiary extends AppCompatActivity implements RecyclerViewClickInterface { // Purpose of this activity is for the user to see what he/she has eaten at given date
     private AlertDialog.Builder dialogBuilder;
     final static String DATE_FORMAT = "dd.MM.yyyy";
     private AlertDialog dialog;
@@ -83,8 +83,8 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
         System.out.println(food);
     }
 
-    private void createEditPopUp(String food) {
-        String date = getDateText();
+    private void createEditPopUp(String food) { //Creating a popup when user selects a food from recyclerview(contains the information of added food) this searches the data from diary of selected food
+        String date = getDateText();// and sends it forward to the real popup
         daysEats = userfooddiary.getArray(date);
         for(int i = 0; i<daysEats.size(); i++){
             userMeal um = daysEats.get(i);
@@ -103,7 +103,7 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
         }
     }
 
-    public void popupNow(String ml, int index, String dt){
+    public void popupNow(String ml, int index, String dt){ // Gets the meal, index in diary and date key, possibility for the user to delete selected food
         dialogBuilder = new AlertDialog.Builder(this);
         final View editMealPopup = getLayoutInflater().inflate(R.layout.chosenfoodedit, null);
         Button returnbutton = (Button) editMealPopup.findViewById(R.id.chosenFoodReturn);
@@ -118,6 +118,7 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
             public void onClick(View v) {
                 userfooddiary.getArray(dt).remove(index);
                 System.out.println("Poistettu");
+                dialog.dismiss();
             }
         });
         returnbutton.setOnClickListener(new View.OnClickListener() {
@@ -129,22 +130,22 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
         });
     }
 
-    public String getDateText(){
-        SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
+    public String getDateText(){ // takes the date string from dateinput, includes error handling (For instance if no date added date will be teh current date, if date in letters or input
+        SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT); // is not a date, error will popup,
         Date dateobject = new Date();
         if(dateInsert.getText().toString().isEmpty()){
-            return formatter.format(dateobject).toString();
+            return formatter.format(dateobject);
         }else{
             Boolean value = testDateText(dateInsert.getText().toString());
             if (value == true) {
                 return dateInsert.getText().toString();
             }else{
-                return formatter.format(dateobject).toString();
+                return formatter.format(dateobject);
             }
         }
     }
 
-    public boolean testDateText(String datestr){
+    public boolean testDateText(String datestr){ // testing if the date is really a date object
         try{
             DateFormat df = new SimpleDateFormat((DATE_FORMAT));
             df.setLenient(false);
@@ -157,11 +158,11 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
         }
     }
 
-    public void createStringArray(ArrayList<userMeal> umeals){
+    public void createStringArray(ArrayList<userMeal> umeals){ // calculates the total nutritional data from selected date
         double totalenergy = 0, totalprotein = 0, totalcarb = 0, totalfat = 0, totalfiber = 0, totalsugar = 0, totalalcohol = 0;
         datesfoodnames.clear();
         datesMeals.clear();
-        if(umeals == null){
+        if(umeals == null){ // if meals not found
             ErrorPopUp error = new ErrorPopUp("ERROR", "No meals for selected date, try something else");
             error.show(getSupportFragmentManager(), "ERROR");
         }else{
@@ -176,7 +177,7 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
             totalsugar += um.getSugar();
             totalprotein += um.getProtein();
         }
-        daysinfocount = "Total calories: "+df.format(totalenergy)+"kcal"+
+        daysinfocount = "Total calories: "+df.format(totalenergy)+"kcal"+ //The extras option, showing more indepth info from the dates eating
                 "\nProtein: "+df.format(totalprotein)+"g"+
                 "\nFats: "+df.format(totalfat)+"g"+
                 "\nCarbs: "+df.format(totalcarb)+"g"+
@@ -195,7 +196,7 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
         datefoodview.setAdapter(rVadapter);
     }}
 
-    public void addedAMealPopup(String extrainfo){
+    public void addedAMealPopup(String extrainfo){ //Creating a popup for extra info
         Thread thread = new Thread();
         dialogBuilder = new AlertDialog.Builder(this);
         final View addedmealPopup = getLayoutInflater().inflate(R.layout.dialog, null);

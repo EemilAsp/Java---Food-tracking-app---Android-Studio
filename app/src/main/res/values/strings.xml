@@ -68,6 +68,17 @@
     <string name="you_just_added_a_meal">you just added a meal</string>
     <string name="edit_the_selected_meal">Edit the selected meal</string>
     <string name="delete">delete</string>
+    <string name="fats_g">fats (g)</string>
+    <string name="carbs_g">carbs (g)</string>
+    <string name="portion_g">portion (g)</string>
+    <string name="alcohol_g">alcohol (g)</string>
+    <string name="sugar_g">sugar (g)</string>
+    <string name="fiber_g">fiber (g)</string>
+    <string name="save">save</string>
+    <string name="cancel">cancel</string>
+    <string name="food_name">food name</string>
+    <string name="protein_g">protein (g)</string>
+    <string name="create_a_meal">Create a meal</string>
 
 
 </resources>

@@ -36,6 +36,12 @@ import java.util.Date;
 
 import javax.net.ssl.HttpsURLConnection;
 
+//Purpose is to get food data from Fineli api, and display it for the user
+//User chooses wanted foods and adds those to his/her meal diary
+//User can also create own meals, inserting the data in the create own meal
+//Could have done this with fragments, because the userMealDiary is almost identical
+//Activity might cause lagg, since its a little hard for the RAM
+
 public class foodDataHarvester extends AppCompatActivity implements RecyclerViewClickInterface {
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
@@ -85,7 +91,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
 
 
 
-                foodNameComesHere.addTextChangedListener(new TextWatcher() {
+                foodNameComesHere.addTextChangedListener(new TextWatcher() { // searching food items while the search changes
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                     }
@@ -103,13 +109,13 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
     }
 
     public void readJSON(String food, Boolean choice) { //boolean checks if the method call comes from textchange or user clicking element on screen
-        String json = getJSON(food);
+        String json = getJSON(food); //getting the json for wanted search result
         if (json != null) {
             try {
                 JSONArray jsonArray = new JSONArray(json);
                 String info;
                 if (choice == true) {
-                    foodinfo.clear();
+                    foodinfo.clear();//Parsing the json and showing the names of food items for the user
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         info = jsonObject.getJSONObject("name").getString("fi");
@@ -156,11 +162,11 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
         }
     }
 
-        public String getDateText(){
+        public String getDateText(){ // getting the date input, and checking if the date is a date or letters
             SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
             Date dateobject = new Date();
             if(dateComesHere.getText().toString().isEmpty()){
-                String datestring = formatter.format(dateobject).toString();
+                String datestring = formatter.format(dateobject);
                 return datestring;
             }else{
                 String datestring = dateComesHere.getText().toString();
@@ -173,7 +179,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
                 }
             }
         }
-    public boolean testDateText(String datestr){
+    public boolean testDateText(String datestr){ // testing date input
         try{
             DateFormat df = new SimpleDateFormat((DATE_FORMAT));
             df.setLenient(false);
@@ -186,7 +192,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
         }
     }
 
-    public Double getPortionSize(){
+    public Double getPortionSize(){ // testing the portionsize input, requires numerical
         double pts;
         if(portionSizeComesHere.getText().toString().isEmpty()){
             pts = 100.0;
@@ -202,7 +208,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
     }
 
 
-    public String getJSON(String food) {
+    public String getJSON(String food) { // the api harvester with given string
         String response = null;
         try {
             URL url = new URL("https://fineli.fi/fineli/api/v1/foods?q=" + food); //Food parameter from input
@@ -226,7 +232,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
     }
 
 
-    public String objectToString(String foodname){
+    public String objectToString(String foodname){ // searches the clicked food item and shows the additional data with popup
         DecimalFormat df = new DecimalFormat("#.#");
         usersMealInfo.clear();
         String meal = null;
@@ -262,13 +268,13 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
 
 
     @Override
-    public void recyclerViewListClicked(String food) {
+    public void recyclerViewListClicked(String food) {//getting the foodname with a message from RV adapter
         System.out.println(food);
         readJSON(food, false);
     }
 
 
-    public void addedAMealPopup(String food){
+    public void addedAMealPopup(String food){//meal popup, when the food item is clicked
         Thread thread = new Thread();
         dialogBuilder = new AlertDialog.Builder(this);
         final View addedmealPopup = getLayoutInflater().inflate(R.layout.dialog, null);
@@ -287,7 +293,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
 
     }
 
-    public void createOwnMealPopup(){
+    public void createOwnMealPopup(){ // The popup for the user to create own food item
         dialogBuilder = new AlertDialog.Builder(this);
         final View selfmadeMealPopup = getLayoutInflater().inflate(R.layout.dialog_createownmeal, null);
         EditText proteinValue = (EditText) selfmadeMealPopup.findViewById(R.id.proteinHere);
@@ -308,7 +314,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View selfmadeMealPopup) {
+            public void onClick(View selfmadeMealPopup) { // if user saves the food item createed
                 try{
                 String date = dateValue.getText().toString();
                 String name = nameValue.getText().toString();
@@ -321,7 +327,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
                 double sugar = Double.parseDouble(sugarValue.getText().toString());
                 double kcal = alcohol * 7 + carb * 4 + protein * 4 + fats * 9;
                 userfooddiary.addMeals(date, name, kcal, portionsize, protein, carb, fats, alcohol, fiber, sugar);}
-                catch(Exception e){
+                catch(Exception e){ // error if not all boxes answered
                     ErrorPopUp error = new ErrorPopUp("ERROR", "Fill all the boxes, insert 0 even if there's no value.");
                     error.show(getSupportFragmentManager(), "ERROR");
                 }
@@ -337,7 +343,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
         });
     }
 
-    public boolean testPortionSize(){
+    public boolean testPortionSize(){ // testing the portionsize to be numeral
         try{
             double d = Double.parseDouble(portionSizeComesHere.getText().toString());
             return true;

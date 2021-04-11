@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-public class userFoodDiary implements Serializable {
+public class userFoodDiary implements Serializable { // used to store users meals, hashmap uses date key, which opens array for the dates meals
     private static userFoodDiary ufd = new userFoodDiary();
     String date;
     userMeal meal;
-    HashMap<String, ArrayList<userMeal>> daysMeals = new HashMap<String, ArrayList<userMeal>>();
+    HashMap<String, ArrayList<userMeal>> daysMeals = new HashMap<String, ArrayList<userMeal>>(); //TODO this must be saved to users data!!!
 
 
     public void addMeals(String dt, String n, double e, double ps, double p, double c, double fa, double a, double fib, double s){

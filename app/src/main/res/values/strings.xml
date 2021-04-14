@@ -79,6 +79,8 @@
     <string name="food_name">food name</string>
     <string name="protein_g">protein (g)</string>
     <string name="create_a_meal">Create a meal</string>
+    <string name="did_you_know">Did you know?</string>
+    <string name="todo">TODO</string>
 
 
 </resources>

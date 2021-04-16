@@ -7,48 +7,74 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.button.MaterialButtonToggleGroup;
+import com.google.android.material.textfield.TextInputEditText;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class EditProfileActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     UserProfile user;
     LoadProfile lp = LoadProfile.getInstance();
 
+    Button logOut;
     Button editProfile;
     Button seeProfile;
     MaterialButtonToggleGroup buttonGroup;
-    Spinner spinner;
 
 
+    TextInputEditText homeTown;
+    TextInputEditText height;
+    TextInputEditText birth;
+    TextView hint;
 
-    @SuppressLint("RestrictedApi")
+
+    Calendar calendar = Calendar.getInstance();
+
+
+    @SuppressLint({"RestrictedApi", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
         System.out.println("##########Edit Profile##############");
-        Intent intent = getIntent();
-        user = (UserProfile) intent.getSerializableExtra("user");
-        if(user != null){
-            //This saves the last activity
-            user.lastActivity = getClass().getName();
-            lp.updateUserData(user);}
+        user = lp.getUser();
+
+
 
        editProfile = findViewById(R.id.edit_profile_button);
        seeProfile = findViewById(R.id.see_profile_button);
        buttonGroup = findViewById(R.id.button_toggle_group);
-       spinner = findViewById(R.id.spinner_menu);
+
+        homeTown = findViewById(R.id.hometown_edit_text);
+        height = findViewById(R.id.height_edit_text);
+        birth = findViewById(R.id.birth_edit_text);
+        hint = findViewById(R.id.hint_text);
+
+
+
+        logOut = findViewById(R.id.log_out_button);
+
+        if(user.getHeight() != 0){height.setText(Integer.toString(user.getHeight())); }
+        if(user.getHomeCity() != null){homeTown.setText(user.getHomeCity());}
+        if(user.getYearOfBirth() != null){
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+            birth.setText(sdf.format(user.getYearOfBirth().getTime()));
+        }
+
+
 
 
        //Sets default value
        buttonGroup.check(R.id.see_profile_button);
+
+
 
     }
     public void changeBirthDate(View v){
@@ -59,11 +85,11 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        Calendar calendar = Calendar.getInstance();
+        calendar = Calendar.getInstance();
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.YEAR, year);
-        user.setYearOfBirth(calendar);
+
     }
 
 
@@ -71,9 +97,43 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
         user.setRememberMe(false);
         user.setLastActivity(MainScreenActivity.class.getName());
         lp.updateUserData(user);
-
+        lp.userLoggedOut();
         startActivity(new Intent(this, MainActivity.class));
 
+
+    }
+    //In edit mode
+    public void editMode(View v){
+
+        homeTown.setEnabled(true);
+        height.setEnabled(true);
+        birth.setEnabled(true);
+        hint.setVisibility(View.VISIBLE);
+        logOut.setEnabled(false);
+
+
+
+    }
+    public void seeMode(View v){
+        homeTown.setEnabled(false);
+        height.setEnabled(false);
+        birth.setEnabled(false);
+        hint.setVisibility(View.GONE);
+        logOut.setEnabled(true);
+
+        user.setYearOfBirth(calendar);
+        if(height.getText() != null){
+        user.setHeight(Integer.parseInt(height.getText().toString()));}
+
+        if(homeTown.getText() != null){
+            user.setHomeCity(homeTown.getText().toString());}
+
+        if(user.getYearOfBirth() != null){
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+            birth.setText(sdf.format(user.getYearOfBirth().getTime()));
+        }
+
+        lp.updateUserData(user);
     }
 
 

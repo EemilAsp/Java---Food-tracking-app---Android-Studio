@@ -20,4 +20,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent myIntent = new Intent(this, SigninProfileActivity.class);
+        startActivity(myIntent);
+    }
 }

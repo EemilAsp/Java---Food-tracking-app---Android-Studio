@@ -43,40 +43,14 @@ public class RandomFactsActivity extends AppCompatActivity {
     // female / male / total all of these
     // 2019
     // whole finland region coded 658
-    //
+    // 
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random_facts);
         tobaccodata = findViewById(R.id.tobaccoDataHere);
-        yearSpinner = findViewById(R.id.yearSpinner);
-        genderSpinner = findViewById(R.id.genderSpinner);
         setupLists();
-
-        yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                year = parent.getItemAtPosition(position).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                gender = parent.getItemAtPosition(position).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
     }
 
     public void setupLists(){ //setup the spinner data

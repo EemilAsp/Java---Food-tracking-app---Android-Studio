@@ -28,7 +28,6 @@ public class MainScreenActivity extends AppCompatActivity {
             //This saves the last activity. copy this to every activity where user is logged in
             user.lastActivity = getClass().getName();
             lp.updateUserData(user);}
-
     }
 
     private void loadChart(){

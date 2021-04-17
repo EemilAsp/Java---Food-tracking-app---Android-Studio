@@ -26,9 +26,10 @@
         android:id="@+id/see_profile_button"
         android:text="@string/see_profile"
         style="?attr/materialButtonOutlinedStyle"
+        android:onClick="seeMode"
         android:layout_width="200dp" />
     <Button
-
+        android:onClick="editMode"
         app:icon="@drawable/edit_2_outline"
         android:layout_height="match_parent"
         android:id="@+id/edit_profile_button"
@@ -65,12 +66,17 @@
                     app:startIconDrawable="@drawable/height_24px"
                     app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/height_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        />
+                        android:enabled="false"
+                        android:inputType="number" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="350dp"
@@ -84,44 +90,46 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:id="@+id/hometown_edit_text"
+                        android:enabled="false"
                         />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.button.MaterialButton
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="350dp"
                     android:layout_height="55dp"
+
                     android:layout_marginVertical="12dp"
-                    android:onClick="changeBirthDate"
-                    app:icon="@drawable/calendar_outline"
-
-                    app:iconTint="#90000000"
-                    app:strokeColor="#90000000"
-                    android:text="@string/birth_year"
-                    android:textColor="#90000000"
-                    android:textAllCaps="false"
-                    android:drawablePadding="8dp"
-                    android:textAlignment="textStart"
-
-
+                    android:hint="@string/birth_year"
+                    app:startIconDrawable="@drawable/calendar_outline"
                     app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    tools:ignore="RtlHardcoded">
-                </com.google.android.material.button.MaterialButton>
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                <Spinner
-                    android:id="@+id/spinner_menu"
-                    android:layout_width="350dp"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/birth_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:inputType="none"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        android:onClick="changeBirthDate" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:layout_width="250dp"
                     android:layout_height="55dp"
-                    style="@style/Widget.AppCompat.DropDownItem.Spinner"
-                    android:spinnerMode="dialog"
+                    android:id="@+id/hint_text"
+                    android:text="@string/save_your_choises"
+                    android:textAlignment="center"
+                    android:visibility="gone"
                     />
-
-
-
                 <Button
                     android:layout_marginVertical="12dp"
                     android:layout_width="250dp"
+                    android:id="@+id/log_out_button"
                     android:text="@string/log_out"
                     android:onClick="logOutOfProfile"
                     android:layout_height="55dp"/>

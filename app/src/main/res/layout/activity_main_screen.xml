@@ -8,7 +8,8 @@
     android:orientation="vertical"
     tools:context=".MainScreenActivity">
 
-    <include layout="@layout/toolbar" />
+    <include layout="@layout/toolbar"
+        />
 
     <ScrollView
         android:paddingLeft="8dp"

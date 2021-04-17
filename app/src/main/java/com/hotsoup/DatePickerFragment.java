@@ -9,10 +9,10 @@ import androidx.fragment.app.DialogFragment;
 
 import java.util.Calendar;
 public class DatePickerFragment extends DialogFragment {
-    Calendar calendar;
+    Calendar calendar = Calendar.getInstance();
     //Sets the calendar to given date
     public DatePickerFragment(Calendar calendar){
-            this.calendar = calendar;
+            if(calendar != null){this.calendar = calendar;}
     }
     @NonNull
     @Override

@@ -37,7 +37,12 @@ public class MainScreenActivity extends AppCompatActivity {
 
     }
     //TODO Kun activity on luotu lisää se allaolevaan kohtaan
-    public void startFoodMenuActivity(View v){}
+    public void startFoodMenuActivity(View v){
+        Intent myIntent = new Intent(this, userMealDiary.class);
+        myIntent.putExtra("user", user);
+        startActivity(myIntent);
+        finish();
+    }
     public void startEditProfileActivity(View v){
         Intent myIntent = new Intent(this, EditProfileActivity.class);
         myIntent.putExtra("user", user);

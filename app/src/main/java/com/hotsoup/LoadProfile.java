@@ -131,6 +131,7 @@ public class LoadProfile extends Application {
         } catch (IOException i) {
             i.printStackTrace();
         }
+        userList.clear();//clears list because older user versions are invalid
     }
 
     public boolean isNameFree(String name){
@@ -148,21 +149,21 @@ public class LoadProfile extends Application {
 
     public UserProfile findloggedIn(){
         System.out.println("Finding logged in people @LoadProfile");
-        System.out.println(userList);
         if(!userList.isEmpty()){
             System.out.println(userList);
-            System.out.println("was the whole list @LoadProfile");
-            for (UserProfile user : userList){
+            System.out.println("was the whole logged inlist @LoadProfile");
+            for (UserProfile logUser : userList){
 
-                System.out.print(user.userName);
-                System.out.println("in @LoadProfile");
-                if (user.isRememberMe()) {
+                if (logUser.isRememberMe()) {
                     System.out.println("User logged in found");
-                    return user;
+                    user = logUser;
+                    return logUser;
                 }
             }}
         System.out.println("Not people found @LoadProfile");
         return null;
     }
+
+    public void userLoggedOut(){user = null;}
 
 }

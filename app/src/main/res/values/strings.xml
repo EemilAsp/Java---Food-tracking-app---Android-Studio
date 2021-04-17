@@ -82,6 +82,7 @@
     <string name="did_you_know">Did you know?</string>
     <string name="todo">TODO</string>
     <string name="save_your_choises">Tallenna valintasi menemällää tarkastelu tilaan</string>
+    <string name="new_weight">Lisää uusi paino</string>
 
 
 </resources>

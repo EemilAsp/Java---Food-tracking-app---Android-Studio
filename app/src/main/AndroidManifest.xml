@@ -12,14 +12,17 @@
         android:roundIcon="@drawable/logo_main"
         android:supportsRtl="true"
         android:theme="@style/Theme.HotSoup">
-        <activity android:name=".EditProfileActivity"/>
+        <activity android:name=".WeightTracker"></activity>
+        <activity android:name=".EditProfileActivity" />
         <activity android:name=".MainScreenActivity" />
         <activity android:name=".SignUpProfileActivity" />
         <activity android:name=".SigninProfileActivity" />
-        <activity android:name=".userMealDiary"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".foodDataHarvester"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".userMealDiary"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".foodDataHarvester"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,13 +1,18 @@
 package com.hotsoup;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,45 +33,58 @@ import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
 
 public class RandomFactsActivity extends AppCompatActivity {
     private String usershometown;
-    TextView tobaccodata;
-    Spinner yearSpinner;
-    Spinner genderSpinner;
-    String year = "2019";
-    String gender = "Total";
+    Fragment fragment = new tobacco_barchart();
+    Button showme;
+
     final String extradatafromTHL = "Joka toinen tupakoija kuolee ennenaikaisesti tupakan aiheuttamiin sairauksiin, jos jatkaa tupakointiaan.\n Suomessa tupakoinnista aiheutuvia ennenaikaisia kuolemia on vuosittain noin 4000.\n Lähde: www.thl.fi";
-    ArrayList<String> genderlist = new ArrayList<>();
-    ArrayList<String> yearlist = new ArrayList<>();
-    //Daily smokers id 4404 (december - november)
-    //huonosti dataa tietyn paikkakunnan tiedoista.
-    //Pitäisikö laittaa vaan koko suomen luvut? parin vuoden ajalta?
-    //https://sotkanet.fi/rest/1.1/json?indicator=4404&years=2019&genders=female
-    // female / male / total all of these
-    // 2019
-    // whole finland region coded 658
-    // 
+    ArrayList<String> Malelist = new ArrayList<>();
+    ArrayList<String> Femalelist = new ArrayList<>();
+    //kerää data arrayihin male 2017, 2018, 2019
+    //Sama juttu female 2017, 2018, 2019
+    //intenttinä data sitten barchart fragmenttiin jossa voi luoda sitten diagrammin
+    //
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random_facts);
-        tobaccodata = findViewById(R.id.tobaccoDataHere);
-        setupLists();
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        showme = (Button) findViewById(R.id.showmebutton);
+        callTheReadJson();
+
+        Malelist.add(0, "10.2");
+        Malelist.add(1, "12.2");
+        Malelist.add(2, "14.2");
+
+        Femalelist.add(0, "10.5");
+        Femalelist.add(1, "11.5");
+        Femalelist.add(2, "17.5");
+
+        showme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendValueToFragment();
+                System.out.println("done");
+            }
+        });
     }
 
-    public void setupLists(){ //setup the spinner data
-        genderlist.add("Total");
-        genderlist.add("Male");
-        genderlist.add("Female");
-        yearlist.add("2019");
-        yearlist.add("2018");
-        yearlist.add("2017");
-        yearlist.add("2016");
+    private void callTheReadJson() {
+        for(int i = 2017; i < 2019; i++){
+            readJSON(i, "Male");
+        }
+        for(int i = 2017; i < 2019; i++){
+            readJSON(i, "Female");
+        }
     }
 
 
-    public void readJSON(String year, String gender){
+    public void readJSON(int year, String gender){
         String json = getJSON(year, gender);
+
         if(json != null){
+            if (gender.equals("Male")){
             try{
                 JSONArray jsonArray = new JSONArray(json);
                 String info;
@@ -74,13 +92,26 @@ public class RandomFactsActivity extends AppCompatActivity {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 info = jsonObject.getJSONObject("indicator").getString("region");
                 System.out.println(info);
+                //Malelist.add(info);
             }} catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }}else{
+            try{
+                JSONArray jsonArray = new JSONArray(json);
+                String info;
+                for(int i = 0; i < jsonArray.length(); i++ ){
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    info = jsonObject.getJSONObject("indicator").getString("region");
+                    System.out.println(info);
+                    //Femalelist.add(info);
+                }} catch (JSONException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public String getJSON(String yr, String gd){
+    public String getJSON(int yr, String gd){
         String response = null;
         try{
             URL url = new URL("https://sotkanet.fi/rest/1.1/json?indicator=4404&years="+yr+"&genders="+gd);
@@ -102,4 +133,17 @@ public class RandomFactsActivity extends AppCompatActivity {
         }
         return response;
     }
+
+    public void sendValueToFragment(){
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList("male", Malelist);
+        bundle.putStringArrayList("female", Femalelist);
+
+        fragment.setArguments(bundle);
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.fragmentview,fragment);
+        transaction.commit();
+    }
+
 }

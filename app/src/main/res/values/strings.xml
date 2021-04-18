@@ -96,6 +96,7 @@
     <string name="overweight">Lievästi ylipainoinen</string>
     <string name="obese">Merkittävästi ylipainoinen</string>
     <string name="extremly_obese">Sairaalloisen ylipainoinen</string>
+    <string name="show_me">show_me</string>
 
 
 </resources>

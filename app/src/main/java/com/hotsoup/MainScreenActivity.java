@@ -55,5 +55,8 @@ public class MainScreenActivity extends AppCompatActivity {
         startActivity(myIntent);
         finish();
     }
-    public void startRandomFactsActivity(View v){}
+    public void startRandomFactsActivity(View v){Intent myIntent = new Intent(this, RandomFactsActivity.class);
+        startActivity(myIntent);
+        finish();
+    }
 }

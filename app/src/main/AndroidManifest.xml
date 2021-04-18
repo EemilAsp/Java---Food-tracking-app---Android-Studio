@@ -23,7 +23,8 @@
         <activity
             android:name=".foodDataHarvester"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".RandomFactsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -50,6 +50,10 @@ public class MainScreenActivity extends AppCompatActivity {
         finish();
     }
     public void startCarbonFootPrintActivity(View v){}
-    public void startWeigthActivity(View v){}
+    public void startWeigthActivity(View v){
+        Intent myIntent = new Intent(this, WeightTracker.class);
+        startActivity(myIntent);
+        finish();
+    }
     public void startRandomFactsActivity(View v){}
 }

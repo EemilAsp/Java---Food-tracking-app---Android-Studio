@@ -7,35 +7,74 @@
     android:orientation="vertical"
     tools:context=".WeightTracker">
 
-    <include layout="@layout/toolbar"/>
-
-    <StackView
+    <include layout="@layout/toolbar"
+        android:onClick="backToMain"
+        />
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:layout_gravity="center"
+        android:layout_height="50dp"
+        app:singleSelection="true"
+        android:gravity="center"
+        android:id="@+id/button_toggle_group_weight"
+        app:selectionRequired="true"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginTop="40dp">
+        tools:ignore="ExtraText">
+        <Button
+            app:icon="@drawable/book_open_outline"
+            android:layout_height="match_parent"
+            android:id="@+id/see_weight_button"
+            android:text="@string/see_profile"
+            style="?attr/materialButtonOutlinedStyle"
+            android:onClick="weightMode"
+            android:layout_width="200dp" />
+
+        <Button
+            android:id="@+id/see_bmi_weight"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:onClick="bmiMode"
+            android:text="@string/bmi"
+            app:icon="@drawable/outline_calculate_black_18dp"
+            app:iconSize="22dp" />
+        />
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/frame_layout_weight"/>
+            android:visibility="gone"
+            android:id="@+id/frame_layout_weight">
+            <include layout="@layout/fragment_b_m_i_calculator"/>
+        </FrameLayout>
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linear_layout_weight"
+            android:gravity="top|center_horizontal"
+            android:visibility="visible"
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Tähä kaavio" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="350dp"
                 android:layout_height="55dp"
-                android:layout_marginVertical="12dp"
                 android:hint="@string/new_weight"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
-                app:startIconDrawable="@drawable/height_24px">
+
+                app:startIconDrawable="@drawable/outline_monitor_weight_black_18dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/height_edit_text"
@@ -44,9 +83,29 @@
                     android:inputType="numberDecimal" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/button_save_weight"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:enabled="false"
+                    android:elevation="8dp"
+                    android:onClick="saveWeight"
+                    android:text="@string/save_mass" />
+                <Button
+                    android:id="@+id/button_remove_weight"
+                    android:layout_width="200dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:enabled="false"
+                    android:elevation="8dp"
+                    android:onClick="saveWeight"
+                    android:text="@string/remove_last_weight" />
         </LinearLayout>
+        </ScrollView>
 
 
-    </StackView>
 
 </LinearLayout>

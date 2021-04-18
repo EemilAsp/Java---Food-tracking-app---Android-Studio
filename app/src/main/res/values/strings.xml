@@ -83,6 +83,19 @@
     <string name="todo">TODO</string>
     <string name="save_your_choises">Tallenna valintasi menemällää tarkastelu tilaan</string>
     <string name="new_weight">Lisää uusi paino</string>
+    <string name="bmi">PainoIndeksi</string>
+    <string name="save_mass">Tallenna paino</string>
+    <string name="remove_last_weight">Poista viimeisin mittaus</string>
+    <string name="your_last_weight">Sinun viimeisin painosi oli:</string>
+    <string name="height_is">Piitutesi on:</string>
+    <string name="calculated_bmi">Laskettu painoindeksisi on:</string>
+    <string name="bmi_info">Painoindeksiä voi käyttää suuntaanäyttävänä työkaluna painonhallinnassa, mutta muista ettei se ota muita ominaisuuksia huomioon kuin painon ja pituuden. Esimerksiksi korkea lihasmassa voi vääristää painoindeksin antamaa tulosta</string>
+    <string name="bmi_says">Painoindeksin mukaan olet</string>
+    <string name="underWeight">Alipainoinen</string>
+    <string name="normal_weight">Normaali painoinen</string>
+    <string name="overweight">Lievästi ylipainoinen</string>
+    <string name="obese">Merkittävästi ylipainoinen</string>
+    <string name="extremly_obese">Sairaalloisen ylipainoinen</string>
 
 
 </resources>

@@ -45,7 +45,8 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
 
         System.out.println("##########Edit Profile##############");
         user = lp.getUser();
-
+        user.lastActivity = getClass().getName();
+        lp.updateUserData(user);
 
 
        editProfile = findViewById(R.id.edit_profile_button);

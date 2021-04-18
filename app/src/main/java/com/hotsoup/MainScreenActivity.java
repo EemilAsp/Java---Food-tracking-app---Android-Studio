@@ -51,5 +51,11 @@ public class MainScreenActivity extends AppCompatActivity {
     }
     public void startCarbonFootPrintActivity(View v){}
     public void startWeigthActivity(View v){}
-    public void startRandomFactsActivity(View v){}
+
+
+    public void startRandomFactsActivity(View v){
+        Intent myIntent = new Intent(this, RandomFactsActivity.class);
+        startActivity(myIntent);
+        finish();
+    }
 }

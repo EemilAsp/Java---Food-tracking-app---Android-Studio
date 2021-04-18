@@ -1,5 +1,7 @@
 package com.hotsoup;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -34,9 +36,12 @@ import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
 public class RandomFactsActivity extends AppCompatActivity {
     private String usershometown;
     Fragment fragment = new tobacco_barchart();
-    Button showme;
+    Button showme, backbutton;
+    TextView title, extrainfo, sourceView;
 
-    final String extradatafromTHL = "Joka toinen tupakoija kuolee ennenaikaisesti tupakan aiheuttamiin sairauksiin, jos jatkaa tupakointiaan.\n Suomessa tupakoinnista aiheutuvia ennenaikaisia kuolemia on vuosittain noin 4000.\n Lähde: www.thl.fi";
+    final String extradatafromTHL = "Joka toinen tupakoija kuolee ennenaikaisesti tupakan aiheuttamiin sairauksiin, jos jatkaa tupakointiaan.\n\nSuomessa tupakoinnista aiheutuvia ennenaikaisia kuolemia on vuosittain noin 4000.\n\n" +
+            "Tupakoinnin terveyshaitat ovat moninaiset vaikuttaen koko kehoon. Haitat ovat laajasti raportoidut mutta uusia haittavaikutuksia löydetään edelleen.\n\nMerkittävimmät tupakoinnin aiheuttamat sairaudet ovat syöpä-, hengityselin- ja verenkiertoelimistön sairaudet.\n\n" +
+            "Lähde:\n https://thl.fi/fi/web/alkoholi-tupakka-ja-riippuvuudet/tupakka/tupakkatuotteet-ja-sahkosavuke/savuke";
     ArrayList<String> Malelist = new ArrayList<>();
     ArrayList<String> Femalelist = new ArrayList<>();
     //kerää data arrayihin male 2017, 2018, 2019
@@ -51,32 +56,50 @@ public class RandomFactsActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         showme = (Button) findViewById(R.id.showmebutton);
-        callTheReadJson();
-
-        Malelist.add(0, "10.2");
-        Malelist.add(1, "12.2");
-        Malelist.add(2, "14.2");
-
-        Femalelist.add(0, "10.5");
-        Femalelist.add(1, "11.5");
-        Femalelist.add(2, "17.5");
+        backbutton = (Button) findViewById(R.id.randomFactsBackButton);
+        callTheMaleReadJson();
+        callTheFemaleReadJson();
+        title = (TextView) findViewById(R.id.titleforBarchart);
+        extrainfo = (TextView) findViewById(R.id.moreInfoTobacco);
 
         showme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sendValueToFragment();
                 System.out.println("done");
+                title.setTextSize(16);
+                title.setTextColor(Color.BLACK);
+                title.setText("Kaaviossa on esitetty päivittäin tupakoivien 20 vuotta täyttäneiden osuus prosentteina vastaavanikäisestä suomalaisesta väestöstä.");
+                extrainfo.setTextSize(16);
+                extrainfo.setTextColor(Color.BLACK);
+                extrainfo.setText(extradatafromTHL);
+            }
+        });
+
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backtomainmenu();
             }
         });
     }
 
-    private void callTheReadJson() {
-        for(int i = 2017; i < 2019; i++){
-            readJSON(i, "Male");
-        }
-        for(int i = 2017; i < 2019; i++){
-            readJSON(i, "Female");
-        }
+    public void backtomainmenu(){
+        Intent myIntent = new Intent(this, MainScreenActivity.class);
+        startActivity(myIntent);
+        finish();
+    }
+
+    private void callTheMaleReadJson() {
+        readJSON(2017, "Male");
+        readJSON(2018, "Male");
+        readJSON(2019, "Male");
+
+    }
+    private void callTheFemaleReadJson(){
+        readJSON(2017, "Female");
+        readJSON(2018, "Female");
+        readJSON(2019, "Female");
     }
 
 
@@ -86,35 +109,41 @@ public class RandomFactsActivity extends AppCompatActivity {
         if(json != null){
             if (gender.equals("Male")){
             try{
+                System.out.println("Läpi1");
                 JSONArray jsonArray = new JSONArray(json);
                 String info;
                 for(int i = 0; i < jsonArray.length(); i++ ){
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                info = jsonObject.getJSONObject("indicator").getString("region");
+                if (jsonObject.getString("region").equals("658")){
+                info = jsonObject.getString("value");
                 System.out.println(info);
-                //Malelist.add(info);
+                Malelist.add(info);}
+
+
             }} catch (JSONException e) {
                 e.printStackTrace();
             }
-        }}else{
+        }else if(gender.equals("Female")){
             try{
+                System.out.println("Läpi2");
                 JSONArray jsonArray = new JSONArray(json);
                 String info;
                 for(int i = 0; i < jsonArray.length(); i++ ){
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    info = jsonObject.getJSONObject("indicator").getString("region");
-                    System.out.println(info);
-                    //Femalelist.add(info);
+                    if (jsonObject.getString("region").equals("658")){
+                        info = jsonObject.getString("value");
+                        System.out.println(info);
+                        Femalelist.add(info);}
                 }} catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-    }
+    }}
 
     public String getJSON(int yr, String gd){
         String response = null;
         try{
-            URL url = new URL("https://sotkanet.fi/rest/1.1/json?indicator=4404&years="+yr+"&genders="+gd);
+            URL url = new URL("https://sotkanet.fi/rest/1.1/json?indicator=4404&regions=658&years="+yr+"&genders="+gd);
             HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             InputStream is = new BufferedInputStream(connection.getInputStream());

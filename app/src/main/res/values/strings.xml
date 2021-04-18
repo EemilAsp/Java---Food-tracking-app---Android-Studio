@@ -83,6 +83,7 @@
     <string name="todo">TODO</string>
     <string name="save_your_choises">Tallenna valintasi menemällää tarkastelu tilaan</string>
     <string name="new_weight">Lisää uusi paino</string>
+    <string name="show_me">show_me</string>
 
 
 </resources>

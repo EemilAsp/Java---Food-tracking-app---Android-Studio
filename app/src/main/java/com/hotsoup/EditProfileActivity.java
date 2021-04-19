@@ -62,7 +62,7 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
 
         logOut = findViewById(R.id.log_out_button);
 
-        if(user.getHeight() != 0){height.setText(Integer.toString(user.getHeight())); }
+        if(user.getHeight() != 0){height.setText(Double.toString(user.getHeight())); }
         if(user.getHomeCity() != null){homeTown.setText(user.getHomeCity());}
         if(user.getYearOfBirth() != null){
             @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");

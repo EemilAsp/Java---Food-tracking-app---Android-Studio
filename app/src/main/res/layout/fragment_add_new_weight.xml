@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    tools:context=".addNewWeight_fragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linear_layout_weight"
+            android:gravity="top|center_horizontal"
+            android:visibility="visible"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lista"
+                android:text="Tähä kaavio" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="350dp"
+                android:layout_height="55dp"
+                android:hint="@string/new_weight"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
+
+                app:startIconDrawable="@drawable/outline_monitor_weight_black_18dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/add_weight_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="numberDecimal" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/button_save_weight"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:elevation="8dp"
+                android:text="@string/save_mass" />
+            <Button
+                android:id="@+id/button_remove_weight"
+                android:layout_width="200dp"
+                android:layout_marginTop="22dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:enabled="false"
+                android:elevation="8dp"
+                android:text="@string/remove_last_weight" />
+        </LinearLayout>
+</FrameLayout>

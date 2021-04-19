@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.button.MaterialButtonToggleGroup;
 
@@ -17,36 +19,38 @@ public class WeightTracker extends AppCompatActivity {
     MaterialButtonToggleGroup buttonGroup;
     Button weightModeButton;
     Button bmiModeButton;
-    LinearLayout linearLayout;
     FrameLayout frameLayout;
+    Fragment fragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weight_tracker);
 
         System.out.println("##########Edit Weight##############");
+        buttonGroup = findViewById(R.id.button_toggle_group_weight);
+        buttonGroup.check(R.id.see_weight_button);
+        weightMode(new View(getBaseContext()));
+
         user = lp.getUser();
         user.lastActivity = getClass().getName();
         lp.updateUserData(user);
-
-        buttonGroup = findViewById(R.id.button_toggle_group_weight);
-        weightModeButton = findViewById(R.id.see_weight_button);
-        bmiModeButton = findViewById(R.id.see_bmi_weight);
-        linearLayout  = findViewById(R.id.linear_layout_weight);
-        frameLayout = findViewById(R.id.frame_layout_weight);
-
-        buttonGroup.check(R.id.see_weight_button);
     }
 
 
     public void bmiMode(View v){
-        linearLayout.setVisibility(View.GONE);
-        frameLayout.setVisibility(View.VISIBLE);
+        fragment = new BMICalculator();
+        FragmentManager manager =  getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.frame_layout_weight, fragment);
+        transaction.commit();
 
     }
     public void weightMode(View v){
-        linearLayout.setVisibility(View.VISIBLE);
-        frameLayout.setVisibility(View.GONE);
+        fragment = new addNewWeight_fragment();
+        FragmentManager manager =  getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.frame_layout_weight, fragment);
+        transaction.commit();
     }
 
 

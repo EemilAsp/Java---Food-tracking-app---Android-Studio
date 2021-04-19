@@ -7,10 +7,10 @@ import java.util.Calendar;
 public class UserProfile implements java.io.Serializable{
     String userName;
     byte[] password;
-    int height;
-    ArrayList<Integer> weight = null;
-    Calendar yearOfBirth;
-    String homeCity;
+    double height = 0;
+    ArrayList<Double> weight = null;
+    Calendar yearOfBirth = null;
+    String homeCity ="";
     ArrayList<userFoodDiary> comsumption = null;
     boolean rememberMe =false;
 
@@ -73,11 +73,11 @@ public class UserProfile implements java.io.Serializable{
     }
 
 
-    public void setHeight(int height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 
-    public void setWeight(ArrayList<Integer> weight) {
+    public void setWeight(ArrayList<Double> weight) {
         this.weight = weight;
     }
 
@@ -103,11 +103,11 @@ public class UserProfile implements java.io.Serializable{
         return password;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public ArrayList<Integer> getWeight() {
+    public ArrayList<Double> getWeight() {
         return weight;
     }
 

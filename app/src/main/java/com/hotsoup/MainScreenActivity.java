@@ -38,23 +38,36 @@ public class MainScreenActivity extends AppCompatActivity {
     }
     //TODO Kun activity on luotu lisää se allaolevaan kohtaan
     public void startFoodMenuActivity(View v){
+        Intent myIntent = new Intent(this, foodDataHarvester.class);
+        myIntent.putExtra("user", user);
+        startActivity(myIntent);
+        finish();
+    }
+
+    public void startFoodDiaryActivity(View v){
         Intent myIntent = new Intent(this, userMealDiary.class);
         myIntent.putExtra("user", user);
         startActivity(myIntent);
         finish();
     }
+
     public void startEditProfileActivity(View v){
         Intent myIntent = new Intent(this, EditProfileActivity.class);
         myIntent.putExtra("user", user);
         startActivity(myIntent);
         finish();
     }
+
     public void startCarbonFootPrintActivity(View v){}
+
+
     public void startWeigthActivity(View v){
         Intent myIntent = new Intent(this, WeightTracker.class);
         startActivity(myIntent);
         finish();
     }
+
+
     public void startRandomFactsActivity(View v){Intent myIntent = new Intent(this, RandomFactsActivity.class);
         startActivity(myIntent);
         finish();

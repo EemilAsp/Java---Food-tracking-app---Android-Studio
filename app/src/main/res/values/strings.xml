@@ -97,6 +97,7 @@
     <string name="obese">Merkittävästi ylipainoinen</string>
     <string name="extremly_obese">Sairaalloisen ylipainoinen</string>
     <string name="show_me">show_me</string>
+    <string name="extras">Extras</string>
     <string name="no_weight_yet">Et ole syöttänyt vielä painoa</string>
     <string name="give_weight_height">Anna painosi ja pituutesi ensin</string>
 

@@ -11,6 +11,7 @@ public class UserProfile implements java.io.Serializable{
     ArrayList<Double> weight = null;
     Calendar yearOfBirth = null;
     String homeCity ="";
+    userFoodDiary ufd = userFoodDiary.getInstance();
     ArrayList<userFoodDiary> comsumption = null;
     boolean rememberMe =false;
 

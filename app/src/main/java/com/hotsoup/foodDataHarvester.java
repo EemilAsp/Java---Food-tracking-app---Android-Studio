@@ -50,7 +50,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
     RVadapter myAdapter;
     TextView mealPopup, listviewheader;
     String food;
-    Button showaddedMeals, createCustomMeal;
+    Button showaddedMeals, createCustomMeal, mainMenu;
     RecyclerView foodview;
     userFoodDiary userfooddiary = userFoodDiary.getInstance();
     ArrayList<String> foodinfo = new ArrayList<>();
@@ -71,6 +71,15 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
         foodview = (RecyclerView) findViewById(R.id.foodsParsedFromAPI);
         createCustomMeal = (Button)findViewById(R.id.createCustomMeal);
         showaddedMeals = (Button)findViewById(R.id.showaddedMeals);
+        mainMenu = (Button) findViewById(R.id.mainMenu);
+
+
+        mainMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backToMainmenu();
+            }
+        });
 
         showaddedMeals.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,6 +115,12 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
                     public void afterTextChanged(Editable s) {
                     }
                 });
+    }
+
+    private void backToMainmenu() {
+        Intent myIntent = new Intent(this, MainScreenActivity.class);
+        startActivity(myIntent);
+        finish();
     }
 
     public void readJSON(String food, Boolean choice) { //boolean checks if the method call comes from textchange or user clicking element on screen

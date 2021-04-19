@@ -44,7 +44,9 @@ public class tobacco_barchart extends Fragment {
 
         maledata = getArguments().getStringArrayList("male");
         femaledata = getArguments().getStringArrayList("female");
-        //vastaanota arrayt 2 eri arrayta
+        //Takes two values one for males one for females
+        //This fragment is purely for setting up barchart to show up statistics about tobacco consumption in finland
+        //as an extra information
         ArrayList<BarEntry> maleyears = new ArrayList<>();
         maleyears.add(new BarEntry( 0,Float.parseFloat(maledata.get(0))));//Miesten
         maleyears.add(new BarEntry(2,Float.parseFloat(maledata.get(1))));//Naisten

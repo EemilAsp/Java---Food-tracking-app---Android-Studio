@@ -67,17 +67,17 @@
 
     <Button
         android:id="@+id/returnbutton"
-        android:layout_width="95dp"
-        android:layout_height="41dp"
+        android:layout_width="103dp"
+        android:layout_height="62dp"
         android:backgroundTint="#9ac2be"
-        android:text="@string/reeturn"
+        android:text="Add meals"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.022"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.24" />
+        app:layout_constraintVertical_bias="0.246" />
 
     <Button
         android:id="@+id/searchButton"
@@ -97,7 +97,7 @@
         android:id="@+id/Extras"
         android:layout_width="95dp"
         android:layout_height="40dp"
-        android:text="Extras"
+        android:text="@string/extras"
         android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"

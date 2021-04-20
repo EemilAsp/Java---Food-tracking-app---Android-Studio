@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import androidx.appcompat.widget.Toolbar;
 
 
 import androidx.annotation.Nullable;
@@ -30,6 +31,7 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
     final static String DATE_FORMAT = "dd.MM.yyyy";
     private AlertDialog dialog;
     boolean choice = true;
+    Toolbar tb;
     DecimalFormat df = new DecimalFormat("#.#");
     String daysinfocount;
     userFoodDiary userfooddiary = userFoodDiary.getInstance();
@@ -73,6 +75,16 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
                 date = getDateText();
                 daysEats = userfooddiary.getArray(date);
                 createStringArray(daysEats);
+            }
+        });
+
+        tb = findViewById(R.id.include);
+        setSupportActionBar(tb);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        tb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goMainScreen();
             }
         });
     }
@@ -216,6 +228,13 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
         }, 3000);
 
     }
+
+
+
+    private void goMainScreen(){
+        Intent myIntent = new Intent(this, MainScreenActivity.class);
+        startActivity(myIntent);
+        finish();}
 }
 
 

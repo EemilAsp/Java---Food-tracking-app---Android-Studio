@@ -40,15 +40,6 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/randomFactsBackButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Back to menu"
-                android:textColor="#000000"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <Button
                 android:id="@+id/showmebutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

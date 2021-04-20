@@ -38,7 +38,7 @@
         app:layout_constraintHorizontal_bias="0.067"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.213" />
+        app:layout_constraintVertical_bias="0.23" />
 
     <include
         android:id="@+id/include"
@@ -79,10 +79,10 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintHorizontal_bias="0.072"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.276" />
+        app:layout_constraintVertical_bias="0.308" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/foodsParsedFromAPI"
@@ -97,8 +97,8 @@
 
     <Button
         android:id="@+id/createCustomMeal"
-        android:layout_width="163dp"
-        android:layout_height="67dp"
+        android:layout_width="167dp"
+        android:layout_height="69dp"
         android:backgroundTint="#9ac2be"
         android:text="Create custom meal"
 
@@ -106,7 +106,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.948"
+        app:layout_constraintHorizontal_bias="0.963"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/include"
         app:layout_constraintVertical_bias="0.152" />
@@ -124,18 +124,6 @@
         app:layout_constraintHorizontal_bias="0.959"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/include"
-        app:layout_constraintVertical_bias="0.273" />
+        app:layout_constraintVertical_bias="0.303" />
 
-    <Button
-        android:id="@+id/mainMenu"
-        android:layout_width="140dp"
-        android:layout_height="52dp"
-        android:text="Back to main menu"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.055"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.366" />
 </androidx.constraintlayout.widget.ConstraintLayout>

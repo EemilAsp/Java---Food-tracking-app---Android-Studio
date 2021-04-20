@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,7 +51,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
     RVadapter myAdapter;
     TextView mealPopup, listviewheader;
     String food;
-    Button showaddedMeals, createCustomMeal, mainMenu;
+    Button showaddedMeals, createCustomMeal;
     RecyclerView foodview;
     userFoodDiary userfooddiary = userFoodDiary.getInstance();
     ArrayList<String> foodinfo = new ArrayList<>();
@@ -71,15 +72,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
         foodview = (RecyclerView) findViewById(R.id.foodsParsedFromAPI);
         createCustomMeal = (Button)findViewById(R.id.createCustomMeal);
         showaddedMeals = (Button)findViewById(R.id.showaddedMeals);
-        mainMenu = (Button) findViewById(R.id.mainMenu);
 
-
-        mainMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                backToMainmenu();
-            }
-        });
 
         showaddedMeals.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,8 +91,6 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
 
 
 
-
-
                 foodNameComesHere.addTextChangedListener(new TextWatcher() { // searching food items while the search changes
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -115,7 +106,22 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
                     public void afterTextChanged(Editable s) {
                     }
                 });
+
+        Toolbar toolbar = findViewById(R.id.include);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goMainScreen();
+            }
+        });
     }
+
+    private void goMainScreen(){
+        Intent myIntent = new Intent(this, MainScreenActivity.class);
+        startActivity(myIntent);
+        finish();}
 
     private void backToMainmenu() {
         Intent myIntent = new Intent(this, MainScreenActivity.class);

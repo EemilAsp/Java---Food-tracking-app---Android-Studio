@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -41,7 +42,7 @@ import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
 
 public class RandomFactsActivity extends AppCompatActivity {
     Fragment fragment = new tobacco_barchart();
-    Button showme, backbutton;
+    Button showme;
     TextView title, extrainfo;
     OutputStreamWriter ows = null;
     FileInputStream fis = null;
@@ -64,7 +65,7 @@ public class RandomFactsActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         showme = (Button) findViewById(R.id.showmebutton);
-        backbutton = (Button) findViewById(R.id.randomFactsBackButton);
+
         callTheMaleReadJson(); // Searches data from sotkanet api
         callTheFemaleReadJson(); // Searches data from sotkanet api
         if(Malelist.size() > 0 && Femalelist.size() > 0){
@@ -87,13 +88,21 @@ public class RandomFactsActivity extends AppCompatActivity {
             }
         });
 
-        backbutton.setOnClickListener(new View.OnClickListener() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backtomainmenu();
+                goMainScreen();
             }
         });
     }
+
+    private void goMainScreen(){
+        Intent myIntent = new Intent(this, MainScreenActivity.class);
+        startActivity(myIntent);
+        finish();}
 
     private void savedatatofile() { // saving data to file incase of api wont work / or network doesn't work
         try {

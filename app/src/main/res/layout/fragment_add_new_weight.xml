@@ -27,6 +27,7 @@
                 android:hint="@string/new_weight"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
+
                 app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
 
                 app:startIconDrawable="@drawable/outline_monitor_weight_black_18dp">
@@ -52,7 +53,6 @@
                 android:layout_marginTop="22dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:enabled="false"
                 android:elevation="8dp"
                 android:text="@string/remove_last_weight" />
         </LinearLayout>

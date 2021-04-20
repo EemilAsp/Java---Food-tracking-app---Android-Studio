@@ -10,6 +10,7 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.button.MaterialButtonToggleGroup;
@@ -32,6 +33,7 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
     TextInputEditText height;
     TextInputEditText birth;
     TextView hint;
+    Toolbar toolbar;
 
 
     Calendar calendar = Calendar.getInstance();
@@ -62,7 +64,7 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
 
         logOut = findViewById(R.id.log_out_button);
 
-        if(user.getHeight() != 0){height.setText(Double.toString(user.getHeight())); }
+        if(user.getHeight() != 0){height.setText(Integer.toString((int)user.getHeight())); }
         if(user.getHomeCity() != null){homeTown.setText(user.getHomeCity());}
         if(user.getYearOfBirth() != null){
             @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
@@ -75,9 +77,25 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
        //Sets default value
        buttonGroup.check(R.id.see_profile_button);
 
+        //toolbar support////////////////////
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goMainScreen();
+            }
+        });
 
 
     }
+    private void goMainScreen(){
+        Intent myIntent = new Intent(this, MainScreenActivity.class);
+        startActivity(myIntent);
+        finish();}
+    /////////////////
+
     public void changeBirthDate(View v){
         DialogFragment datepicker = new DatePickerFragment(user.getYearOfBirth());
         datepicker.show(getSupportFragmentManager(), "change birthday");

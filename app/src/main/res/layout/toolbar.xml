@@ -3,9 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/toolbar"
-    android:elevation="8dp"
+    android:padding="0dp"
     android:id="@+id/toolbar">
-
-
 
 </androidx.appcompat.widget.Toolbar>

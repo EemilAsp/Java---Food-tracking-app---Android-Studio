@@ -48,11 +48,11 @@ public class BMICalculator extends Fragment {
         textHeight = view.findViewById(R.id.text_height_bmi);
         textBmi = view.findViewById(R.id.text_bmi_bmi);
         textInfo = view.findViewById(R.id.text_info_bmi);
-        if(user.getWeight() != null && user.getHeight() !=0){
-            textWeight.setText(getString(R.string.your_last_weight) + user.getWeight().get(user.getWeight().size()));
+        if(!user.getWeight().isEmpty() && user.getHeight() !=0){
+            textWeight.setText(getString(R.string.your_last_weight) + user.getWeight().get(user.getWeight().size()-1));
             textHeight.setText(getString(R.string.height_is) +user.getHeight());
             textBmi.setText(getString(R.string.calculated_bmi) + Double.toString(
-                    bmi = calculateBMI(user.getWeight().get(user.getWeight().size()), user.getHeight())));
+                    bmi = calculateBMI(user.getWeight().get(user.getWeight().size()-1), user.getHeight())));
             if(bmi<18.5){textInfo.setText(R.string.bmi_says + getString(R.string.underWeight));}
             else if(18.5<= bmi && bmi< 25){textInfo.setText(R.string.bmi_says +getString(R.string.normal_weight));}
             else if(25<= bmi && bmi< 30){textInfo.setText(R.string.bmi_says + getString(R.string.overweight));}

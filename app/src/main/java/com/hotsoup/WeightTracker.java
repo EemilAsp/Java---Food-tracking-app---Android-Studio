@@ -1,11 +1,13 @@
 package com.hotsoup;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -21,6 +23,7 @@ public class WeightTracker extends AppCompatActivity {
     Button bmiModeButton;
     FrameLayout frameLayout;
     Fragment fragment;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +37,24 @@ public class WeightTracker extends AppCompatActivity {
         user = lp.getUser();
         user.lastActivity = getClass().getName();
         lp.updateUserData(user);
-    }
+        //Toolbar support Start
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+            toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goMainScreen();
+            }
+        });
 
+
+    }
+    private void goMainScreen(){
+            Intent myIntent = new Intent(this, MainScreenActivity.class);
+            startActivity(myIntent);
+            finish();}
+        //ToolbarSupport END
 
     public void bmiMode(View v){
         fragment = new BMICalculator();
@@ -52,9 +71,4 @@ public class WeightTracker extends AppCompatActivity {
         transaction.replace(R.id.frame_layout_weight, fragment);
         transaction.commit();
     }
-
-
-    public void saveWeight(View v){}
-    public void removeLastWeight(View v){}
-    public void backToMain(View v){}
 }

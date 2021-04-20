@@ -8,11 +8,11 @@ public class UserProfile implements java.io.Serializable{
     String userName;
     byte[] password;
     double height = 0;
-    ArrayList<Double> weight = null;
+    ArrayList<Double> weight = new ArrayList<>();
     Calendar yearOfBirth = null;
     String homeCity ="";
     userFoodDiary ufd = userFoodDiary.getInstance();
-    ArrayList<userFoodDiary> comsumption = null;
+    ArrayList<userFoodDiary> comsumption = new ArrayList<>();
     boolean rememberMe =false;
 
 
@@ -78,11 +78,11 @@ public class UserProfile implements java.io.Serializable{
         this.height = height;
     }
 
-    public void setWeight(ArrayList<Double> weight) {
-        this.weight = weight;
+    public void addWeight(Double weight) {
+        this.weight.add(weight);
     }
 
-
+    public void setWeight(ArrayList<Double> weightlist){this.weight = weightlist;}
 
     public void setHomeCity(String homeCity) {
         this.homeCity = homeCity;

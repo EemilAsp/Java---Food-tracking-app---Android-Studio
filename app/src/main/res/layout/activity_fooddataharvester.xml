@@ -6,6 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.117" />
+
     <TextView
         android:id="@+id/listViewHeader"
         android:layout_width="match_parent"
@@ -40,17 +50,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.23" />
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="93dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+
 
     <EditText
         android:id="@+id/dateComesHere"
@@ -99,31 +99,33 @@
         android:id="@+id/createCustomMeal"
         android:layout_width="167dp"
         android:layout_height="69dp"
+        android:layout_marginBottom="472dp"
         android:backgroundTint="#9ac2be"
-        android:text="Create custom meal"
 
+        android:text="Create custom meal"
         android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.963"
+        app:layout_constraintHorizontal_bias="0.938"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/include"
-        app:layout_constraintVertical_bias="0.152" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/showaddedMeals"
         android:layout_width="166dp"
         android:layout_height="68dp"
+        android:layout_marginBottom="560dp"
         android:backgroundTint="#9ac2be"
         android:text="Show added meals"
         android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.959"
+        app:layout_constraintHorizontal_bias="0.934"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/include"
-        app:layout_constraintVertical_bias="0.303" />
+        app:layout_constraintVertical_bias="0.98" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -59,6 +59,7 @@ public class addNewWeight_fragment extends Fragment implements View.OnClickListe
         else if (v.getId() == R.id.button_remove_weight){
                 System.out.println("REMOVE BUTTON");
                 removeWeightUser();
+                senddatatoChart();
 
 
         }

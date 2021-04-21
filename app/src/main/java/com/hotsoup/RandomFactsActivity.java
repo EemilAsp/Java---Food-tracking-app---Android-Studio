@@ -5,12 +5,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.renderscript.ScriptGroup;
+
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+
 import android.widget.Button;
-import android.widget.Spinner;
+
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,7 +26,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -38,7 +37,7 @@ import java.util.ArrayList;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
+
 
 public class RandomFactsActivity extends AppCompatActivity {
     Fragment fragment = new tobacco_barchart();

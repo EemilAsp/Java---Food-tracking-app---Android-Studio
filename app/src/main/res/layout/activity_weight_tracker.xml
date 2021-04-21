@@ -7,9 +7,7 @@
     android:orientation="vertical"
     tools:context=".WeightTracker">
 
-    <include layout="@layout/toolbar"
-        android:onClick="backToMain"
-        />
+    <include layout="@layout/toolbar"/>
     <com.google.android.material.button.MaterialButtonToggleGroup
         android:layout_gravity="center"
         android:layout_height="50dp"

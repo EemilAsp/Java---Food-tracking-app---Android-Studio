@@ -1,21 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
     android:layout_height="match_parent">
 
     <include
         android:id="@+id/include"
         layout="@layout/toolbar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.117" />
+         />
 
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+
+        android:layout_margin="4dp"
+
+        android:useDefaultMargins="true"
+        android:columnWidth="100dp"
+        android:gravity="center"
+
+
+        >
+    <EditText
+        android:id="@+id/portionSizeHere"
+        android:layout_width="190dp"
+        android:layout_height="42dp"
+        android:ems="10"
+        android:hint="Estimate meal size (g)"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:textAlignment="center"
+        />
+
+        <Button
+            android:id="@+id/createCustomMeal"
+            android:layout_width="166dp"
+            android:layout_height="68dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#9ac2be"
+            android:text="Create custom meal"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            />
+
+    <EditText
+        android:id="@+id/dateComesHere"
+        android:layout_width="182dp"
+        android:layout_height="46dp"
+        android:hint="@string/date_format"
+        android:importantForAutofill="no"
+        android:inputType="date"
+        android:textAlignment="center"
+      />
+        <Button
+            android:id="@+id/showaddedMeals"
+            android:layout_width="166dp"
+            android:layout_height="68dp"
+            android:backgroundTint="#9ac2be"
+            android:text="Show added meals"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            />
+    <EditText
+        android:id="@+id/foodTextComesHere"
+        android:layout_width="189dp"
+        android:layout_height="48dp"
+        android:hint="@string/search_foods"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:textAlignment="center"
+         />
+
+
+
+    </GridLayout>
     <TextView
         android:id="@+id/listViewHeader"
         android:layout_width="match_parent"
@@ -27,105 +91,14 @@
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.448" />
-
-    <EditText
-        android:id="@+id/portionSizeHere"
-        android:layout_width="190dp"
-        android:layout_height="42dp"
-        android:ems="10"
-        android:hint="Estimate meal size (g)"
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.067"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.23" />
-
-
-
-    <EditText
-        android:id="@+id/dateComesHere"
-        android:layout_width="182dp"
-        android:layout_height="46dp"
-        android:ems="10"
-        android:hint="Date dd.mm.yyyy"
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.065"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.147" />
-
-    <EditText
-        android:id="@+id/foodTextComesHere"
-        android:layout_width="189dp"
-        android:layout_height="48dp"
-        android:ems="10"
-        android:hint="Search foods:"
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.072"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.308" />
-
+        />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/foodsParsedFromAPI"
         android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
         android:layout_height="386dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+       />
 
-    <Button
-        android:id="@+id/createCustomMeal"
-        android:layout_width="167dp"
-        android:layout_height="69dp"
-        android:layout_marginBottom="472dp"
-        android:backgroundTint="#9ac2be"
 
-        android:text="Create custom meal"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.938"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/include"
-        app:layout_constraintVertical_bias="1.0" />
 
-    <Button
-        android:id="@+id/showaddedMeals"
-        android:layout_width="166dp"
-        android:layout_height="68dp"
-        android:layout_marginBottom="560dp"
-        android:backgroundTint="#9ac2be"
-        android:text="Show added meals"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.934"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/include"
-        app:layout_constraintVertical_bias="0.98" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

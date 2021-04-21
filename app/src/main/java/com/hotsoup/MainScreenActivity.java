@@ -20,7 +20,6 @@ public class MainScreenActivity extends AppCompatActivity {
 
         System.out.println("##########Main##############");
 
-        barChart = findViewById(R.id.bar_chart_main);
 
         user.lastActivity = getClass().getName();
         lp.updateUserData(user);

@@ -8,26 +8,21 @@
     android:orientation="vertical"
     tools:context=".MainScreenActivity">
 
-    <include layout="@layout/toolbar" />
+    <include layout="@layout/toolbar"/>
 
     <ScrollView
+
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:layout_marginTop="24dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/bar_chart_main"
-                android:layout_marginVertical="12dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:paddingVertical="20dp" />
 
             <RelativeLayout
             android:layout_marginBottom="12dp"
@@ -47,7 +42,7 @@
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/food_menu"
                     android:onClick="startFoodMenuActivity"
-                    android:scaleType="centerInside"
+                    android:scaleType="fitXY"
                     android:visibility="visible"
                     app:srcCompat="@drawable/soup_bowl"
                     tools:src="@drawable/soup_bowl" />
@@ -89,7 +84,7 @@
                         android:adjustViewBounds="true"
                         android:contentDescription="@string/food_menu"
                         android:onClick="startCarbonFootPrintActivity"
-                        android:scaleType="centerInside"
+                        android:scaleType="fitXY"
                         app:srcCompat="@drawable/road_green"
                         tools:src="@drawable/road_green" />
                     <TextView
@@ -176,7 +171,7 @@
                             android:adjustViewBounds="true"
                             android:contentDescription="@string/food_menu"
                             android:onClick="startWeigthActivity"
-                            android:scaleType="centerInside"
+                            android:scaleType="fitXY"
                             app:srcCompat="@drawable/weight"
                             tools:src="@drawable/weight" />
                         <TextView
@@ -219,7 +214,7 @@
                         android:adjustViewBounds="true"
                         android:contentDescription="@string/food_menu"
                         android:onClick="startRandomFactsActivity"
-                        android:scaleType="centerInside"
+                        android:scaleType="fitXY"
                         app:srcCompat="@drawable/mouse_trap"
                         tools:src="@drawable/mouse_trap" />
                     <TextView

@@ -20,21 +20,22 @@
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".SignUpProfileActivity"
             android:windowSoftInputMode="adjustPan"/>
+
         <activity android:name=".SigninProfileActivity"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan">
+                    <intent-filter>
+                        <action android:name="android.intent.action.MAIN" />
+
+                        <category android:name="android.intent.category.LAUNCHER" />
+                    </intent-filter>
+        </activity>
         <activity
             android:name=".userMealDiary"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".foodDataHarvester"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".RandomFactsActivity"
             android:windowSoftInputMode="adjustPan">
 

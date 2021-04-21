@@ -93,7 +93,7 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
     private void goMainScreen(){
         Intent myIntent = new Intent(this, MainScreenActivity.class);
         startActivity(myIntent);
-        finish();}
+        finishAffinity();}
     /////////////////
 
     public void changeBirthDate(View v){
@@ -117,9 +117,8 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
         user.setLastActivity(MainScreenActivity.class.getName());
         lp.updateUserData(user);
         lp.userLoggedOut();
-        startActivity(new Intent(this, MainActivity.class));
-
-
+        startActivity(new Intent(this, SigninProfileActivity.class));
+        finish();
     }
     //In edit mode
     public void editMode(View v){

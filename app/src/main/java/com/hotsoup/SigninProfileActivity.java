@@ -85,7 +85,10 @@ public class SigninProfileActivity extends AppCompatActivity {
         finish();
     }
 
-
-
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //So user could log in to profile by pressing back
+        System.out.println("Backbutton pressed in signIn screen");
+    }
 }

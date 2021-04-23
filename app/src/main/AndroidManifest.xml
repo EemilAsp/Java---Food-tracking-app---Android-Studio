@@ -12,7 +12,8 @@
         android:roundIcon="@drawable/logo_main"
         android:supportsRtl="true"
         android:theme="@style/Theme.HotSoup">
-        <activity android:name=".WeightTracker"></activity>
+        <activity android:name=".CarbonFootprintActivity"></activity>
+        <activity android:name=".WeightTracker" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".MainScreenActivity" />
         <activity android:name=".SignUpProfileActivity" />
@@ -30,9 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RandomFactsActivity">
-
-        </activity>
+        <activity android:name=".RandomFactsActivity"></activity>
     </application>
 
 </manifest>

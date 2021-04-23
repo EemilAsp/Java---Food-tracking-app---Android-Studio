@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CarbonFootprintActivity">
+
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="Suositko vähäpäästöisiä tuotteita?"
+        app:layout_constraintBottom_toTopOf="@+id/lowCBpref"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="93dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/dietspinner"
+        android:layout_width="180dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+    <SeekBar
+        android:id="@+id/riceSeekbar"
+        android:layout_width="153dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="52dp"
+        android:progress="50"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dietspinner" />
+
+    <SeekBar
+        android:id="@+id/saladSeekbar"
+        android:layout_width="153dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="52dp"
+        android:progress="50"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.852"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dietspinner" />
+
+    <SeekBar
+        android:id="@+id/cheeseSeekbar"
+        android:layout_width="153dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="156dp"
+        android:progress="50"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dietspinner" />
+
+    <SeekBar
+        android:id="@+id/dairySeekbar"
+        android:layout_width="153dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="156dp"
+        android:progress="50"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.852"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dietspinner" />
+
+    <SeekBar
+        android:id="@+id/eggSeekbar"
+        android:layout_width="153dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="260dp"
+        android:max="30"
+        android:progress="3"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dietspinner" />
+
+    <SeekBar
+        android:id="@+id/beefSeekbar"
+        android:layout_width="153dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="260dp"
+        android:progress="50"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.852"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dietspinner" />
+
+    <SeekBar
+        android:id="@+id/porkchickenSeekbar"
+        android:layout_width="153dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="384dp"
+        android:progress="50"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dietspinner" />
+
+    <SeekBar
+        android:id="@+id/fishSeekbar"
+        android:layout_width="153dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="384dp"
+        android:progress="50"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.852"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dietspinner" />
+
+    <TextView
+        android:id="@+id/cheeseText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Juuston kulutus: 0.30 kg/viikko"
+        android:textSize="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/cheeseSeekbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.146"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/riceSeekbar"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+    <TextView
+        android:id="@+id/dairyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Maitotuotteiden kulutus: 3.80 kg/viikko"
+        android:textSize="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/cheeseSeekbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.838"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saladSeekbar"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+    <TextView
+        android:id="@+id/saladText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:text="Salaatin kulutus: 1.40 kg/viikko"
+        android:textSize="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/saladSeekbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.82"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dietspinner"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/eggText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kananamunien kulutus: 3 kpl/viikko"
+        android:textSize="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/eggSeekbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/riceSeekbar"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/beefText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Naudanlihan ja lampaan kulutus: 0.40 kg/viikko"
+        android:textSize="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/beefSeekbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.882"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dairySeekbar"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/porkchickenText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="284dp"
+        android:layout_marginBottom="3dp"
+        android:text="Sianlihan ja siipikarjan kulutus: 1.00 kg/viikko"
+        android:textSize="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/porkchickenSeekbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/riceSeekbar"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/riceText"
+        android:layout_width="113dp"
+        android:layout_height="13dp"
+        android:text="Riisin kulutus: 0.09 kg/viikko"
+        android:textSize="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/riceSeekbar"
+        app:layout_constraintEnd_toStartOf="@+id/countCB"
+        app:layout_constraintHorizontal_bias="0.172"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/fishText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kalan kulutus: 0.60 kg/viikko"
+        android:textSize="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/fishSeekbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toEndOf="@+id/porkchickenText"
+        app:layout_constraintTop_toBottomOf="@+id/beefSeekbar"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/countCB"
+        android:layout_width="91dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="420dp"
+        android:onClick="readJSON"
+        android:text="Laske"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dietspinner" />
+
+    <Switch
+        android:id="@+id/lowCBpref"
+        android:layout_width="79dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="440dp"
+        android:text="En"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dietspinner" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

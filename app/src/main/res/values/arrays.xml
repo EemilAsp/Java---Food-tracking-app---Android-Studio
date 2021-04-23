@@ -15,4 +15,11 @@
         <item>@string/man</item>
         <item>@string/other</item>
     </string-array>
+
+    <string-array name="diets">
+        <item>@string/choose</item>
+        <item>@string/omnivore</item>
+        <item>@string/vegetarian</item>
+        <item>@string/vegan</item>
+    </string-array>
 </resources>

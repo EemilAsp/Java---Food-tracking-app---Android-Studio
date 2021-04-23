@@ -101,5 +101,8 @@
     <string name="no_weight_yet">Et ole syöttänyt vielä painoa</string>
     <string name="give_weight_height">Anna painosi ja pituutesi ensin</string>
 
-
+    <string name="choose">Valitse ruokavaliosi:</string>
+    <string name="omnivore">Sekasyöjä</string>
+    <string name="vegetarian">Kasvissyöjä</string>
+    <string name="vegan">Vegaani</string>
 </resources>

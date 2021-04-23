@@ -44,7 +44,11 @@ public class MainScreenActivity extends AppCompatActivity {
         finish();
     }
 
-    public void startCarbonFootPrintActivity(View v){}
+    public void startCarbonFootprintActivity(View v){
+        Intent intent = new Intent(MainScreenActivity.this, CarbonFootprintActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
 
     public void startWeigthActivity(View v){

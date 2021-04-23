@@ -46,6 +46,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class foodDataHarvester extends AppCompatActivity implements RecyclerViewClickInterface {
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
+    Toolbar toolbar;
     final static String DATE_FORMAT = "dd.MM.yyyy";
     EditText foodNameComesHere, dateComesHere, portionSizeComesHere;
     RVadapter myAdapter;
@@ -60,7 +61,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mealdata);
+        setContentView(R.layout.activity_fooddataharvester);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -72,7 +73,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
         foodview = (RecyclerView) findViewById(R.id.foodsParsedFromAPI);
         createCustomMeal = (Button)findViewById(R.id.createCustomMeal);
         showaddedMeals = (Button)findViewById(R.id.showaddedMeals);
-
+        toolbar = (Toolbar)findViewById(R.id.include);
 
         showaddedMeals.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,7 +108,6 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
                     }
                 });
 
-        Toolbar toolbar = findViewById(R.id.include);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setOnClickListener(new View.OnClickListener() {
@@ -123,11 +123,6 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
         startActivity(myIntent);
         finish();}
 
-    private void backToMainmenu() {
-        Intent myIntent = new Intent(this, MainScreenActivity.class);
-        startActivity(myIntent);
-        finish();
-    }
 
     public void readJSON(String food, Boolean choice) { //boolean checks if the method call comes from textchange or user clicking element on screen
         String json = getJSON(food); //getting the json for wanted search result

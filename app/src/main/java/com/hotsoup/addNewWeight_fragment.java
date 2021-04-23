@@ -1,5 +1,7 @@
 package com.hotsoup;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -24,12 +28,10 @@ public class addNewWeight_fragment extends Fragment implements View.OnClickListe
 
 
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
     }
 
     @Override
@@ -50,14 +52,25 @@ public class addNewWeight_fragment extends Fragment implements View.OnClickListe
         if(v.getId() == R.id.button_save_weight){
                 System.out.println("SAVE BUTTON");
                 saveWeightUser();
+                senddatatoChart();
+
 
         }
         else if (v.getId() == R.id.button_remove_weight){
                 System.out.println("REMOVE BUTTON");
                 removeWeightUser();
+                senddatatoChart();
 
 
         }
+    }
+
+    private void senddatatoChart() {
+        Fragment frag = new weightBarchartFragment();
+        FragmentManager manager = getChildFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.barchartView, frag);
+        transaction.commit();
     }
 
     private void saveWeightUser(){

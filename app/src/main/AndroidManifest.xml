@@ -12,26 +12,34 @@
         android:roundIcon="@drawable/logo_main"
         android:supportsRtl="true"
         android:theme="@style/Theme.HotSoup">
-        <activity android:name=".CarbonFootprintActivity"></activity>
-        <activity android:name=".WeightTracker" />
-        <activity android:name=".EditProfileActivity" />
-        <activity android:name=".MainScreenActivity" />
-        <activity android:name=".SignUpProfileActivity" />
-        <activity android:name=".SigninProfileActivity" />
+        <activity android:name=".WeightTracker"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".EditProfileActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".MainScreenActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".SignUpProfileActivity"
+            android:windowSoftInputMode="adjustPan"/>
+
+        <activity android:name=".SigninProfileActivity"
+            android:windowSoftInputMode="adjustPan">
+                    <intent-filter>
+                        <action android:name="android.intent.action.MAIN" />
+
+                        <category android:name="android.intent.category.LAUNCHER" />
+                    </intent-filter>
+        </activity>
         <activity
             android:name=".userMealDiary"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".foodDataHarvester"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".RandomFactsActivity"
+            android:windowSoftInputMode="adjustPan">
+
         </activity>
-        <activity android:name=".RandomFactsActivity"></activity>
     </application>
 
 </manifest>

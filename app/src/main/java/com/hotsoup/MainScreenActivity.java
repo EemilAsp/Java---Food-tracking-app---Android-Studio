@@ -6,10 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.github.mikephil.charting.charts.BarChart;
-
 public class MainScreenActivity extends AppCompatActivity {
-    BarChart barChart;
 
     LoadProfile lp = LoadProfile.getInstance();
     UserProfile user = lp.getUser();
@@ -20,28 +17,21 @@ public class MainScreenActivity extends AppCompatActivity {
 
         System.out.println("##########Main##############");
 
-        barChart = findViewById(R.id.bar_chart_main);
 
         user.lastActivity = getClass().getName();
         lp.updateUserData(user);
 
     }
 
-    private void loadChart(){
-
-
-    }
     
     public void startFoodMenuActivity(View v){
-        Intent myIntent = new Intent(this, foodDataHarvester.class);
+        Intent myIntent = new Intent(getApplicationContext(), foodDataHarvester.class);
         startActivity(myIntent);
-        finish();
     }
 
     public void startEditProfileActivity(View v){
-        Intent myIntent = new Intent(this, EditProfileActivity.class);
+        Intent myIntent = new Intent(getApplicationContext(), EditProfileActivity.class);
         startActivity(myIntent);
-        finish();
     }
 
     public void startCarbonFootprintActivity(View v){
@@ -52,15 +42,13 @@ public class MainScreenActivity extends AppCompatActivity {
 
 
     public void startWeigthActivity(View v){
-        Intent myIntent = new Intent(this, WeightTracker.class);
+        Intent myIntent = new Intent(getApplicationContext(), WeightTracker.class);
         startActivity(myIntent);
-        finish();
     }
 
 
-    public void startRandomFactsActivity(View v){Intent myIntent = new Intent(this, RandomFactsActivity.class);
+    public void startRandomFactsActivity(View v){Intent myIntent = new Intent(getApplicationContext(), RandomFactsActivity.class);
         startActivity(myIntent);
-        finish();
 
     }
 }

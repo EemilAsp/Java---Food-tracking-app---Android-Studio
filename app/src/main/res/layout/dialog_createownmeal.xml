@@ -1,18 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="300dp" android:layout_height="600dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/natural_white"
     android:layout_gravity="center">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cyan"
+        android:text="@string/create_a_meal"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        />
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="137dp"
+        android:layout_height="104dp"
+        android:layout_gravity="center_horizontal"
+        app:srcCompat="@drawable/logo_main"
+        android:contentDescription="TODO" />
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:background="@color/natural_white"
-        android:layout_height="599dp"
-        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
         android:layout_marginTop="2dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/fiberHere"
@@ -110,33 +130,7 @@
             app:layout_constraintVertical_bias="0.277"
             android:importantForAutofill="no" />
 
-        <Button
-            android:id="@+id/saveButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#9ac2be"
-            android:text="@string/save"
-            android:textColor="#020000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.924"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.685" />
 
-        <Button
-            android:id="@+id/cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#9ac2be"
-            android:text="@string/cancel"
-            android:textColor="#000000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.081"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.685" />
 
         <EditText
             android:id="@+id/foodNameHere"
@@ -172,50 +166,40 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.171" />
 
-        <EditText
-            android:id="@+id/proteinHere"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:ems="10"
-            android:hint="@string/protein_g"
-            android:inputType="numberDecimal"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.085"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.374"
-            android:importantForAutofill="no" />
+    </GridLayout>
+    <EditText
+    android:id="@+id/proteinHere"
+        android:layout_gravity="center_horizontal"
+    android:layout_width="100dp"
+    android:layout_height="40dp"
+    android:ems="10"
+    android:hint="@string/protein_g"
+    android:inputType="numberDecimal"
+    android:textAlignment="center"
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="269dp"
-            android:layout_height="57dp"
-            android:background="@drawable/myborder"
-            android:text="@string/create_a_meal"
-            android:textAlignment="center"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.548"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.029" />
+    android:importantForAutofill="no" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#9ac2be"
+            android:text="@string/save"
+            android:textColor="#020000"
+            android:layout_marginEnd="16dp"
+            />
 
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="137dp"
-            android:layout_height="104dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.894"
-            app:srcCompat="@drawable/logo_main"
-            android:contentDescription="TODO" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</RelativeLayout>
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#9ac2be"
+            android:text="@string/cancel"
+            android:textColor="#000000"
+            />
+    </LinearLayout>
+</LinearLayout>

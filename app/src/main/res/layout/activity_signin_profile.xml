@@ -22,95 +22,98 @@ android:background="@color/natural_white">
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.186" />
 
-<LinearLayout
-    android:id="@+id/linearLayout"
-    android:layout_width="439dp"
-    android:layout_height="365dp"
-    android:layout_marginTop="1dp"
-    android:gravity="start"
-    android:orientation="vertical"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.514"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/imageView"
-    app:layout_constraintVertical_bias="0.0"
-    tools:ignore="ExtraText">
-
-    <com.google.android.material.textfield.TextInputLayout
-
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/username"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        app:boxCornerRadiusBottomEnd="30dp"
-        app:boxCornerRadiusBottomStart="30dp"
-        app:boxCornerRadiusTopEnd="30dp"
-        app:boxCornerRadiusTopStart="30dp"
-        android:backgroundTint="@color/cyan"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/text_username"
-
-            />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:hint="@string/password"
-        android:layout_marginTop="10dp"
-        app:boxCornerRadiusBottomEnd="30dp"
-        app:boxCornerRadiusBottomStart="30dp"
-        app:boxCornerRadiusTopEnd="30dp"
-        app:boxCornerRadiusTopStart="30dp"
-
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:id="@+id/password_text"
-
-            />
-
-    </com.google.android.material.textfield.TextInputLayout>
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="365dp"
+        android:layout_marginTop="1dp"
         android:gravity="center"
-        android:orientation="horizontal">
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/remember_check"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/remember_me"/>
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.333"
+        tools:ignore="ExtraText">
 
+        <com.google.android.material.textfield.TextInputLayout
+
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/cyan"
+            android:hint="@string/username"
+            app:boxCornerRadiusBottomEnd="30dp"
+            app:boxCornerRadiusBottomStart="30dp"
+            app:boxCornerRadiusTopEnd="30dp"
+            app:boxCornerRadiusTopStart="30dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:hint="@string/password"
+            app:boxCornerRadiusBottomEnd="30dp"
+            app:boxCornerRadiusBottomStart="30dp"
+            app:boxCornerRadiusTopEnd="30dp"
+
+            app:boxCornerRadiusTopStart="30dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/remember_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/remember_me" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_signin"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTintMode="add"
+            android:elevation="8dp"
+            android:onClick="signinToProfile"
+            android:text="@string/signin" />
     </LinearLayout>
-    <Button
-    android:id="@+id/button_signin"
-    android:layout_width="200dp"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:backgroundTintMode="add"
-    android:elevation="8dp"
-        android:onClick="signinToProfile"
-    android:text="@string/signin"
-    />
-</LinearLayout>
 
     <Button
         android:id="@+id/button_signup"

@@ -78,7 +78,7 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
             }
         });
 
-        tb = findViewById(R.id.include);
+        tb = findViewById(R.id.tb);
         setSupportActionBar(tb);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         tb.setOnClickListener(new View.OnClickListener() {

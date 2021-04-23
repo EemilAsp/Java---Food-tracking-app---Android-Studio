@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar"
+         />
+
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+
+        android:layout_margin="4dp"
+
+        android:useDefaultMargins="true"
+        android:columnWidth="100dp"
+        android:gravity="center"
+
+
+        >
+    <EditText
+        android:id="@+id/portionSizeHere"
+        android:layout_width="190dp"
+        android:layout_height="42dp"
+        android:ems="10"
+        android:hint="Estimate meal size (g)"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:textAlignment="center"
+        />
+
+        <Button
+            android:id="@+id/createCustomMeal"
+            android:layout_width="166dp"
+            android:layout_height="68dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#9ac2be"
+            android:text="Create custom meal"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            />
+
+    <EditText
+        android:id="@+id/dateComesHere"
+        android:layout_width="182dp"
+        android:layout_height="46dp"
+        android:hint="@string/date_format"
+        android:importantForAutofill="no"
+        android:inputType="date"
+        android:textAlignment="center"
+      />
+        <Button
+            android:id="@+id/showaddedMeals"
+            android:layout_width="166dp"
+            android:layout_height="68dp"
+            android:backgroundTint="#9ac2be"
+            android:text="Show added meals"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            />
+    <EditText
+        android:id="@+id/foodTextComesHere"
+        android:layout_width="189dp"
+        android:layout_height="48dp"
+        android:hint="@string/search_foods"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:textAlignment="center"
+         />
+
+
+
+    </GridLayout>
+    <TextView
+        android:id="@+id/listViewHeader"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:background="@drawable/myborder"
+        android:text="@string/choose_wanted_food_by_clicking_it"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/foodsParsedFromAPI"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="386dp"
+       />
+
+
+
+</LinearLayout>

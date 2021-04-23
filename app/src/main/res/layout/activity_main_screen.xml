@@ -83,7 +83,7 @@
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
                         android:contentDescription="@string/food_menu"
-                        android:onClick="startCarbonFootPrintActivity"
+                        android:onClick="startCarbonFootprintActivity"
                         android:scaleType="fitXY"
                         app:srcCompat="@drawable/road_green"
                         tools:src="@drawable/road_green" />

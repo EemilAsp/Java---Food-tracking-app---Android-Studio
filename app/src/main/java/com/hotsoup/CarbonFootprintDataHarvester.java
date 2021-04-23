@@ -32,11 +32,8 @@ public class CarbonFootprintDataHarvester {
 
         if(json != null){
             try{
-                JSONArray jsonArray = new JSONArray(json);
-                for(int i=0;i<jsonArray.length();i++){
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    carbonfootprint= jsonObject.getDouble("Total");
-                }
+                JSONObject object = new JSONObject(json);
+                carbonfootprint = Math.round((object.getDouble("Total")) * 100.0) / 100.0;
             }catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -46,7 +43,7 @@ public class CarbonFootprintDataHarvester {
 
     public static String getJSON(URL url){
         String response=null;
-try{
+        try{
             HttpURLConnection conn = (HttpsURLConnection)url.openConnection();
             conn.setRequestMethod("GET");
             InputStream in = new BufferedInputStream(conn.getInputStream());

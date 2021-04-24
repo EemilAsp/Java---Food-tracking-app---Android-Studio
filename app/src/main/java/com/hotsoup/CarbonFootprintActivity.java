@@ -346,7 +346,7 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
             cartype="dieselCar";
         }
         else{
-            return null;
+            return null;    //return null if user has selected no car or hasn't chosen any alternative
         }
         try {
             url = new URL("https://api.triptocarbon.xyz/v1/footprint?activity="+ kmdrivenseekbar.getProgress()/1.61 +"&activityType=miles&country=gbr&mode="+cartype);

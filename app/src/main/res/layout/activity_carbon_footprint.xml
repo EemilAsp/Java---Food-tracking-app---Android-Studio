@@ -8,7 +8,8 @@
     tools:context=".CarbonFootprintActivity">
 
     <include layout="@layout/toolbar"
-        />
+        android:id="@+id/include"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="fill_parent">
@@ -17,11 +18,6 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical">
-
-
-
-
-
 
     <Spinner
         android:id="@+id/dietspinner"
@@ -232,6 +228,13 @@
         android:visibility="gone"
         android:text="Laske hiilijalanjälki"
         android:textSize="16dp" />
+
+
+        <FrameLayout
+            android:id="@+id/piechartView"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"></FrameLayout>
+
     </LinearLayout>
     </ScrollView>
 

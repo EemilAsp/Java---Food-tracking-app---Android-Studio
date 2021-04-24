@@ -23,8 +23,8 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
-public class fragment_carbonFootPrintPiechart extends Fragment {
-    View carbonchartview;
+public class fragment_carbonFootPrintPiechart extends Fragment { //creates a piechart of the data gathered from two different API, one
+    View carbonchartview;//                                         of those is ilmastodieetti and the other is triptocarbon.xyz
     LoadProfile lp = LoadProfile.getInstance();
     UserProfile user = lp.getUser();
     PieChart pieChart;
@@ -61,7 +61,7 @@ public class fragment_carbonFootPrintPiechart extends Fragment {
         l.setEnabled(true);
     }
 
-    private void loadPieChart(){
+    private void loadPieChart(){ //loads values to piechart
         ArrayList<PieEntry> values = new ArrayList<>();
         Double sum = 0.0;
         Double sum2 = 0.0;

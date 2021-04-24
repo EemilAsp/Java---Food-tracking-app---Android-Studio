@@ -39,7 +39,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 
 
-public class RandomFactsActivity extends AppCompatActivity {
+public class RandomFactsActivity extends AppCompatActivity { // this activity takes data from Sotkanet API and shows to user as a barchart.
     Fragment fragment = new tobacco_barchart();
     Button showme;
     TextView title, extrainfo;
@@ -52,10 +52,7 @@ public class RandomFactsActivity extends AppCompatActivity {
     ArrayList<String> Malelist = new ArrayList<>();
     ArrayList<String> Femalelist = new ArrayList<>();
     Context context = this;
-    //kerää data arrayihin male 2017, 2018, 2019
-    //Sama juttu female 2017, 2018, 2019
-    //intenttinä data sitten barchart fragmenttiin jossa voi luoda sitten diagrammin
-    //
+
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -139,11 +136,11 @@ public class RandomFactsActivity extends AppCompatActivity {
     }
 
 
-    public void readJSON(int year, String gender){ //JSON reader
+    public void readJSON(int year, String gender){ //JSON reader takes year and gender as input
         String json = getJSON(year, gender);
 
         if(json != null){
-            if (gender.equals("Male")){
+            if (gender.equals("Male")){ //testing the input
             try{
                 System.out.println("Läpi1");
                 JSONArray jsonArray = new JSONArray(json);

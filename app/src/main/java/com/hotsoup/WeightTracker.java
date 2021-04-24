@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.button.MaterialButtonToggleGroup;
 
-public class WeightTracker extends AppCompatActivity {
+public class WeightTracker extends AppCompatActivity { //tracks the users bodyweight
     UserProfile user;
     LoadProfile lp = LoadProfile.getInstance();
 
@@ -50,13 +50,13 @@ public class WeightTracker extends AppCompatActivity {
 
 
     }
-    private void goMainScreen(){
+    private void goMainScreen(){ // these are for the toolbar to work as an home button, bringing back to mainscreen
             Intent myIntent = new Intent(this, MainScreenActivity.class);
             startActivity(myIntent);
             finish();}
         //ToolbarSupport END
 
-    public void bmiMode(View v){
+    public void bmiMode(View v){ // calculates users BMI with
         fragment = new BMICalculator();
         FragmentManager manager =  getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();

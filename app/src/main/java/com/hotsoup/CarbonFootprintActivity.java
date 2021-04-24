@@ -485,5 +485,7 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         porkchickentext.setVisibility(View.GONE);
         lowCBpref.setVisibility(View.GONE);
         lowCBtext.setVisibility(View.GONE);
+        kmdriventext.setVisibility(View.GONE);
+        kmdrivenseekbar.setVisibility(View.GONE);
     }
 }

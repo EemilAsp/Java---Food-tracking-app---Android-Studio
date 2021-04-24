@@ -2,6 +2,9 @@ package com.hotsoup;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.FrameLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -55,6 +59,8 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
     SeekBar eggseekbar;
     SeekBar kmdrivenseekbar;
 
+    FrameLayout piechart;
+
     Button continuecount;
     Button countCB;
     Spinner dietspinner;
@@ -70,6 +76,9 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         continuecount = findViewById(R.id.continuecount);
         countCB=findViewById(R.id.countCB);
         lowCBpref=findViewById(R.id.lowCBpref);
+
+        piechart = findViewById(R.id.piechartView);
+        piechart.setVisibility(View.GONE);
 
         ricetext = findViewById(R.id.riceText);
         saladtext = findViewById(R.id.saladText);
@@ -348,6 +357,7 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         url=getGasURL();
         gascarbonfootprint=CarbonFootprintDataHarvester.readGasJSON(url);
         user.travelcarbonfootprint.add(gascarbonfootprint);
+        senddatatoChart();
     }
 
     public URL getGasURL(){                     //constructs the car URL based on selected values
@@ -500,6 +510,15 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         lowCBtext.setVisibility(View.GONE);
         kmdriventext.setVisibility(View.GONE);
         kmdrivenseekbar.setVisibility(View.GONE);
+    }
+
+    private void senddatatoChart() {
+        Fragment frag = new fragment_carbonFootPrintPiechart();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.piechartView, frag);
+        transaction.commit();
+        piechart.setVisibility(View.VISIBLE);
     }
 
     private void goMainScreen(){

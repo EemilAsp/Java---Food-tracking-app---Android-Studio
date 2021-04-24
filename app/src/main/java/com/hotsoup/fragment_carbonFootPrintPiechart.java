@@ -19,6 +19,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class fragment_carbonFootPrintPiechart extends Fragment { //creates a pie
         pieChart.setUsePercentValues(true);
         pieChart.setEntryLabelTextSize(12);
         pieChart.setEntryLabelColor(Color.BLACK);
-        pieChart.setCenterText("Spending by Category");
+        pieChart.setCenterText("Carbon footprint");
         pieChart.setCenterTextSize(24);
         pieChart.getDescription().setEnabled(false);
 
@@ -86,6 +87,12 @@ public class fragment_carbonFootPrintPiechart extends Fragment { //creates a pie
         data.setColors(colors);
         PieData d = new PieData(data);
 
+        d.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return super.getFormattedValue(value);
+            }
+        });
         d.setDrawValues(true);
         d.setValueTextSize(12f);
         data.setValueTextColor(Color.BLACK);

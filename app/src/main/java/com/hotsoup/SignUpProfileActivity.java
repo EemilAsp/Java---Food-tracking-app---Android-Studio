@@ -49,13 +49,14 @@ public class SignUpProfileActivity extends AppCompatActivity implements TextWatc
         //Changes if user can make the profile or not
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if(getCurrentFocus() == password){updatePasswordStrengthView(s.toString());}
-            if(password.getText().toString().equals(passwordAgain.getText().toString()) && progressBar.getProgress()>=3){
+            if(password.getText().toString().equals(passwordAgain.getText().toString()) &&
+                    progressBar.getProgress()>=75 && username.getText().toString().length() >=5){
                 buttonMakeProfile.setEnabled(true);
             }
             else {buttonMakeProfile.setEnabled(false);}
         }
 
-
+        //Changes password strenght progress when password changed
         private void updatePasswordStrengthView(String password) {
 
             ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -84,11 +85,13 @@ public class SignUpProfileActivity extends AppCompatActivity implements TextWatc
                 progressBar.setProgress(100);
             }
         }
+        //Brings user to signin activity
         public void toSingIn(View v){
             Intent myIntent = new Intent(this, SigninProfileActivity.class);
             startActivity(myIntent);
             finish();
         }
+        //works from button and makes new profile and sends user to signIn if everything checks out
         public void makeProfile(View v){
             LoadProfile lp = LoadProfile.getInstance();
             if(lp.isNameFree(username.getText().toString())){

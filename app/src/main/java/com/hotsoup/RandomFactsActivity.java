@@ -117,11 +117,6 @@ public class RandomFactsActivity extends AppCompatActivity { // this activity ta
         }
     }
 
-    public void backtomainmenu(){ //Back to mainscreenactivity
-        Intent myIntent = new Intent(this, MainScreenActivity.class);
-        startActivity(myIntent);
-        finish();
-    }
 
     private void callTheMaleReadJson() { // data for males
         readJSON(2017, "Male");

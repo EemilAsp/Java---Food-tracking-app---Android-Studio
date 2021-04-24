@@ -7,9 +7,11 @@ import java.util.HashMap;
 
 public class userFoodDiary implements Serializable { // used to store users meals, hashmap uses date key, which opens array for the dates meals
     private static userFoodDiary ufd = new userFoodDiary();
+    LoadProfile lp = LoadProfile.getInstance();
+    UserProfile user = lp.getUser();
     String date;
     userMeal meal;
-    HashMap<String, ArrayList<userMeal>> daysMeals = new HashMap<String, ArrayList<userMeal>>(); //TODO this must be saved to users data!!!
+    HashMap<String, ArrayList<userMeal>> daysMeals = user.getDaysMeals(); //TODO this must be saved to users data!!!
 
 
     public void addMeals(String dt, String n, double e, double ps, double p, double c, double fa, double a, double fib, double s){
@@ -31,6 +33,10 @@ public class userFoodDiary implements Serializable { // used to store users meal
         }else{
             return null;
         }}
+
+    public HashMap<String, ArrayList<userMeal>> getDaysMeals(){
+        return daysMeals;
+    }
 
     public static userFoodDiary getInstance(){return ufd;}
 }

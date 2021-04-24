@@ -45,7 +45,9 @@ public class addNewWeight_fragment extends Fragment implements View.OnClickListe
         saveWeight.setOnClickListener(this);
         removeWeight.setOnClickListener(this);
 
-        senddatatoChart();
+        if(user.getWeight().size()>0) {
+            senddatatoChart();
+        }
         return view;
     }
 

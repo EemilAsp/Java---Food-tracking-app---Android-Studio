@@ -3,6 +3,7 @@ package com.hotsoup;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 
 public class UserProfile implements java.io.Serializable{
     String userName;
@@ -11,9 +12,10 @@ public class UserProfile implements java.io.Serializable{
     ArrayList<Double> weight = new ArrayList<>();
     ArrayList<Double> carbonfootprint = new ArrayList<>();
     ArrayList<Double> travelcarbonfootprint = new ArrayList<>();
+    HashMap<String, ArrayList<userMeal>> daysMeals = new HashMap<>();
     Calendar yearOfBirth = null;
     String homeCity ="";
-    userFoodDiary ufd = userFoodDiary.getInstance();
+
     ArrayList<userFoodDiary> comsumption = new ArrayList<>();
     boolean rememberMe =false;
 
@@ -27,6 +29,9 @@ public class UserProfile implements java.io.Serializable{
         yearOfBirth = c;
     }
 
+    public HashMap<String, ArrayList<userMeal>> getDaysMeals() {
+        return daysMeals;
+    }
 
     public Calendar getYearOfBirth() {
         return yearOfBirth;
@@ -47,7 +52,9 @@ public class UserProfile implements java.io.Serializable{
         this.lastActivity = lastActivity;
     }
 
-
+    public void setDaysMeals(HashMap<String, ArrayList<userMeal>> daysMeals){
+        this.daysMeals = daysMeals;
+    }
 
     public void setPassword(byte[] password) {
         this.password = password;

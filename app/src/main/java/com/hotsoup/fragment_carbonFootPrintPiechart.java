@@ -36,7 +36,6 @@ public class fragment_carbonFootPrintPiechart extends Fragment {
         return carbonchartview;
     }
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         pieChart = this.carbonchartview.findViewById(R.id.PieChart);

@@ -28,8 +28,6 @@ public class UserProfile implements java.io.Serializable{
     }
 
 
-
-
     public Calendar getYearOfBirth() {
         return yearOfBirth;
     }

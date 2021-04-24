@@ -343,7 +343,7 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         if(cartypespinner.getSelectedItemPosition()==2){
             cartype="petrolCar";
         }
-        if(cartypespinner.getSelectedItemPosition()==3){
+        else if(cartypespinner.getSelectedItemPosition()==3){
             cartype="dieselCar";
         }
         else{

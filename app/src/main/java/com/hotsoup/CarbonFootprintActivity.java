@@ -360,6 +360,27 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if(parent.getId()==R.id.dietspinner){  //chooses which elements of diet are visible based on selected diet
+
+            if(position==0){
+                saladseekbar.setVisibility(View.GONE);
+                eggseekbar.setVisibility(View.GONE);
+                fishseekbar.setVisibility(View.GONE);
+                cheeseseekbar.setVisibility(View.GONE);
+                riceseekbar.setVisibility(View.GONE);
+                dairyseekbar.setVisibility(View.GONE);
+                beefseekbar.setVisibility(View.GONE);
+                porkchickenseekbar.setVisibility(View.GONE);
+                saladtext.setVisibility(View.GONE);
+                eggtext.setVisibility(View.GONE);
+                fishtext.setVisibility(View.GONE);
+                cheesetext.setVisibility(View.GONE);
+                ricetext.setVisibility(View.GONE);
+                dairytext.setVisibility(View.GONE);
+                beeftext.setVisibility(View.GONE);
+                porkchickentext.setVisibility(View.GONE);
+                lowCBpref.setVisibility(View.GONE);
+                lowCBtext.setVisibility(View.GONE);
+            }
     if(position==1){
         saladseekbar.setVisibility(View.VISIBLE);
         eggseekbar.setVisibility(View.VISIBLE);

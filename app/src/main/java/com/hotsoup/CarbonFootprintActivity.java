@@ -3,6 +3,7 @@ package com.hotsoup;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,12 +14,23 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.reflect.Array;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class CarbonFootprintActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-
-
+    LoadProfile lp = LoadProfile.getInstance();
+    UserProfile user = lp.getUser();
     TextView ricetext;
     TextView saladtext;
     TextView beeftext;
@@ -284,6 +296,9 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         lowCBtext.setVisibility(View.GONE);
         dietspinner.setVisibility(View.GONE);
         continuecount.setVisibility(View.GONE);
+        carbonfootprint = CarbonFootprintDataHarvester.readfoodJSON(url);
+        ricetext.setText("Hiilijalanjälki on= "+carbonfootprint+" kg");
+        user.carbonfootprint.add(carbonfootprint); //Adds the carbons footprint value to array
     }
 
     public URL getfoodURL() {

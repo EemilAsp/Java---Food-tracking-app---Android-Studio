@@ -214,7 +214,7 @@
         android:id="@+id/kmdrivenseekbar"
         android:layout_width="172dp"
         android:layout_height="33dp"
-        android:max="30000"
+        android:max="100000"
         android:progress="15000"
         android:layout_marginBottom="36dp"
         android:visibility="gone"

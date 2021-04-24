@@ -9,6 +9,8 @@ public class UserProfile implements java.io.Serializable{
     byte[] password;
     double height = 0;
     ArrayList<Double> weight = new ArrayList<>();
+    ArrayList<Double> carbonfootprint = new ArrayList<>();
+    ArrayList<Double> travelcarbonfootprint = new ArrayList<>();
     Calendar yearOfBirth = null;
     String homeCity ="";
     userFoodDiary ufd = userFoodDiary.getInstance();
@@ -78,11 +80,23 @@ public class UserProfile implements java.io.Serializable{
         this.height = height;
     }
 
+    public void addCarbonfootprint(Double carbonfootprint) {
+        this.carbonfootprint.add(carbonfootprint);
+    }
+
+    public void addtravelCarbonfootprint(Double travelcarbonfootprint) {
+        this.travelcarbonfootprint.add(travelcarbonfootprint);
+    }
+
     public void addWeight(Double weight) {
         this.weight.add(weight);
     }
 
     public void setWeight(ArrayList<Double> weightlist){this.weight = weightlist;}
+
+    public void setCarbonfootprint(ArrayList<Double> carbonfootprintlist){this.carbonfootprint = carbonfootprintlist;}
+
+    public void setTravelCarbonfootprint(ArrayList<Double> travelcarbonfootprintlist){this.travelcarbonfootprint = travelcarbonfootprintlist;}
 
     public void setHomeCity(String homeCity) {
         this.homeCity = homeCity;
@@ -112,6 +126,9 @@ public class UserProfile implements java.io.Serializable{
         return weight;
     }
 
+    public ArrayList<Double> getCarbonfootprint() {return carbonfootprint;}
+
+    public ArrayList<Double> getTravelcarbonfootprint() {return travelcarbonfootprint;}
 
 
     public String getHomeCity() {

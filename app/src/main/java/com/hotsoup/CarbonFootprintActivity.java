@@ -29,8 +29,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class CarbonFootprintActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-
-
+    LoadProfile lp = LoadProfile.getInstance();
+    UserProfile user = lp.getUser();
     TextView ricetext;
     TextView saladtext;
     TextView beeftext;
@@ -245,6 +245,7 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         double carbonfootprint;
         carbonfootprint = CarbonFootprintDataHarvester.readJSON(url);
         ricetext.setText("Hiilijalanjälki on= "+carbonfootprint+" kg");
+        user.carbonfootprint.add(carbonfootprint); //Adds the carbons footprint value to array
     }
 
     public URL getJSON() {

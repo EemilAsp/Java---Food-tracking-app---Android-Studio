@@ -20,7 +20,7 @@ public class UserProfile implements java.io.Serializable{
     boolean rememberMe =false;
 
 
-    public UserProfile(String userName, byte[] password, byte[] salt){
+    public UserProfile(String userName, byte[] password, byte[] salt){      //builds the user profile
         this.userName = userName;
         this.password = password;
         this.salt = salt;
@@ -46,11 +46,11 @@ public class UserProfile implements java.io.Serializable{
 
     public String getLastActivity() {
         return lastActivity;
-    }
+    }      //remembers which activity was last used
 
     public void setLastActivity(String lastActivity) {
         this.lastActivity = lastActivity;
-    }
+    }      //remembers which activity was last used
 
     public void setDaysMeals(HashMap<String, ArrayList<userMeal>> daysMeals){
         this.daysMeals = daysMeals;

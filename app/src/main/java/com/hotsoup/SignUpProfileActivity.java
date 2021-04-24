@@ -46,6 +46,7 @@ public class SignUpProfileActivity extends AppCompatActivity implements TextWatc
         }
 
         @Override
+        //Changes if user can make the profile or not
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if(getCurrentFocus() == password){updatePasswordStrengthView(s.toString());}
             if(password.getText().toString().equals(passwordAgain.getText().toString()) && progressBar.getProgress()>=3){

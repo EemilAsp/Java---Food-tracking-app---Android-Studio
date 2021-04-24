@@ -343,15 +343,14 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         return url;
     }
 
-    public void readGasJSON(View v){
+    public void readGasJSON(View v){               //finds carbon footprint of car usage using harvester method
         double gascarbonfootprint;
         url=getGasURL();
         gascarbonfootprint=CarbonFootprintDataHarvester.readGasJSON(url);
-        user.travelcarbonfootprint.add(gascarbonfootprint); //adds travelling carbon footprint to users data
-        System.out.println("Gascarbonfootprint oli = "+gascarbonfootprint+ "kg");
+
     }
 
-    public URL getGasURL(){
+    public URL getGasURL(){                     //constructs the car URL based on selected values
         String cartype;
         if(cartypespinner.getSelectedItemPosition()==2){
             cartype="petrolCar";
@@ -360,21 +359,40 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
             cartype="dieselCar";
         }
         else{
-            System.out.println("Ongelma URL muodostamisessa");
-            return null;
+            return null;    //return null if user has selected no car or hasn't chosen any alternative
         }
         try {
             url = new URL("https://api.triptocarbon.xyz/v1/footprint?activity="+ kmdrivenseekbar.getProgress()/1.61 +"&activityType=miles&country=gbr&mode="+cartype);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        System.out.println(url);
         return url;
     }
 
         @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if(parent.getId()==R.id.dietspinner){
+        if(parent.getId()==R.id.dietspinner){  //chooses which elements of diet are visible based on selected diet
+
+            if(position==0){
+                saladseekbar.setVisibility(View.GONE);
+                eggseekbar.setVisibility(View.GONE);
+                fishseekbar.setVisibility(View.GONE);
+                cheeseseekbar.setVisibility(View.GONE);
+                riceseekbar.setVisibility(View.GONE);
+                dairyseekbar.setVisibility(View.GONE);
+                beefseekbar.setVisibility(View.GONE);
+                porkchickenseekbar.setVisibility(View.GONE);
+                saladtext.setVisibility(View.GONE);
+                eggtext.setVisibility(View.GONE);
+                fishtext.setVisibility(View.GONE);
+                cheesetext.setVisibility(View.GONE);
+                ricetext.setVisibility(View.GONE);
+                dairytext.setVisibility(View.GONE);
+                beeftext.setVisibility(View.GONE);
+                porkchickentext.setVisibility(View.GONE);
+                lowCBpref.setVisibility(View.GONE);
+                lowCBtext.setVisibility(View.GONE);
+            }
     if(position==1){
         saladseekbar.setVisibility(View.VISIBLE);
         eggseekbar.setVisibility(View.VISIBLE);
@@ -480,6 +498,8 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         porkchickentext.setVisibility(View.GONE);
         lowCBpref.setVisibility(View.GONE);
         lowCBtext.setVisibility(View.GONE);
+        kmdriventext.setVisibility(View.GONE);
+        kmdrivenseekbar.setVisibility(View.GONE);
     }
 
     private void goMainScreen(){

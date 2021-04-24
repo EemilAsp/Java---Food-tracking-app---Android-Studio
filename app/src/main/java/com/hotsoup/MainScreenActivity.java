@@ -24,30 +24,30 @@ public class MainScreenActivity extends AppCompatActivity {
     }
 
     
-    public void startFoodMenuActivity(View v){
+    public void startFoodMenuActivity(View v){                  //starts the activity in which new meals can be added
         Intent myIntent = new Intent(getApplicationContext(), foodDataHarvester.class);
         startActivity(myIntent);
     }
 
-    public void startEditProfileActivity(View v){
+    public void startEditProfileActivity(View v){               //starts the activity where user profile can be modified
         Intent myIntent = new Intent(getApplicationContext(), EditProfileActivity.class);
         startActivity(myIntent);
     }
 
-    public void startCarbonFootprintActivity(View v){
+    public void startCarbonFootprintActivity(View v){           //starts the activity in which food and travel carbon footprint is calculated with APIs
         Intent intent = new Intent(MainScreenActivity.this, CarbonFootprintActivity.class);
         startActivity(intent);
         finish();
     }
 
 
-    public void startWeigthActivity(View v){
+    public void startWeigthActivity(View v){                    //starts the activity which calculates BMI
         Intent myIntent = new Intent(getApplicationContext(), WeightTracker.class);
         startActivity(myIntent);
     }
 
 
-    public void startRandomFactsActivity(View v){Intent myIntent = new Intent(getApplicationContext(), RandomFactsActivity.class);
+    public void startRandomFactsActivity(View v){Intent myIntent = new Intent(getApplicationContext(), RandomFactsActivity.class);          //starts the random facts activity which shows interesting quotes
         startActivity(myIntent);
 
     }

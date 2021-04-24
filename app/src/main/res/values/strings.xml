@@ -112,4 +112,5 @@
     <string name="nocar">Ei autoa</string>
     <string name="petrol">Bensiiniauto</string>
     <string name="diesel">Diesel</string>
+    <string name="go_next">Jatka seuraavaan</string>
 </resources>

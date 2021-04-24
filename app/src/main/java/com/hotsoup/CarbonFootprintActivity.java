@@ -297,7 +297,6 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         dietspinner.setVisibility(View.GONE);
         continuecount.setVisibility(View.GONE);
         carbonfootprint = CarbonFootprintDataHarvester.readfoodJSON(url);
-        ricetext.setText("Hiilijalanjälki on= "+carbonfootprint+" kg");
         user.carbonfootprint.add(carbonfootprint); //Adds the carbons footprint value to array
     }
 
@@ -334,7 +333,7 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         double gascarbonfootprint;
         url=getGasURL();
         gascarbonfootprint=CarbonFootprintDataHarvester.readGasJSON(url);
-        System.out.println("Gascarbonfootprint oli = "+gascarbonfootprint);
+        System.out.println("Gascarbonfootprint oli = "+gascarbonfootprint+ "kg");
 
     }
 
@@ -343,7 +342,7 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         if(cartypespinner.getSelectedItemPosition()==2){
             cartype="petrolCar";
         }
-        if(cartypespinner.getSelectedItemPosition()==3){
+        else if(cartypespinner.getSelectedItemPosition()==3){
             cartype="dieselCar";
         }
         else{

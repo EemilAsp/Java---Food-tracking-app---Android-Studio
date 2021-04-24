@@ -14,6 +14,7 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
@@ -42,14 +43,14 @@ public class weightBarchartFragment extends Fragment { //creates a barchart of t
         }
 
         BarDataSet barDataSet = new BarDataSet(values, "Käyttäjän painon kehitys");
-        barDataSet.setColors(Color.CYAN);
+        barDataSet.setColors(ColorTemplate.PASTEL_COLORS);
         barDataSet.setValueTextColor(Color.BLACK);
-        barDataSet.setBarBorderWidth(2);
+        barDataSet.setBarBorderWidth(1);
         barDataSet.setValueTextSize(22f);
 
 
         BarData bardata = new BarData(barDataSet);
-        barchart.setFitBars(true);
+        //barchart.setFitBars(true);
         barchart.setData(bardata);
         barchart.setMinimumWidth(2);
         barchart.setScaleEnabled(false);

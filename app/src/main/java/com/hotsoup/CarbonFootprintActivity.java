@@ -1,7 +1,9 @@
 package com.hotsoup;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -89,6 +91,17 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         dairyseekbar = findViewById(R.id.dairySeekbar);
         cheeseseekbar = findViewById(R.id.cheeseSeekbar);
         kmdrivenseekbar=findViewById(R.id.kmdrivenseekbar);
+
+
+        Toolbar toolbar = findViewById(R.id.include);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goMainScreen();
+            }
+        });
 
         riceseekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -334,7 +347,7 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         double gascarbonfootprint;
         url=getGasURL();
         gascarbonfootprint=CarbonFootprintDataHarvester.readGasJSON(url);
-
+        user.travelcarbonfootprint.add(gascarbonfootprint);
     }
 
     public URL getGasURL(){                     //constructs the car URL based on selected values
@@ -485,5 +498,12 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         porkchickentext.setVisibility(View.GONE);
         lowCBpref.setVisibility(View.GONE);
         lowCBtext.setVisibility(View.GONE);
+        kmdriventext.setVisibility(View.GONE);
+        kmdrivenseekbar.setVisibility(View.GONE);
     }
+
+    private void goMainScreen(){
+        Intent myIntent = new Intent(this, MainScreenActivity.class);
+        startActivity(myIntent);
+        finish();}
 }

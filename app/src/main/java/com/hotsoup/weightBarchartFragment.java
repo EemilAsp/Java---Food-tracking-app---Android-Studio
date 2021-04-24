@@ -18,7 +18,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import java.util.ArrayList;
 
 
-public class weightBarchartFragment extends Fragment {
+public class weightBarchartFragment extends Fragment { //creates a barchart of the users weight
     View chartview;
     LoadProfile lp = LoadProfile.getInstance();
     UserProfile user = lp.getUser();

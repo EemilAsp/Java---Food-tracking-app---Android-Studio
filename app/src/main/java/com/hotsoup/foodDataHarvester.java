@@ -195,6 +195,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
                 }
             }
         }
+
     public boolean testDateText(String datestr){ // testing date input
         try{
             DateFormat df = new SimpleDateFormat((DATE_FORMAT));

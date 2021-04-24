@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:background="@color/natural_white"
     android:layout_height="match_parent"
     tools:context=".CarbonFootprintActivity">
 
@@ -193,11 +194,16 @@
         android:textSize="16dp"
         android:visibility="gone"
          />
-
+        <Spinner
+            android:id="@+id/cartypespinner"
+            android:layout_width="254dp"
+            android:layout_height="38dp"
+            android:visibility="gone"
+            />
         <TextView
             android:id="@+id/kmdrivenText"
-            android:layout_width="208dp"
-            android:layout_height="17dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:textSize="16dp"
             android:text="Ajokilometrit/vuosi: 15000km"
@@ -216,17 +222,12 @@
 
 
 
-    <Spinner
-        android:id="@+id/cartypespinner"
-        android:layout_width="254dp"
-        android:layout_height="38dp"
-        android:visibility="gone"
-         />
+
 
     <Button
         android:id="@+id/countCB"
-        android:layout_width="185dp"
-        android:layout_height="53dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:onClick="readGasJSON"
         android:visibility="gone"
         android:text="Laske hiilijalanjälki"

@@ -51,7 +51,7 @@ public class CarbonFootprintDataHarvester {
             if(json!=null){
                 try{
                     JSONObject object = new JSONObject(json);
-                    gascarbonfootprint=Math.round((object.getDouble("carbonFootprint"))*1000.0/100.0);
+                    gascarbonfootprint=Math.round((object.getDouble("carbonFootprint"))*100.0/100.0);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

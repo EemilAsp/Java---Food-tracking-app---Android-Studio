@@ -28,6 +28,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+
 public class CarbonFootprintActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     LoadProfile lp = LoadProfile.getInstance();
     UserProfile user = lp.getUser();
@@ -269,7 +270,8 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         cartypespinner.setOnItemSelectedListener(this);
     }
 
-    public void readfoodJSON(View v){
+
+    public void readfoodJSON(View v){           //finds the carbon footprint of food using harvester method and makes the interface go to the "next screen" a.k.a makes car related information visible
         url=getfoodURL();
         double carbonfootprint;
         carbonfootprint = CarbonFootprintDataHarvester.readfoodJSON(url);
@@ -296,11 +298,10 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         lowCBtext.setVisibility(View.GONE);
         dietspinner.setVisibility(View.GONE);
         continuecount.setVisibility(View.GONE);
-        carbonfootprint = CarbonFootprintDataHarvester.readfoodJSON(url);
         user.carbonfootprint.add(carbonfootprint); //Adds the carbons footprint value to array
     }
 
-    public URL getfoodURL() {
+    public URL getfoodURL() {       //constructs the food URL based on selected values
         String diet = "omnivore";
         String response = null;
         String CP = "false";

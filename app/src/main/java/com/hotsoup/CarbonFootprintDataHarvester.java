@@ -26,7 +26,7 @@ public class CarbonFootprintDataHarvester {
         StrictMode.setThreadPolicy(policy);
     }
 
-    public static double readfoodJSON(URL url){
+    public static double readfoodJSON(URL url){  //gets the wanted URL as parameter and uses API to get the correct food carbon footprint
         String json=getJSON(url);
         double carbonfootprint=0.00;
 
@@ -41,7 +41,7 @@ public class CarbonFootprintDataHarvester {
         return carbonfootprint;
     }
 
-    public static double readGasJSON(URL url){
+    public static double readGasJSON(URL url){        //gets the wanted URL as parameter and uses API to get the correct car carbon footprint
         double gascarbonfootprint=0.00;
         if(url==null){
             return 0.00;
@@ -60,7 +60,7 @@ public class CarbonFootprintDataHarvester {
     return gascarbonfootprint;
     }
 
-    public static String getJSON(URL url){
+    public static String getJSON(URL url){          //gets the url as parameter and constructs a string from the JSON API
         String response=null;
         try{
             HttpURLConnection conn = (HttpsURLConnection)url.openConnection();

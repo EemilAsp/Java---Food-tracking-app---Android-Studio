@@ -353,7 +353,6 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        System.out.println(url);
         return url;
     }
 

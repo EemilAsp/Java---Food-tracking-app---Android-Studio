@@ -347,7 +347,7 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         double gascarbonfootprint;
         url=getGasURL();
         gascarbonfootprint=CarbonFootprintDataHarvester.readGasJSON(url);
-
+        user.travelcarbonfootprint.add(gascarbonfootprint);
     }
 
     public URL getGasURL(){                     //constructs the car URL based on selected values

@@ -26,7 +26,7 @@ public class CarbonFootprintDataHarvester {
         StrictMode.setThreadPolicy(policy);
     }
 
-    public static double readJSON(URL url){
+    public static double readfoodJSON(URL url){
         String json=getJSON(url);
         double carbonfootprint=0.00;
 
@@ -39,6 +39,25 @@ public class CarbonFootprintDataHarvester {
             }
         }
         return carbonfootprint;
+    }
+
+    public static double readGasJSON(URL url){
+        double gascarbonfootprint=0.00;
+        if(url==null){
+            return 0.00;
+        }
+        else{
+            String json=getJSON(url);
+            if(json!=null){
+                try{
+                    JSONObject object = new JSONObject(json);
+                    gascarbonfootprint=Math.round((object.getDouble("carbonFootprint"))*1000.0/100.0);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    return gascarbonfootprint;
     }
 
     public static String getJSON(URL url){

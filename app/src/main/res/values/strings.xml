@@ -107,4 +107,9 @@
     <string name="omnivore">Sekasyöjä</string>
     <string name="vegetarian">Kasvissyöjä</string>
     <string name="vegan">Vegaani</string>
+
+    <string name="choosecar">Valitse autosi tyyppi:</string>
+    <string name="nocar">Ei autoa</string>
+    <string name="petrol">Bensiiniauto</string>
+    <string name="diesel">Diesel</string>
 </resources>

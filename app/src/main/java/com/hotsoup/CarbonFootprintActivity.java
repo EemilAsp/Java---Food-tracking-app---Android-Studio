@@ -3,7 +3,6 @@ package com.hotsoup;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,17 +13,6 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Array;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -39,6 +27,8 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
     TextView dairytext;
     TextView cheesetext;
     TextView eggtext;
+    TextView kmdriventext;
+    TextView lowCBtext;
 
     SeekBar riceseekbar;
     SeekBar saladseekbar;
@@ -48,9 +38,12 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
     SeekBar dairyseekbar;
     SeekBar cheeseseekbar;
     SeekBar eggseekbar;
+    SeekBar kmdrivenseekbar;
 
+    Button continuecount;
     Button countCB;
     Spinner dietspinner;
+    Spinner cartypespinner;
     Switch lowCBpref;
     URL url;
 
@@ -59,10 +52,8 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carbon_footprint);
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
-        countCB = findViewById(R.id.countCB);
+        continuecount = findViewById(R.id.continuecount);
+        countCB=findViewById(R.id.countCB);
         lowCBpref=findViewById(R.id.lowCBpref);
 
         ricetext = findViewById(R.id.riceText);
@@ -73,6 +64,8 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         fishtext = findViewById(R.id.fishText);
         dairytext = findViewById(R.id.dairyText);
         cheesetext = findViewById(R.id.cheeseText);
+        kmdriventext=findViewById(R.id.kmdrivenText);
+        lowCBtext=findViewById(R.id.lowCBtext);
 
         riceseekbar = findViewById(R.id.riceSeekbar);
         saladseekbar = findViewById(R.id.saladSeekbar);
@@ -82,6 +75,7 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         fishseekbar = findViewById(R.id.fishSeekbar);
         dairyseekbar = findViewById(R.id.dairySeekbar);
         cheeseseekbar = findViewById(R.id.cheeseSeekbar);
+        kmdrivenseekbar=findViewById(R.id.kmdrivenseekbar);
 
         riceseekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -219,6 +213,23 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
             }
         });
 
+        kmdrivenseekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                kmdriventext.setText("Ajokilometrit/vuosi: " + progress + "km");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
 
         lowCBpref.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -234,20 +245,48 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
 
 
         dietspinner = findViewById(R.id.dietspinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.diets));
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dietspinner.setAdapter(adapter);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.diets));
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dietspinner.setAdapter(adapter1);
         dietspinner.setOnItemSelectedListener(this);
+
+        cartypespinner=findViewById(R.id.cartypespinner);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.cartypes));
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        cartypespinner.setAdapter(adapter2);
+        cartypespinner.setOnItemSelectedListener(this);
     }
 
-    public void readJSON(View v){
-        url=getJSON();
+    public void readfoodJSON(View v){
+        url=getfoodURL();
         double carbonfootprint;
-        carbonfootprint = CarbonFootprintDataHarvester.readJSON(url);
-        ricetext.setText("Hiilijalanjälki on= "+carbonfootprint+" kg");
+        carbonfootprint = CarbonFootprintDataHarvester.readfoodJSON(url);
+        cartypespinner.setVisibility(View.VISIBLE);
+        kmdrivenseekbar.setVisibility(View.VISIBLE);
+        kmdriventext.setVisibility(View.VISIBLE);
+        saladseekbar.setVisibility(View.GONE);
+        eggseekbar.setVisibility(View.GONE);
+        fishseekbar.setVisibility(View.GONE);
+        cheeseseekbar.setVisibility(View.GONE);
+        riceseekbar.setVisibility(View.GONE);
+        dairyseekbar.setVisibility(View.GONE);
+        beefseekbar.setVisibility(View.GONE);
+        porkchickenseekbar.setVisibility(View.GONE);
+        saladtext.setVisibility(View.GONE);
+        eggtext.setVisibility(View.GONE);
+        fishtext.setVisibility(View.GONE);
+        cheesetext.setVisibility(View.GONE);
+        ricetext.setVisibility(View.GONE);
+        dairytext.setVisibility(View.GONE);
+        beeftext.setVisibility(View.GONE);
+        porkchickentext.setVisibility(View.GONE);
+        lowCBpref.setVisibility(View.GONE);
+        lowCBtext.setVisibility(View.GONE);
+        dietspinner.setVisibility(View.GONE);
+        continuecount.setVisibility(View.GONE);
     }
 
-    public URL getJSON() {
+    public URL getfoodURL() {
         String diet = "omnivore";
         String response = null;
         String CP = "false";
@@ -276,8 +315,38 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         return url;
     }
 
+    public void readGasJSON(View v){
+        double gascarbonfootprint;
+        url=getGasURL();
+        gascarbonfootprint=CarbonFootprintDataHarvester.readGasJSON(url);
+        System.out.println("Gascarbonfootprint oli = "+gascarbonfootprint);
+
+    }
+
+    public URL getGasURL(){
+        String cartype;
+        if(cartypespinner.getSelectedItemPosition()==2){
+            cartype="petrolCar";
+        }
+        if(cartypespinner.getSelectedItemPosition()==3){
+            cartype="dieselCar";
+        }
+        else{
+            System.out.println("Ongelma URL muodostamisessa");
+            return null;
+        }
+        try {
+            url = new URL("https://api.triptocarbon.xyz/v1/footprint?activity="+ kmdrivenseekbar.getProgress()/1.61 +"&activityType=miles&country=gbr&mode="+cartype);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        System.out.println(url);
+        return url;
+    }
+
         @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if(parent.getId()==R.id.dietspinner){
     if(position==1){
         saladseekbar.setVisibility(View.VISIBLE);
         eggseekbar.setVisibility(View.VISIBLE);
@@ -295,7 +364,9 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         dairytext.setVisibility(View.VISIBLE);
         beeftext.setVisibility(View.VISIBLE);
         porkchickentext.setVisibility(View.VISIBLE);
-        countCB.setVisibility(View.VISIBLE);
+        continuecount.setVisibility(View.VISIBLE);
+        lowCBpref.setVisibility(View.VISIBLE);
+        lowCBtext.setVisibility(View.VISIBLE);
     }
 
     if(position==2){
@@ -315,7 +386,9 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         dairytext.setVisibility(View.VISIBLE);
         beeftext.setVisibility(View.GONE);
         porkchickentext.setVisibility(View.GONE);
-        countCB.setVisibility(View.VISIBLE);
+        continuecount.setVisibility(View.VISIBLE);
+        lowCBpref.setVisibility(View.VISIBLE);
+        lowCBtext.setVisibility(View.VISIBLE);
     }
 
     if(position==3){
@@ -335,8 +408,28 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         dairytext.setVisibility(View.GONE);
         beeftext.setVisibility(View.GONE);
         porkchickentext.setVisibility(View.GONE);
-        countCB.setVisibility(View.VISIBLE);
+        continuecount.setVisibility(View.VISIBLE);
+        lowCBpref.setVisibility(View.VISIBLE);
+        lowCBtext.setVisibility(View.VISIBLE);
     }
+    }
+        if(parent.getId()==R.id.cartypespinner){
+            if(position==0){
+                kmdriventext.setVisibility(View.GONE);
+                kmdrivenseekbar.setVisibility(View.GONE);
+                countCB.setVisibility(View.GONE);
+            }
+            if(position==1){
+                kmdriventext.setVisibility(View.GONE);
+                kmdrivenseekbar.setVisibility(View.GONE);
+                countCB.setVisibility(View.VISIBLE);
+            }
+            else{
+                kmdriventext.setVisibility(View.VISIBLE);
+                kmdrivenseekbar.setVisibility(View.VISIBLE);
+                countCB.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     @Override
@@ -357,5 +450,7 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         dairytext.setVisibility(View.GONE);
         beeftext.setVisibility(View.GONE);
         porkchickentext.setVisibility(View.GONE);
+        lowCBpref.setVisibility(View.GONE);
+        lowCBtext.setVisibility(View.GONE);
     }
 }

@@ -22,4 +22,11 @@
         <item>@string/vegetarian</item>
         <item>@string/vegan</item>
     </string-array>
+
+    <string-array name="cartypes">
+        <item>@string/choosecar</item>
+        <item>@string/nocar</item>
+        <item>@string/petrol</item>
+        <item>@string/diesel</item>
+    </string-array>
 </resources>

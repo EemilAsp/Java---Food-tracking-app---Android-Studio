@@ -8,7 +8,7 @@
 
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/lowCBtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
@@ -34,7 +34,7 @@
 
     <Spinner
         android:id="@+id/dietspinner"
-        android:layout_width="180dp"
+        android:layout_width="220dp"
         android:layout_height="34dp"
         android:layout_marginTop="36dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -236,8 +236,6 @@
         android:textSize="8dp"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/riceSeekbar"
-        app:layout_constraintEnd_toStartOf="@+id/countCB"
-        app:layout_constraintHorizontal_bias="0.172"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include"
         app:layout_constraintVertical_bias="1.0" />
@@ -257,12 +255,12 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/countCB"
+        android:id="@+id/continuecount"
         android:layout_width="91dp"
         android:layout_height="41dp"
         android:layout_marginTop="420dp"
-        android:onClick="readJSON"
-        android:text="Laske"
+        android:onClick="readfoodJSON"
+        android:text="Jatka"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.85"
@@ -275,10 +273,62 @@
         android:layout_height="31dp"
         android:layout_marginTop="440dp"
         android:text="En"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.078"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dietspinner" />
+
+    <SeekBar
+        android:id="@+id/kmdrivenseekbar"
+        android:layout_width="172dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="160dp"
+        android:max="30000"
+        android:progress="15000"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+    <TextView
+        android:id="@+id/kmdrivenText"
+        android:layout_width="208dp"
+        android:layout_height="17dp"
+        android:layout_marginBottom="4dp"
+        android:text="Ajokilometrit/vuosi: 15000km"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/kmdrivenseekbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Spinner
+        android:id="@+id/cartypespinner"
+        android:layout_width="254dp"
+        android:layout_height="38dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/kmdrivenText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.915" />
+
+    <Button
+        android:id="@+id/countCB"
+        android:layout_width="185dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="108dp"
+        android:onClick="readGasJSON"
+        android:visibility="gone"
+        android:text="Laske hiilijalanjälki"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kmdrivenseekbar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

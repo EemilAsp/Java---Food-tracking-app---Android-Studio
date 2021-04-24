@@ -44,13 +44,13 @@ public class UserProfile implements java.io.Serializable{
     String lastActivity;
     byte[] salt;
 
-    public String getLastActivity() {
+    public String getLastActivity() {      //remembers which activity was last used
         return lastActivity;
-    }      //remembers which activity was last used
+    }
 
-    public void setLastActivity(String lastActivity) {
+    public void setLastActivity(String lastActivity) {  //remembers which activity was last used
         this.lastActivity = lastActivity;
-    }      //remembers which activity was last used
+    }
 
     public void setDaysMeals(HashMap<String, ArrayList<userMeal>> daysMeals){
         this.daysMeals = daysMeals;

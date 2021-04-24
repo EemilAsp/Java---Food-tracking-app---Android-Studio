@@ -209,7 +209,6 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
     }}
 
     public void addedAMealPopup(String extrainfo){ //Creating a popup for extra info
-        Thread thread = new Thread();
         dialogBuilder = new AlertDialog.Builder(this);
         final View addedmealPopup = getLayoutInflater().inflate(R.layout.dialog, null);
         TextView header = addedmealPopup.findViewById(R.id.addedAMeal);
@@ -228,7 +227,6 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
         }, 3000);
 
     }
-
 
 
     private void goMainScreen(){

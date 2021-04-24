@@ -2,7 +2,7 @@ package com.hotsoup;
 
 import java.io.Serializable;
 
-public class userMeal implements Serializable { //Object for users meal contains the nutritional data
+public class userMeal implements Serializable { //Object for users meal contains the nutritional data of a food item
     String foodname;
     double portionsize;
     double fats;
@@ -47,7 +47,7 @@ public class userMeal implements Serializable { //Object for users meal contains
     }
     public double getAlcohol(){
         if(Double.toString(alcohol).isEmpty()){
-            return 0;
+            return 0.0;
         }else{return alcohol;}
     }
     public double getFiber(){

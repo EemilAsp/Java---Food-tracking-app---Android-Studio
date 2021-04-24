@@ -17,8 +17,9 @@ public class UserProfile implements java.io.Serializable{
     String homeCity ="";
 
     ArrayList<userFoodDiary> comsumption = new ArrayList<>();
-    boolean rememberMe =false;
-
+    boolean rememberMe =false; //if user is logged in or not
+    String lastActivity;  //remembers which activity was last used
+    byte[] salt; //Salt for password
 
     public UserProfile(String userName, byte[] password, byte[] salt){      //builds the user profile
         this.userName = userName;
@@ -41,8 +42,7 @@ public class UserProfile implements java.io.Serializable{
         this.yearOfBirth = yearOfBirth;
     }
 
-    String lastActivity;
-    byte[] salt;
+
 
     public String getLastActivity() {      //remembers which activity was last used
         return lastActivity;

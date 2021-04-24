@@ -84,7 +84,7 @@ public class BMICalculator extends Fragment {
         return view;
     }
 
-
+    //Calculates BMI :DDDD
     private double calculateBMI(double weight, double height){
         return weight/(height/100*height/100);
     }

@@ -73,7 +73,6 @@ public class LoadProfile extends Application {
             }
         }
         //returs object or null
-        System.out.println("Returns null");
     return null;}
 
 
@@ -148,19 +147,15 @@ public class LoadProfile extends Application {
     }
 
     public UserProfile findloggedIn(){
-        System.out.println("Finding logged in people @LoadProfile");
         if(!userList.isEmpty()){
             System.out.println(userList);
-            System.out.println("was the whole logged inlist @LoadProfile");
             for (UserProfile logUser : userList){
 
                 if (logUser.isRememberMe()) {
-                    System.out.println("User logged in found");
                     user = logUser;
                     return logUser;
                 }
             }}
-        System.out.println("Not people found @LoadProfile");
         return null;
     }
 

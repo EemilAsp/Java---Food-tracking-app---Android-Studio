@@ -334,7 +334,6 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         double gascarbonfootprint;
         url=getGasURL();
         gascarbonfootprint=CarbonFootprintDataHarvester.readGasJSON(url);
-        System.out.println("Gascarbonfootprint oli = "+gascarbonfootprint+ "kg");
 
     }
 
@@ -347,7 +346,6 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
             cartype="dieselCar";
         }
         else{
-            System.out.println("Ongelma URL muodostamisessa");
             return null;
         }
         try {

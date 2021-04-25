@@ -106,4 +106,5 @@
     <string name="diesel">Diesel</string>
     <string name="go_next">Jatka seuraavaan</string>
     <string name="least_5_charters">Vähintään 5 merkkiä pitkä</string>
+    <string name="add_food">Lisää ruoka</string>
 </resources>

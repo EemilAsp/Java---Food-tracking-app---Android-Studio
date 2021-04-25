@@ -46,7 +46,7 @@ public class userMeal implements Serializable { //Object for users meal contains
         return fats;
     }
     public double getAlcohol(){
-        if(Double.toString(alcohol).isEmpty()){
+        if(alcohol == 0){
             return 0.0;
         }else{return alcohol;}
     }

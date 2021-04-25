@@ -142,6 +142,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         info = jsonObject.getJSONObject("name").getString("fi");
+                        System.out.println(info);
                         foodinfo.add(info);
                     }
                     myAdapter = new RVadapter(this, foodinfo, this::recyclerViewListClicked);
@@ -155,6 +156,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         if ((jsonObject.getJSONObject("name").getString("fi")).equals(food)) {
                             String name = food;
+                            System.out.println(food);
                             String date = getDateText();
                             if(date.equals("VIRHE")){
                                 ErrorPopUp error = new ErrorPopUp("ERROR", "Väärä päivämäärämuoto, syötä muodossa dd.MM.yyyy");
@@ -170,6 +172,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
                             double alcohol = Double.parseDouble(jsonObject.getString("alcohol")) * portionsize/100;
                             double fiber = Double.parseDouble(jsonObject.getString("fiber")) * portionsize/100;
                             double sugar = Double.parseDouble(jsonObject.getString("sugar")) * portionsize/100;
+                            System.out.println(alcohol);
                             userfooddiary.addMeals(date, name, kcal, portionsize, protein, carb, fats, alcohol, fiber, sugar);
                             System.out.println("DONE");
                             System.out.println(name);

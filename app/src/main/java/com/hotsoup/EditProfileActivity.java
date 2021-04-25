@@ -153,7 +153,7 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
         }
 
         lp.updateUserData(user);}
-        catch (Exception e){System.out.println("Problem with saving data");}
+        catch (NullPointerException e){System.out.println("Problem with saving data");}
     }
 
 

@@ -50,7 +50,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
     final static String DATE_FORMAT = "dd.MM.yyyy";
     EditText foodNameComesHere, dateComesHere, portionSizeComesHere;
     RVadapter myAdapter;
-    TextView mealPopup, listviewheader;
+    TextView mealPopup, listviewheader, addedmealtext;
     String food;
     Button showaddedMeals, createCustomMeal;
     RecyclerView foodview;
@@ -67,6 +67,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
         StrictMode.setThreadPolicy(policy);
 
         listviewheader = (TextView) findViewById(R.id.listViewHeader);
+        addedmealtext=findViewById(R.id.addedMealText);
         portionSizeComesHere = (EditText) findViewById(R.id.portionSizeHere);
         foodNameComesHere = (EditText) findViewById(R.id.foodTextComesHere);
         dateComesHere = (EditText) findViewById(R.id.dateComesHere);
@@ -203,7 +204,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
             df.parse(datestr);
             return true;
         } catch (ParseException e) {
-            ErrorPopUp error = new ErrorPopUp("ERROR", "Wrong date format use dd.MM.yyyy");
+            ErrorPopUp error = new ErrorPopUp("ERROR", "Väärä päivämäärämuoto, syötä muodossa dd.MM.yyyy");
             error.show(getSupportFragmentManager(), "ERROR");
             return false;
         }
@@ -255,7 +256,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
         String meal = null;
         String date = getDateText();
         if(date.equals("VIRHE")){
-            ErrorPopUp error = new ErrorPopUp("ERROR", "Wrong date format use dd.MM.yyyy");
+            ErrorPopUp error = new ErrorPopUp("ERROR", "Väärä päivämäärämuoto, syötä muodossa dd.MM.yyyy");
             error.show(getSupportFragmentManager(), "ERROR");
         }else{
         ArrayList<userMeal> umeals = userfooddiary.getArray(date);
@@ -345,7 +346,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
                 double kcal = alcohol * 7 + carb * 4 + protein * 4 + fats * 9;
                 userfooddiary.addMeals(date, name, kcal, portionsize, protein, carb, fats, alcohol, fiber, sugar);}
                 catch(Exception e){ // error if not all boxes answered
-                    ErrorPopUp error = new ErrorPopUp("ERROR", "Fill all the boxes, insert 0 even if there's no value.");
+                    ErrorPopUp error = new ErrorPopUp("ERROR", "Täytä kaikki kentät, arvon puuttuessa syötä 0.");
                     error.show(getSupportFragmentManager(), "ERROR");
                 }
                 dialog.dismiss();
@@ -365,7 +366,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
             double d = Double.parseDouble(portionSizeComesHere.getText().toString());
             return true;
         } catch (NumberFormatException e) {
-            ErrorPopUp error = new ErrorPopUp("ERROR", "Portion size must be in numeral form");
+            ErrorPopUp error = new ErrorPopUp("ERROR", "Annoskoko täytyy syöttää numeroin");
             error.show(getSupportFragmentManager(), "ERROR");
             return false;
         }}

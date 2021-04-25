@@ -21,4 +21,6 @@
     <color name="very_orange">#ff6f00</color>
     <color name="green">#07f767</color>
     <color name="blue">#3a20b0</color>
+    <color name="chartblue">#2a9df4</color>
+    <color name="chartorange">#ffaf7a</color>
 </resources>

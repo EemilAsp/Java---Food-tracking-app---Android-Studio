@@ -234,7 +234,7 @@
         <FrameLayout
             android:id="@+id/piechartView"
             android:layout_width="match_parent"
-            android:layout_height="500dp"></FrameLayout>
+            android:layout_height="wrap_content"></FrameLayout>
 
     </LinearLayout>
     </ScrollView>

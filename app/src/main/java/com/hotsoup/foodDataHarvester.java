@@ -359,7 +359,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
                     error.show(getSupportFragmentManager(), "ERROR");
                 }
                 dialog.dismiss();
-                String food = "Wow, teit juuri oman ruoan!";
+                String food = "Wow, teit juuri oman ruoan!\n Nimikkeellä "+nameValue.getText().toString();
                 addedAMealPopup(food);
             }
         });

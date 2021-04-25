@@ -46,6 +46,8 @@ import javax.net.ssl.HttpsURLConnection;
 public class foodDataHarvester extends AppCompatActivity implements RecyclerViewClickInterface {
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
+    LoadProfile lp = LoadProfile.getInstance();
+    UserProfile user = lp.getUser();
     Toolbar toolbar;
     final static String DATE_FORMAT = "dd.MM.yyyy";
     EditText foodNameComesHere, dateComesHere, portionSizeComesHere;
@@ -62,6 +64,10 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fooddataharvester);
+
+
+        user.lastActivity = getClass().getName();
+        lp.updateUserData(user);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -297,6 +303,9 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
         final View addedmealPopup = getLayoutInflater().inflate(R.layout.dialog, null);
         mealPopup = (TextView) addedmealPopup.findViewById(R.id.mealPopUP);
         String fooddata = objectToString(food);
+        if(fooddata == null){
+            fooddata = food;
+        }
         mealPopup.setText(fooddata);
         dialogBuilder.setView(addedmealPopup);
         dialog = dialogBuilder.create();
@@ -349,6 +358,8 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
                     error.show(getSupportFragmentManager(), "ERROR");
                 }
                 dialog.dismiss();
+                String food = "Wow, teit juuri oman ruoan!";
+                addedAMealPopup(food);
             }
         });
 

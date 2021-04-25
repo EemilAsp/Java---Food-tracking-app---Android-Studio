@@ -36,6 +36,7 @@ public class WeightTracker extends AppCompatActivity { //tracks the users bodywe
 
         user = lp.getUser();
         user.lastActivity = getClass().getName();
+
         lp.updateUserData(user);
         //Toolbar support Start
         toolbar = findViewById(R.id.toolbar);

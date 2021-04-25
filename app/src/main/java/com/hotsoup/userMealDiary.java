@@ -30,6 +30,10 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
     private AlertDialog.Builder dialogBuilder;
     final static String DATE_FORMAT = "dd.MM.yyyy";
     private AlertDialog dialog;
+
+    LoadProfile lp = LoadProfile.getInstance();
+    UserProfile user = lp.getUser();
+
     boolean choice = true;
     Toolbar tb;
     DecimalFormat df = new DecimalFormat("#.#");
@@ -54,6 +58,10 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
         returnButton = findViewById(R.id.returnbutton);
         dateInsert = findViewById(R.id.searchByDate);
         extraButton = findViewById(R.id.Extras);
+
+        user.lastActivity = getClass().getName();
+        lp.updateUserData(user);
+
         extraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

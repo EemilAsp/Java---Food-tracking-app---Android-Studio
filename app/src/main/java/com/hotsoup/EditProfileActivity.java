@@ -150,7 +150,6 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
             @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             birth.setText(sdf.format(user.getYearOfBirth().getTime()));
         }
-
         lp.updateUserData(user);
     }
 

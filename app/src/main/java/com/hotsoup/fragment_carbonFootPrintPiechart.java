@@ -22,8 +22,10 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
@@ -122,28 +124,32 @@ public class fragment_carbonFootPrintPiechart extends Fragment { //creates a pie
         BarDataSet brd2 = new BarDataSet(foodvalues, "Food carbon footprint (kg's)");
         brd2.setColor(Color.RED);
 
-        BarData barData = new BarData(brd2, brd1);
+        ArrayList<IBarDataSet> dataSets = new ArrayList<>();
 
+        dataSets.add(brd1);
+        dataSets.add(brd2);
+
+
+        BarData barData = new BarData(dataSets);
 
         barChart.setData(barData);
-        barChart.notifyDataSetChanged();
 
         barChart.getDescription().setEnabled(false);
 
         XAxis xAxis = barChart.getXAxis();
+        xAxis.setCenterAxisLabels(true);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setGranularity(1);
         xAxis.setGranularityEnabled(true);
 
         barChart.setDragEnabled(true);
-        barChart.setVisibleXRangeMaximum(3);
         float barSpace = 0.1f;
         float groupSpace = 0.5f;
         barData.setBarWidth(0.15f);
         barChart.getXAxis().setAxisMinimum(0);
         barChart.animate();
+        barChart.getXAxis().setAxisMaximum(0 + barChart.getBarData().getGroupWidth(groupSpace, barSpace) * travelvalues.size());
         barChart.groupBars(0, groupSpace, barSpace);
         barChart.invalidate();
     }
-
 }

@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="15dp"
+    android:orientation="vertical"
     tools:context=".fragment_carbonFootPrintPiechart">
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:padding="15dp"
-        android:id="@+id/PieChart"
-        ></com.github.mikephil.charting.charts.PieChart>
 
-</RelativeLayout>
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/PieChart"
+        android:layout_width="match_parent"
+        android:layout_height="345dp"
+        android:padding="15dp">
+
+    </com.github.mikephil.charting.charts.PieChart>
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/CarbonBarChart"
+        android:layout_width="match_parent"
+        android:layout_height="345dp"
+        android:padding="15dp"></com.github.mikephil.charting.charts.BarChart>
+
+</LinearLayout>

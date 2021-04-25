@@ -357,7 +357,7 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         double gascarbonfootprint;
         url=getGasURL();
         gascarbonfootprint=CarbonFootprintDataHarvester.readGasJSON(url);
-        user.travelcarbonfootprint.add(gascarbonfootprint);
+        user.travelcarbonfootprint.add(gascarbonfootprint*0.1);
         senddatatoChart();
     }
 

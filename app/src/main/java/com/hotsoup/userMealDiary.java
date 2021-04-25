@@ -30,6 +30,10 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
     private AlertDialog.Builder dialogBuilder;
     final static String DATE_FORMAT = "dd.MM.yyyy";
     private AlertDialog dialog;
+
+    LoadProfile lp = LoadProfile.getInstance();
+    UserProfile user = lp.getUser();
+
     boolean choice = true;
     Toolbar tb;
     DecimalFormat df = new DecimalFormat("#.#");
@@ -54,6 +58,10 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
         returnButton = findViewById(R.id.returnbutton);
         dateInsert = findViewById(R.id.searchByDate);
         extraButton = findViewById(R.id.Extras);
+
+        user.lastActivity = getClass().getName();
+        lp.updateUserData(user);
+
         extraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,14 +110,14 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
             userMeal um = daysEats.get(i);
             if(um.getFoodname().equals(food)){
                 String meal = um.getFoodname()+"" +
-                        "\nPortion: "+df.format(um.getPortionsize())+"g"+
-                        "\nCalories: "+df.format(um.getEnergy())+"kcal"+
-                        "\nfats: "+df.format(um.getFats())+"g" +
-                        "\nProtein: "+df.format(um.getProtein())+"g" +
-                        "\nCarbohydrates: "+df.format(um.getCarb())+"g" +
-                        "\n     Dietary fiber: "+df.format(um.getFiber())+"g" +
-                        "\n     Sugar: "+df.format(um.getSugar())+"g"+
-                        "\nAlcohol: "+df.format(um.getAlcohol())+"g";
+                        "\nAnnos: "+df.format(um.getPortionsize())+"g"+
+                        "\nKalorit: "+df.format(um.getEnergy())+"kcal"+
+                        "\nRasvat: "+df.format(um.getFats())+"g" +
+                        "\nProteiini: "+df.format(um.getProtein())+"g" +
+                        "\nHiilihydraatit: "+df.format(um.getCarb())+"g" +
+                        "\n     Kuitu: "+df.format(um.getFiber())+"g" +
+                        "\n     Sokeri: "+df.format(um.getSugar())+"g"+
+                        "\nAlkoholi: "+df.format(um.getAlcohol())+"g";
                 popupNow(meal, i, date);
             }
         }
@@ -129,7 +137,6 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
             @Override
             public void onClick(View v) {
                 userfooddiary.getArray(dt).remove(index);
-                System.out.println("Poistettu");
                 dialog.dismiss();
             }
         });
@@ -164,7 +171,7 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
             df.parse(datestr);
             return true;
         } catch (ParseException e) {
-            ErrorPopUp error = new ErrorPopUp("ERROR", "Wrong date format use dd.MM.yyyy");
+            ErrorPopUp error = new ErrorPopUp("ERROR", "Väärä päivämäärämuoto, syötä muodossa dd.MM.yyyy");
             error.show(getSupportFragmentManager(), "ERROR");
             return false;
         }
@@ -175,7 +182,7 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
         datesfoodnames.clear();
         datesMeals.clear();
         if(umeals == null){ // if meals not found
-            ErrorPopUp error = new ErrorPopUp("ERROR", "No meals for selected date, try something else");
+            ErrorPopUp error = new ErrorPopUp("ERROR", "Ei ateria tietoja annetulla päivämäärällä");
             error.show(getSupportFragmentManager(), "ERROR");
         }else{
         for(int i = 0; i < umeals.size(); i++){
@@ -189,16 +196,16 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
             totalsugar += um.getSugar();
             totalprotein += um.getProtein();
         }
-        daysinfocount = "Total calories: "+df.format(totalenergy)+"kcal"+ //The extras option, showing more indepth info from the dates eating
-                "\nProtein: "+df.format(totalprotein)+"g"+
-                "\nFats: "+df.format(totalfat)+"g"+
-                "\nCarbs: "+df.format(totalcarb)+"g"+
-                "\nDietary fiber: "+df.format(totalfiber)+"g"+
-                "\nSugar: "+df.format(totalsugar)+"g"+
-                "\nAlcohol: "+df.format(totalalcohol)+"g";
-        String infoforlist = "Total calories: "+df.format(totalenergy)+"kcal"+
-                "\nProtein: "+df.format(totalprotein)+"g Fats: "+df.format(totalfat)+"g"+
-                "\nCarbs: "+df.format(totalcarb)+"g";
+        daysinfocount = "Kokonais kalorit: "+df.format(totalenergy)+"kcal"+ //The extras option, showing more indepth info from the dates eating
+                "\nProteiini: "+df.format(totalprotein)+"g"+
+                "\nRasvat: "+df.format(totalfat)+"g"+
+                "\nHiilihydraatit: "+df.format(totalcarb)+"g"+
+                "\nKuitu: "+df.format(totalfiber)+"g"+
+                "\nSokeri: "+df.format(totalsugar)+"g"+
+                "\nAlkoholi: "+df.format(totalalcohol)+"g";
+        String infoforlist = "Kokonais kalorit: "+df.format(totalenergy)+"kcal"+
+                "\nProteiini: "+df.format(totalprotein)+"g Rasvat: "+df.format(totalfat)+"g"+
+                "\nHiilihydraatit: "+df.format(totalcarb)+"g";
         datesfoodnames.add(0, infoforlist);
         rVadapter = new RVadapter(this, datesfoodnames, this::recyclerViewListClicked);
         rVadapter.notifyDataSetChanged();
@@ -212,7 +219,7 @@ public class userMealDiary extends AppCompatActivity implements RecyclerViewClic
         dialogBuilder = new AlertDialog.Builder(this);
         final View addedmealPopup = getLayoutInflater().inflate(R.layout.dialog, null);
         TextView header = addedmealPopup.findViewById(R.id.addedAMeal);
-        header.setText("Dates nutrition information");
+        header.setText("Päivän ruokatiedot");
         mealPopup = (TextView) addedmealPopup.findViewById(R.id.mealPopUP);
         mealPopup.setTextSize(24);
         mealPopup.setText(extrainfo);

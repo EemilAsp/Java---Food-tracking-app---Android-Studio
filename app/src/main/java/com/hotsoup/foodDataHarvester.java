@@ -46,6 +46,8 @@ import javax.net.ssl.HttpsURLConnection;
 public class foodDataHarvester extends AppCompatActivity implements RecyclerViewClickInterface {
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
+    LoadProfile lp = LoadProfile.getInstance();
+    UserProfile user = lp.getUser();
     Toolbar toolbar;
     final static String DATE_FORMAT = "dd.MM.yyyy";
     EditText foodNameComesHere, dateComesHere, portionSizeComesHere;
@@ -62,6 +64,10 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fooddataharvester);
+
+
+        user.lastActivity = getClass().getName();
+        lp.updateUserData(user);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -151,7 +157,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
                             String name = food;
                             String date = getDateText();
                             if(date.equals("VIRHE")){
-                                ErrorPopUp error = new ErrorPopUp("ERROR", "Wrong date format use dd.MM.yyyy");
+                                ErrorPopUp error = new ErrorPopUp("ERROR", "Väärä päivämäärämuoto, syötä muodossa dd.MM.yyyy");
                                 error.show(getSupportFragmentManager(), "ERROR");
                             }else{
                             double portionsize = getPortionSize();
@@ -264,14 +270,14 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
             userMeal um = umeals.get(i);
             if(um.getFoodname().equals(foodname)){
             meal = um.getFoodname()+"" +
-                    "\nPortion: "+df.format(um.getPortionsize())+"g"+
-                    "\nCalories: "+df.format(um.getEnergy())+"kcal"+
-                    "\nfats: "+df.format(um.getFats())+"g" +
-                    "\nProtein: "+df.format(um.getProtein())+"g" +
-                    "\nCarbohydrates: "+df.format(um.getCarb())+"g" +
-                    "\n     Dietary fiber: "+df.format(um.getFiber())+"g" +
-                    "\n     Sugar: "+df.format(um.getSugar())+"g"+
-                    "\nAlcohol: "+df.format(um.getAlcohol())+"g";
+                    "\nAnnos: "+df.format(um.getPortionsize())+"g"+
+                    "\nKalorit: "+df.format(um.getEnergy())+"kcal"+
+                    "\nRasvat: "+df.format(um.getFats())+"g" +
+                    "\nProteiini: "+df.format(um.getProtein())+"g" +
+                    "\nHiilihydraatit: "+df.format(um.getCarb())+"g" +
+                    "\n     Kuitu: "+df.format(um.getFiber())+"g" +
+                    "\n     Sokeri: "+df.format(um.getSugar())+"g"+
+                    "\nAlkoholi: "+df.format(um.getAlcohol())+"g";
             return meal;
         }}}
         return meal;
@@ -298,6 +304,9 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
         final View addedmealPopup = getLayoutInflater().inflate(R.layout.dialog, null);
         mealPopup = (TextView) addedmealPopup.findViewById(R.id.mealPopUP);
         String fooddata = objectToString(food);
+        if(fooddata == null){
+            fooddata = food;
+        }
         mealPopup.setText(fooddata);
         dialogBuilder.setView(addedmealPopup);
         dialog = dialogBuilder.create();
@@ -350,6 +359,8 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
                     error.show(getSupportFragmentManager(), "ERROR");
                 }
                 dialog.dismiss();
+                String food = "Wow, teit juuri oman ruoan!\n Nimikkeellä "+nameValue.getText().toString();
+                addedAMealPopup(food);
             }
         });
 

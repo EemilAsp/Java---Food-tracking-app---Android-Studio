@@ -320,6 +320,7 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         lowCBtext.setVisibility(View.GONE);
         dietspinner.setVisibility(View.GONE);
         continuecount.setVisibility(View.GONE);
+        countCB.setVisibility(View.GONE);
         System.out.println(carbonfootprint);
         user.carbonfootprint.add(carbonfootprint); //Adds the carbons footprint value to array
     }

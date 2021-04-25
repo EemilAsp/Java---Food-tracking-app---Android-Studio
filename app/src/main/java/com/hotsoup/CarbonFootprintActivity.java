@@ -320,6 +320,7 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         lowCBtext.setVisibility(View.GONE);
         dietspinner.setVisibility(View.GONE);
         continuecount.setVisibility(View.GONE);
+        countCB.setVisibility(View.GONE);
         user.carbonfootprint.add(carbonfootprint); //Adds the carbons footprint value to array
     }
 
@@ -475,7 +476,7 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
                 kmdrivenseekbar.setVisibility(View.GONE);
                 countCB.setVisibility(View.GONE);
             }
-            if(position==1){
+            else if(position==1){
                 kmdriventext.setVisibility(View.GONE);
                 kmdrivenseekbar.setVisibility(View.GONE);
                 countCB.setVisibility(View.VISIBLE);

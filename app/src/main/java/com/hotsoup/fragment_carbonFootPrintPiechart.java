@@ -15,6 +15,7 @@ import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -103,28 +104,45 @@ public class fragment_carbonFootPrintPiechart extends Fragment { //creates a pie
     }
 
 
-    public void setupBarchart(){
+    public void setupBarchart() {
         ArrayList<BarEntry> travelvalues = new ArrayList<>();
         ArrayList<BarEntry> foodvalues = new ArrayList<>();
-        for(int i = 0; i<user.travelcarbonfootprint.size(); i++){
-            travelvalues.add(new BarEntry(i,user.travelcarbonfootprint.get(i).floatValue()));
+
+        for (int i = 0; i < user.travelcarbonfootprint.size(); i++) {
+            travelvalues.add(new BarEntry(i, user.travelcarbonfootprint.get(i).floatValue()));
         }
-        for(int i = 0; i<user.carbonfootprint.size(); i++){
-            foodvalues.add(new BarEntry(i,user.carbonfootprint.get(i).floatValue()));
+
+        for (int i = 0; i < user.carbonfootprint.size(); i++) {
+            foodvalues.add(new BarEntry(i, user.carbonfootprint.get(i).floatValue()));
+            System.out.println(user.carbonfootprint.get(i).toString());
         }
+
         BarDataSet brd1 = new BarDataSet(travelvalues, "Travelling carbon footprint (kg's)");
         brd1.setColor(Color.rgb(104, 241, 175));
         BarDataSet brd2 = new BarDataSet(foodvalues, "Food carbon footprint (kg's)");
         brd2.setColor(Color.RED);
-        BarData barData = new BarData(brd1,brd2);
+
+        BarData barData = new BarData(brd2, brd1);
+
+
         barChart.setData(barData);
-
-        barData.setBarWidth(0.3f);
-        barData.groupBars(0, 0.04f, 0.02f);
-
-        barChart.getXAxis().setSpaceMin(3f);
-        barChart.getXAxis().setAxisMinimum(-1);
         barChart.notifyDataSetChanged();
+
+        barChart.getDescription().setEnabled(false);
+
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setGranularity(1);
+        xAxis.setGranularityEnabled(true);
+
+        barChart.setDragEnabled(true);
+        barChart.setVisibleXRangeMaximum(3);
+        float barSpace = 0.1f;
+        float groupSpace = 0.5f;
+        barData.setBarWidth(0.15f);
+        barChart.getXAxis().setAxisMinimum(0);
+        barChart.animate();
+        barChart.groupBars(0, groupSpace, barSpace);
         barChart.invalidate();
     }
 

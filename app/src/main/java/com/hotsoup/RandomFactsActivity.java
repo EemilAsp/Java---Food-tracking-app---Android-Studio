@@ -41,6 +41,9 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class RandomFactsActivity extends AppCompatActivity { // this activity takes data from Sotkanet API and shows to user as a barchart.
     Fragment fragment = new tobacco_barchart();
+    LoadProfile lp = LoadProfile.getInstance();
+    UserProfile user = lp.getUser();
+
     Button showme;
     TextView title, extrainfo;
     OutputStreamWriter ows = null;
@@ -62,8 +65,12 @@ public class RandomFactsActivity extends AppCompatActivity { // this activity ta
         StrictMode.setThreadPolicy(policy);
         showme = (Button) findViewById(R.id.showmebutton);
 
+        user.lastActivity = getClass().getName();
+        lp.updateUserData(user);
+
         callTheMaleReadJson(); // Searches data from sotkanet api
         callTheFemaleReadJson(); // Searches data from sotkanet api
+
         if(Malelist.size() > 0 && Femalelist.size() > 0){
             savedatatofile(); // incase of api wont work saving the data to backup file
         }
@@ -122,12 +129,14 @@ public class RandomFactsActivity extends AppCompatActivity { // this activity ta
         readJSON(2017, "Male");
         readJSON(2018, "Male");
         readJSON(2019, "Male");
+        System.out.println("Luki");
 
     }
     private void callTheFemaleReadJson(){ // data for females
         readJSON(2017, "Female");
         readJSON(2018, "Female");
         readJSON(2019, "Female");
+        System.out.println("Luki");
     }
 
 
@@ -171,7 +180,7 @@ public class RandomFactsActivity extends AppCompatActivity { // this activity ta
     public String getJSON(int yr, String gd){ //Gets the JSON from api
         String response = null;
         try{
-            URL url = new URL("https://sotkanet.fi/rest/1.1/json?in5dicator=4404&regions=658&years="+yr+"&genders="+gd);
+            URL url = new URL("https://sotkanet.fi/rest/1.1/json?indicator=4404&regions=658&years="+yr+"&genders="+gd);
             HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             InputStream is = new BufferedInputStream(connection.getInputStream());
@@ -193,7 +202,7 @@ public class RandomFactsActivity extends AppCompatActivity { // this activity ta
 
     public void sendValueToFragment(){ // sending data to barchart fragment
         Bundle bundle = new Bundle();
-        if(Malelist.isEmpty() && Femalelist.isEmpty()){
+        if(Malelist.size() == 0 && Femalelist.size() == 0){
             try {
                 fis = openFileInput(FILENAME);
                 InputStreamReader isr = new InputStreamReader(fis);
@@ -223,6 +232,7 @@ public class RandomFactsActivity extends AppCompatActivity { // this activity ta
                 e.printStackTrace();
             }
         }
+
         System.out.println(Malelist.toString());
         System.out.println(Femalelist.toString());
         bundle.putStringArrayList("male", Malelist);

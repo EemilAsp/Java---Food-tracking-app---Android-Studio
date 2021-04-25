@@ -138,19 +138,22 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
         birth.setEnabled(false);
         hint.setVisibility(View.GONE);
         logOut.setEnabled(true);
-
-        user.setYearOfBirth(calendar);
-        if(height.getText() != null){
+        try{
+        if(calendar != null){
+        user.setYearOfBirth(calendar);}
+        if(!height.getText().toString().isEmpty()){
         user.setHeight(Integer.parseInt(height.getText().toString()));}
 
-        if(homeTown.getText() != null){
+        if(!homeTown.getText().toString().isEmpty()){
             user.setHomeCity(homeTown.getText().toString());}
 
-        if(user.getYearOfBirth() != null){
+        if(!user.getYearOfBirth().toString().isEmpty()){
             @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             birth.setText(sdf.format(user.getYearOfBirth().getTime()));
         }
-        lp.updateUserData(user);
+
+        lp.updateUserData(user);}
+        catch (NullPointerException e){System.out.println("Problem with saving data");}
     }
 
 

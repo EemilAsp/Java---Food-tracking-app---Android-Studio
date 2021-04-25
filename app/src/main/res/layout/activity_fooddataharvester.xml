@@ -27,16 +27,16 @@
 
 
         >
-    <EditText
-        android:id="@+id/portionSizeHere"
-        android:layout_width="190dp"
-        android:layout_height="42dp"
-        android:ems="10"
-        android:hint="Estimate meal size (g)"
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:textAlignment="center"
-        />
+
+        <EditText
+            android:id="@+id/portionSizeHere"
+            android:layout_width="190dp"
+            android:layout_height="42dp"
+            android:ems="10"
+            android:hint="Arvioitu annoskoko (g)"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textAlignment="center" />
 
         <Button
             android:id="@+id/createCustomMeal"
@@ -44,10 +44,9 @@
             android:layout_height="68dp"
             android:layout_marginBottom="16dp"
             android:backgroundTint="#9ac2be"
-            android:text="Create custom meal"
+            android:text="Luo oma ateria"
             android:textColor="#000000"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
     <EditText
         android:id="@+id/dateComesHere"
@@ -58,15 +57,15 @@
         android:inputType="date"
         android:textAlignment="center"
       />
+
         <Button
             android:id="@+id/showaddedMeals"
             android:layout_width="166dp"
             android:layout_height="68dp"
             android:backgroundTint="#9ac2be"
-            android:text="Show added meals"
+            android:text="Näytä lisätyt ruoat"
             android:textColor="#000000"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
     <EditText
         android:id="@+id/foodTextComesHere"
         android:layout_width="189dp"

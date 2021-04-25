@@ -43,7 +43,7 @@
                 android:id="@+id/showmebutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Show me more!"
+                android:text="Näytä lisää!"
                 android:textColor="#000000"
                 android:textSize="24sp"
                 android:textStyle="bold" />

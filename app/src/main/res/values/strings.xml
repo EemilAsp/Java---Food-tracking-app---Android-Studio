@@ -92,7 +92,7 @@
     <string name="extras">Extrat</string>
     <string name="no_weight_yet">Et ole syöttänyt vielä painoa</string>
     <string name="give_weight_height">Anna painosi ja pituutesi ensin</string>
-    <string name="date_format">Päivämäärä pp/kk/vvvv</string>
+    <string name="date_format">Päivämäärä pp.kk.vvvv</string>
     <string name="search_foods">Hae ruokia:</string>
 
     <string name="choose">Valitse ruokavaliosi:</string>
@@ -106,5 +106,5 @@
     <string name="diesel">Diesel</string>
     <string name="go_next">Jatka seuraavaan</string>
     <string name="least_5_charters">Vähintään 5 merkkiä pitkä</string>
-    <string name="add_food">Lisää ruoka</string>
+    <string name="add_food">Lisää ruokia</string>
 </resources>

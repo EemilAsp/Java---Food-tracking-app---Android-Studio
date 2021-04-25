@@ -360,6 +360,7 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
         gascarbonfootprint=CarbonFootprintDataHarvester.readGasJSON(url);
         user.travelcarbonfootprint.add(gascarbonfootprint*0.1);
         senddatatoChart();
+        countCB.setVisibility(View.GONE);
     }
 
     public URL getGasURL(){                     //constructs the car URL based on selected values
@@ -492,26 +493,6 @@ public class CarbonFootprintActivity extends AppCompatActivity implements Adapte
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        saladseekbar.setVisibility(View.GONE);
-        eggseekbar.setVisibility(View.GONE);
-        fishseekbar.setVisibility(View.GONE);
-        cheeseseekbar.setVisibility(View.GONE);
-        riceseekbar.setVisibility(View.GONE);
-        dairyseekbar.setVisibility(View.GONE);
-        beefseekbar.setVisibility(View.GONE);
-        porkchickenseekbar.setVisibility(View.GONE);
-        saladtext.setVisibility(View.GONE);
-        eggtext.setVisibility(View.GONE);
-        fishtext.setVisibility(View.GONE);
-        cheesetext.setVisibility(View.GONE);
-        ricetext.setVisibility(View.GONE);
-        dairytext.setVisibility(View.GONE);
-        beeftext.setVisibility(View.GONE);
-        porkchickentext.setVisibility(View.GONE);
-        lowCBpref.setVisibility(View.GONE);
-        lowCBtext.setVisibility(View.GONE);
-        kmdriventext.setVisibility(View.GONE);
-        kmdrivenseekbar.setVisibility(View.GONE);
     }
 
     private void senddatatoChart() {

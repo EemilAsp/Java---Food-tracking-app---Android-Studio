@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".SignUpProfileActivity"
     android:background="@color/natural_white">
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 <ImageView
     android:id="@+id/imageView"
     android:layout_width="wrap_content"
@@ -15,39 +23,8 @@
     android:layout_marginBottom="30dp"
     android:contentDescription="logo"
     android:src="@drawable/logo_text"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.497"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.186" />
+    android:layout_marginTop="52dp" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="420dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_signin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.346">
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.514"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:layout_constraintVertical_bias="0.0"
-            tools:ignore="ExtraText">
 
             <com.google.android.material.textfield.TextInputLayout
 
@@ -169,8 +146,7 @@
                 android:text="@string/create_new_account" />
 
 
-        </LinearLayout>
-    </ScrollView>
+
 
     <Button
         android:id="@+id/button_signin"
@@ -178,17 +154,15 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
-        android:gravity="center"
+        android:layout_marginTop="24dp"
+        android:layout_gravity="end"
         android:onClick="toSingIn"
 
         android:textSize="18sp"
         android:text="@string/sign_in"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        />
 
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</ScrollView>
+</LinearLayout>
 

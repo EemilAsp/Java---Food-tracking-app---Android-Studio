@@ -58,7 +58,7 @@ public class fragment_carbonFootPrintPiechart extends Fragment { //creates a pie
         pieChart.setUsePercentValues(true);
         pieChart.setEntryLabelTextSize(12);
         pieChart.setEntryLabelColor(Color.BLACK);
-        pieChart.setCenterText("Carbon footprint");
+        pieChart.setCenterText("Hiilijalanjälki");
         pieChart.setCenterTextSize(24);
         pieChart.getDescription().setEnabled(false);
 
@@ -81,8 +81,8 @@ public class fragment_carbonFootPrintPiechart extends Fragment { //creates a pie
             sum2 += user.getTravelcarbonfootprint().get(i);
         }
 
-        values.add(new PieEntry(sum.floatValue(), "Food" ));
-        values.add(new PieEntry(sum2.floatValue(), "Travel"));
+        values.add(new PieEntry(sum.floatValue(), "Ruoka" ));
+        values.add(new PieEntry(sum2.floatValue(), "Matkustus"));
 
 
 
@@ -91,7 +91,7 @@ public class fragment_carbonFootPrintPiechart extends Fragment { //creates a pie
             colors.add(color);
         }
 
-        PieDataSet data = new PieDataSet(values, "Carbon footprint divided to categories");
+        PieDataSet data = new PieDataSet(values, "Hiilijalanjälki jaettuna kategorioihin");
         data.setColors(colors);
         PieData d = new PieData(data);
 
@@ -119,9 +119,9 @@ public class fragment_carbonFootPrintPiechart extends Fragment { //creates a pie
             System.out.println(user.carbonfootprint.get(i).toString());
         }
 
-        BarDataSet brd1 = new BarDataSet(travelvalues, "Travelling carbon footprint (kg's)");
+        BarDataSet brd1 = new BarDataSet(travelvalues, "Matkustus hiilijalanjälki (kg's)");
         brd1.setColor(Color.rgb(104, 241, 175));
-        BarDataSet brd2 = new BarDataSet(foodvalues, "Food carbon footprint (kg's)");
+        BarDataSet brd2 = new BarDataSet(foodvalues, "Ruokavalintojen hiilijalanjälki (kg's)");
         brd2.setColor(Color.RED);
 
         ArrayList<IBarDataSet> dataSets = new ArrayList<>();

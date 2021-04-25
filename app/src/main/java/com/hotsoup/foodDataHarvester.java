@@ -157,7 +157,7 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
                             String name = food;
                             String date = getDateText();
                             if(date.equals("VIRHE")){
-                                ErrorPopUp error = new ErrorPopUp("ERROR", "Wrong date format use dd.MM.yyyy");
+                                ErrorPopUp error = new ErrorPopUp("ERROR", "Väärä päivämäärämuoto, syötä muodossa dd.MM.yyyy");
                                 error.show(getSupportFragmentManager(), "ERROR");
                             }else{
                             double portionsize = getPortionSize();
@@ -270,14 +270,14 @@ public class foodDataHarvester extends AppCompatActivity implements RecyclerView
             userMeal um = umeals.get(i);
             if(um.getFoodname().equals(foodname)){
             meal = um.getFoodname()+"" +
-                    "\nPortion: "+df.format(um.getPortionsize())+"g"+
-                    "\nCalories: "+df.format(um.getEnergy())+"kcal"+
-                    "\nfats: "+df.format(um.getFats())+"g" +
-                    "\nProtein: "+df.format(um.getProtein())+"g" +
-                    "\nCarbohydrates: "+df.format(um.getCarb())+"g" +
-                    "\n     Dietary fiber: "+df.format(um.getFiber())+"g" +
-                    "\n     Sugar: "+df.format(um.getSugar())+"g"+
-                    "\nAlcohol: "+df.format(um.getAlcohol())+"g";
+                    "\nAnnos: "+df.format(um.getPortionsize())+"g"+
+                    "\nKalorit: "+df.format(um.getEnergy())+"kcal"+
+                    "\nRasvat: "+df.format(um.getFats())+"g" +
+                    "\nProteiini: "+df.format(um.getProtein())+"g" +
+                    "\nHiilihydraatit: "+df.format(um.getCarb())+"g" +
+                    "\n     Kuitu: "+df.format(um.getFiber())+"g" +
+                    "\n     Sokeri: "+df.format(um.getSugar())+"g"+
+                    "\nAlkoholi: "+df.format(um.getAlcohol())+"g";
             return meal;
         }}}
         return meal;
